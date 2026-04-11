@@ -345,16 +345,17 @@
       container,
       grainGradientFragmentShader,
       {
-        u_colorBack: [0.04, 0.04, 0.07, 1.0],
+        u_colorBack:   [0.04, 0.04, 0.07, 1.0],
         u_colors: [
           [0.067, 0.067, 0.086, 1.0],   /* #111116 — base dark */
           [0.941, 0.125, 0.376, 1.0],   /* #F02060 — brand pink */
           [0.10,  0.04,  0.18,  1.0],   /* deep purple */
         ],
-        u_softness:  0.65,
-        u_intensity: 0.35,
-        u_noise:     0.18,
-        u_shape:     GrainGradientShapes.sphere,
+        u_colorsCount: 3,
+        u_softness:    0.65,
+        u_intensity:   0.35,
+        u_noise:       0.18,
+        u_shape:       GrainGradientShapes.blob,
       },
       undefined,
       0.4
