@@ -6,6 +6,7 @@
   <title>The Main Sequence &mdash; Consulting</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #111116; }
     :root {
       --bg:         #111116;
       --bg-card:    #1C1D25;
@@ -21,13 +22,12 @@
       --light-bdr:  #E2DDD8;
       --radius: 2px;
     }
+    #bg-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
     body {
       font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.7;
-      background-color: var(--bg);
-      background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
-      background-size: 28px 28px;
+      background: transparent;
       color: var(--cream);
       -webkit-font-smoothing: antialiased;
     }
@@ -38,7 +38,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 14px 3rem;
-      background: var(--bg);
+      background: rgba(17,17,22,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-dk);
       position: sticky;
       top: 0;
@@ -63,7 +65,7 @@
     .sec { padding: 3.5rem 3rem; }
 
     /* HERO */
-    .hero { background: var(--bg); }
+    .hero { background: transparent; }
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -179,6 +181,8 @@
   </style>
 </head>
 <body>
+
+  <canvas id="bg-canvas"></canvas>
 
   <nav>
     <a class="logo" href="#">The Main Sequence</a>
@@ -330,6 +334,16 @@
     <span>&copy; 2025 The Main Sequence LLC &middot; Chicago, IL</span>
     <span>mainsequence.consulting &middot; mainsequence.studio</span>
   </footer>
+
+  <script type="module">
+    import { GrainGradient, grainGradientPresets } from 'https://esm.sh/@paper-design/shaders@latest';
+    const canvas = document.getElementById('bg-canvas');
+    const effect = new GrainGradient({ canvas, ...grainGradientPresets[0] });
+    effect.play();
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    resize();
+    window.addEventListener('resize', resize);
+  </script>
 
 </body>
 </html>
