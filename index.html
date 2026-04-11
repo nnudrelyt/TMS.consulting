@@ -25,7 +25,9 @@
       font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.7;
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
       color: var(--cream);
       -webkit-font-smoothing: antialiased;
     }
@@ -116,7 +118,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
-    .pillar { background: var(--bg-card); border: 1px solid var(--border-dk); padding: 1.4rem; }
+    .pillar { background: var(--bg-card); background-image: none; border: 1px solid var(--border-dk); padding: 1.4rem; }
     .pillar-num { font-size: 11px; color: var(--pink); letter-spacing: 0.08em; display: block; margin-bottom: 10px; font-weight: 700; }
     .pillar h3 { font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 7px; }
     .pillar p { font-size: 13px; line-height: 1.65; color: var(--cream-dim); }
@@ -127,7 +129,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 14px;
     }
-    .service-card { background: var(--bg-card); border: 1px solid var(--border-dk); padding: 1.75rem; }
+    .service-card { background: var(--bg-card); background-image: none; border: 1px solid var(--border-dk); padding: 1.75rem; }
     .service-num { font-size: 11px; color: var(--pink); letter-spacing: 0.06em; font-weight: 700; display: block; margin-bottom: 12px; }
     .service-card h3 { font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
     .service-card > p { font-size: 13px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 14px; }
@@ -147,7 +149,7 @@
     .work-card p { font-size: 13px; line-height: 1.65; color: var(--light-mid); }
 
     /* CTA BAND */
-    .cta-band { background: var(--bg-card); padding: 3.5rem 3rem; text-align: center; border-top: 1px solid var(--border-dk); }
+    .cta-band { background: var(--bg-card); background-image: none; padding: 3.5rem 3rem; text-align: center; border-top: 1px solid var(--border-dk); }
     .cta-band h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.15; }
     .cta-band p { font-size: 15px; color: var(--cream-dim); margin-bottom: 24px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
 
