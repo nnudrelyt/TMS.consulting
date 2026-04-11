@@ -22,7 +22,7 @@
       --light-bdr:  #E2DDD8;
       --radius: 2px;
     }
-    #bg-shader { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    #shader-root { position: absolute; width: 0; height: 0; overflow: visible; }
     body {
       font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
       font-size: 14px;
@@ -182,7 +182,7 @@
 </head>
 <body>
 
-  <div id="bg-shader"></div>
+  <div id="shader-root"></div>
 
   <nav>
     <a class="logo" href="#">The Main Sequence</a>
@@ -335,31 +335,38 @@
     <span>mainsequence.consulting &middot; mainsequence.studio</span>
   </footer>
 
+  <script type="importmap">
+  {
+    "imports": {
+      "react":                        "https://esm.sh/react@18",
+      "react/jsx-runtime":            "https://esm.sh/react@18/jsx-runtime",
+      "react-dom/client":             "https://esm.sh/react-dom@18/client",
+      "@paper-design/shaders-react":  "https://esm.sh/@paper-design/shaders-react@latest"
+    }
+  }
+  </script>
   <script type="module">
-    import { ShaderMount, grainGradientFragmentShader, GrainGradientShapes }
-      from 'https://esm.sh/@paper-design/shaders@latest';
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { GrainGradient, grainGradientPresets } from '@paper-design/shaders-react';
 
-    const container = document.getElementById('bg-shader');
-
-    new ShaderMount(
-      container,
-      grainGradientFragmentShader,
-      {
-        u_colorBack:   [0.04, 0.04, 0.07, 1.0],
-        u_colors: [
-          [0.067, 0.067, 0.086, 1.0],   /* #111116 — base dark */
-          [0.941, 0.125, 0.376, 1.0],   /* #F02060 — brand pink */
-          [0.10,  0.04,  0.18,  1.0],   /* deep purple */
-        ],
-        u_colorsCount: 3,
-        u_softness:    0.65,
-        u_intensity:   0.35,
-        u_noise:       0.18,
-        u_shape:       GrainGradientShapes.blob,
-      },
-      undefined,
-      0.4
-    );
+    const root = createRoot(document.getElementById('shader-root'));
+    root.render(React.createElement(GrainGradient, {
+      ...grainGradientPresets[0],
+      u_colorBack:   [0.04, 0.04, 0.07, 1.0],
+      u_colors: [
+        [0.067, 0.067, 0.086, 1.0],
+        [0.941, 0.125, 0.376, 1.0],
+        [0.10,  0.04,  0.18,  1.0],
+      ],
+      u_colorsCount: 3,
+      u_softness:    0.65,
+      u_intensity:   0.35,
+      u_noise:       0.18,
+      u_shape:       6,
+      speed:         0.4,
+      style: { position: 'fixed', inset: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }
+    }));
   </script>
 
 </body>
