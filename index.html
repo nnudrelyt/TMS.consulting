@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mainsequence.consulting — Wireframe</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
+      line-height: 1.45;
+      background: #0D0F14;
+      color: #F0EDE5;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: #0D0F14;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #F0EDE5;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      color: rgba(240,237,229,0.6);
+    }
+    .nav-links a:hover { color: #F0EDE5; }
+    .btn-nav {
+      border: 1px solid rgba(240,237,229,0.35);
+      color: #F0EDE5;
+      padding: 8px 18px;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .btn-nav:hover { background: rgba(240,237,229,0.08); }
+
+    /* HERO */
+    .hero {
+      background: #0D0F14;
+      padding: 108px 48px 92px;
+    }
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #C8A96E;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 6.5vw, 82px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: #F0EDE5;
+      max-width: 820px;
+      margin-bottom: 26px;
+    }
+    .hero p {
+      font-size: 19px;
+      line-height: 1.7;
+      color: rgba(240,237,229,0.62);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 13px 26px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      background: #C8A96E;
+      color: #0D0F14;
+    }
+    .btn:hover { opacity: 0.9; }
+
+    /* SECTIONS */
+    section { padding: 84px 48px; }
+    section.alt { border-top: 1px solid rgba(255,255,255,0.05); }
+    section.light {
+      background: #FAF7F2;
+      color: #1D1A17;
+    }
+
+    .section-eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #C8A96E;
+      margin-bottom: 18px;
+    }
+    .section-eyebrow.terra { color: #C4522A; }
+
+    h2 {
+      font-size: clamp(32px, 4.5vw, 54px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: #F0EDE5;
+      margin-bottom: 16px;
+    }
+    h2.dark { color: #1D1A17; }
+
+    .section-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(240,237,229,0.55);
+      max-width: 580px;
+      margin-top: 6px;
+    }
+    .section-sub.dark { color: #8A837D; }
+
+    /* PILLARS */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 52px;
+    }
+    .pillar {
+      border: 1px solid rgba(240,237,229,0.1);
+      padding: 28px;
+    }
+    .pillar-num {
+      font-size: 12px;
+      color: #C8A96E;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .pillar h3 {
+      font-size: 22px;
+      font-weight: 400;
+      color: #F0EDE5;
+      margin-bottom: 10px;
+    }
+    .pillar p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(240,237,229,0.55);
+    }
+
+    /* SERVICES */
+    .services-list { margin-top: 52px; }
+    .service {
+      border-top: 1px solid rgba(240,237,229,0.1);
+      padding: 32px 0;
+      display: flex;
+      gap: 36px;
+    }
+    .service-num {
+      font-size: 12px;
+      color: #C8A96E;
+      min-width: 30px;
+      padding-top: 4px;
+      letter-spacing: 0.06em;
+    }
+    .service-body h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: #F0EDE5;
+      margin-bottom: 8px;
+    }
+    .service-body p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(240,237,229,0.55);
+      margin-bottom: 14px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .tag {
+      font-size: 12px;
+      padding: 4px 11px;
+      border: 1px solid rgba(200,169,110,0.28);
+      color: #C8A96E;
+    }
+
+    /* WORK */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 44px;
+    }
+    .work-card {
+      border: 1px solid #E5E0D8;
+      padding: 28px;
+      background: #fff;
+    }
+    .work-cat {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #C4522A;
+      margin-bottom: 12px;
+    }
+    .work-card h3 {
+      font-size: 21px;
+      font-weight: 400;
+      color: #1D1A17;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .work-card p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #8A837D;
+    }
+
+    /* CTA */
+    .cta {
+      background: #0D0F14;
+      padding: 84px 48px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .cta h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      color: #F0EDE5;
+      margin-bottom: 14px;
+    }
+    .cta p {
+      color: rgba(240,237,229,0.52);
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0D0F14;
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    footer span {
+      color: rgba(240,237,229,0.3);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero, section { padding: 64px 24px; }
+      .pillars-grid, .work-grid { grid-template-columns: 1fr; }
+      .cta { padding: 64px 24px; }
+      footer { padding: 28px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="#">The Main Sequence</a>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Work</a></li>
+      <li><a href="#" class="btn-nav">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Brand · Digital · Technology Consulting · Chicago</div>
+    <h1>We close the gap between strategy and result.</h1>
+    <p>The Main Sequence partners with purpose-driven organizations to solve complex brand, digital, and operational challenges — and to build the infrastructure that lets them scale what's working.</p>
+    <a href="#" class="btn">Let's talk about your challenge →</a>
+  </div>
+
+  <!-- PILLARS -->
+  <section>
+    <div class="section-eyebrow">How we work</div>
+    <h2>Four principles.<br>Every engagement.</h2>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <h3>Purpose</h3>
+        <p>We start with why. Every engagement is grounded in a clear understanding of your mission, your audience, and what success actually looks like.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <h3>Partnership</h3>
+        <p>We work alongside your team — not above it. The best outcomes come from shared ownership and honest collaboration throughout the process.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <h3>Performance</h3>
+        <p>We measure what matters. Strategy that can't be evaluated isn't strategy — it's conjecture. Everything we build is designed to perform and be held accountable.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">04</span>
+        <h3>Perspective</h3>
+        <p>We bring an outside view. Years of cross-sector experience means we see patterns your team might miss — and we're not afraid to say so.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="alt">
+    <div class="section-eyebrow">Services</div>
+    <h2>Four practice areas.<br>No filler.</h2>
+    <div class="services-list">
+      <div class="service">
+        <div class="service-num">01</div>
+        <div class="service-body">
+          <h3>Brand & Digital Strategy</h3>
+          <p>We help organizations clarify who they are, who they're for, and how to communicate that clearly across every channel. From brand positioning to digital channel planning, this is where purpose becomes a roadmap.</p>
+          <div class="tags">
+            <span class="tag">Brand Positioning</span>
+            <span class="tag">Messaging Architecture</span>
+            <span class="tag">Digital Strategy</span>
+            <span class="tag">Audience Research</span>
+            <span class="tag">Channel Planning</span>
+          </div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="service-num">02</div>
+        <div class="service-body">
+          <h3>Paid Media & Analytics</h3>
+          <p>Performance without accountability is noise. We build and manage paid media programs that are designed to be measured, reported on, and improved — and we build the analytics infrastructure to make that possible.</p>
+          <div class="tags">
+            <span class="tag">Paid Search & Social</span>
+            <span class="tag">SEO / GEO</span>
+            <span class="tag">Analytics & Reporting</span>
+            <span class="tag">Campaign Management</span>
+          </div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="service-num">03</div>
+        <div class="service-body">
+          <h3>Complex Project Execution</h3>
+          <p>Large-scale programs — conferences, campaigns, multi-stakeholder rollouts — require a different kind of partner. We've managed the communications lifecycle for enterprise events involving dozens of vendors, thousands of attendees, and zero margin for error.</p>
+          <div class="tags">
+            <span class="tag">Event Communications</span>
+            <span class="tag">Vendor Coordination</span>
+            <span class="tag">Operations Management</span>
+            <span class="tag">Data Reconciliation</span>
+          </div>
+        </div>
+      </div>
+      <div class="service">
+        <div class="service-num">04</div>
+        <div class="service-body">
+          <h3>Software & Workflow Design</h3>
+          <p>The most expensive thing in most organizations is manual work that doesn't need to be manual. We design and build lightweight software solutions, automations, and workflow systems that give your team their time back.</p>
+          <div class="tags">
+            <span class="tag">Workflow Mapping</span>
+            <span class="tag">Custom Automations</span>
+            <span class="tag">Process Documentation</span>
+            <span class="tag">Efficiency Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="light">
+    <div class="section-eyebrow terra">Selected Engagements</div>
+    <h2 class="dark">What good looks like.</h2>
+    <p class="section-sub dark">We don't name every client. But we can tell you what we did — and what it meant.</p>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-cat">Enterprise Events</div>
+        <h3>A 1,000-person technology conference, managed end-to-end</h3>
+        <p>Full communications lifecycle management for a major airline's annual supplier conference — from pre-event email campaigns to attendee data reconciliation, dietary logistics, and VIP coordination.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-cat">Nonprofit / Education</div>
+        <h3>SEO & content strategy for a K–12 education foundation</h3>
+        <p>GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation. Work included SOW refinement and page-level strategy for high-traffic content.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-cat">AEC / Legal</div>
+        <h3>Two brand concepts. One very good decision.</h3>
+        <p>Two distinct brand and web concepts — "Clarity" and "The Conversation" — each with full copy, information architecture, and positioning rationale, enabling the client to make a fully informed strategic choice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Every engagement starts here.</h2>
+    <p>Tell us where you are. We'll help you figure out where to go.</p>
+    <a href="#" class="btn">Start the conversation →</a>
+  </div>
+
+  <footer>
+    <span>© 2025 The Main Sequence LLC · Chicago, IL</span>
+    <span>mainsequence.consulting · mainsequence.studio</span>
+  </footer>
+
+</body>
+</html>
