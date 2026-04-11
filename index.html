@@ -7,24 +7,25 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --dark:       #0D0F14;
-      --dark-2:     #13161D;
-      --gold:       #C8A96E;
-      --cream:      #F0EDE5;
-      --cream-dim:  rgba(240,237,229,0.55);
-      --border-dk:  rgba(255,255,255,0.08);
+      --bg:         #111116;
+      --bg-card:    #1C1D25;
+      --pink:       #F02060;
+      --pink-dim:   rgba(240,32,96,0.1);
+      --cream:      #FFFFFF;
+      --cream-dim:  rgba(255,255,255,0.5);
+      --border-dk:  rgba(255,255,255,0.07);
       --terra:      #C4522A;
-      --light-bg:   #FAF7F2;
-      --light-txt:  #1D1A17;
-      --light-mid:  #8A837D;
-      --light-bdr:  #E5E0D8;
+      --light-bg:   #F5F4F1;
+      --light-txt:  #1A1817;
+      --light-mid:  #7A7370;
+      --light-bdr:  #E2DDD8;
       --radius: 2px;
     }
     body {
       font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.7;
-      background: var(--dark);
+      background: var(--bg);
       color: var(--cream);
       -webkit-font-smoothing: antialiased;
     }
@@ -35,7 +36,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 14px 3rem;
-      background: var(--dark);
+      background: var(--bg);
       border-bottom: 1px solid var(--border-dk);
       position: sticky;
       top: 0;
@@ -43,35 +44,35 @@
     }
     .logo { font-size: 15px; font-weight: 600; letter-spacing: 0.03em; color: var(--cream); text-decoration: none; }
     .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; font-size: 13px; font-weight: 500; color: rgba(240,237,229,0.55); }
+    .nav-links a { text-decoration: none; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.45); }
     .nav-links a:hover { color: var(--cream); }
     .btn-nav {
-      border: 1px solid rgba(240,237,229,0.3);
-      color: var(--cream);
+      border: 1px solid var(--pink);
+      color: var(--pink);
       padding: 7px 16px;
       font-size: 13px;
       font-weight: 600;
       text-decoration: none;
       border-radius: var(--radius);
     }
-    .btn-nav:hover { background: rgba(240,237,229,0.07); }
+    .btn-nav:hover { background: var(--pink-dim); }
 
     /* SECTION WRAPPER */
     .sec { padding: 3.5rem 3rem; }
 
     /* HERO */
-    .hero { background: var(--dark); }
+    .hero { background: var(--bg); }
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--pink);
       margin-bottom: 14px;
       font-weight: 700;
     }
     .hero h1 {
       font-size: clamp(48px, 6.5vw, 82px);
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.1;
       color: var(--cream);
       max-width: 820px;
@@ -82,17 +83,17 @@
       line-height: 1.75;
       color: var(--cream-dim);
       max-width: 480px;
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
     .btn {
       display: inline-block;
-      padding: 11px 22px;
+      padding: 12px 24px;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
-      background: var(--gold);
-      color: var(--dark);
+      background: var(--pink);
+      color: #fff;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       border-radius: var(--radius);
@@ -102,11 +103,11 @@
     /* SECTION HEADINGS */
     .sec-h { margin-bottom: 2rem; }
     .sec-h .eyebrow { margin-bottom: 10px; }
-    .sec-h h2 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 400; line-height: 1.15; color: var(--cream); margin-bottom: 8px; }
+    .sec-h h2 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; line-height: 1.15; color: var(--cream); margin-bottom: 8px; }
     .sec-h h2.dark { color: var(--light-txt); }
     .sec-h p { font-size: 14px; line-height: 1.7; color: var(--cream-dim); max-width: 520px; }
     .sec-h p.dark { color: var(--light-mid); }
-    .sec-h p::after { content: ''; display: block; width: 36px; height: 2px; background: var(--gold); margin-top: 12px; }
+    .sec-h p::after { content: ''; display: block; width: 36px; height: 2px; background: var(--pink); margin-top: 12px; }
     .sec-h p.dark::after { background: var(--terra); }
 
     /* PILLARS */
@@ -115,24 +116,23 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
-    .pillar { border: 1px solid var(--border-dk); padding: 1.4rem; }
-    .pillar-num { font-size: 11px; color: var(--gold); letter-spacing: 0.08em; display: block; margin-bottom: 10px; font-weight: 700; }
+    .pillar { background: var(--bg-card); border: 1px solid var(--border-dk); padding: 1.4rem; }
+    .pillar-num { font-size: 11px; color: var(--pink); letter-spacing: 0.08em; display: block; margin-bottom: 10px; font-weight: 700; }
     .pillar h3 { font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 7px; }
     .pillar p { font-size: 13px; line-height: 1.65; color: var(--cream-dim); }
 
     /* SERVICES */
-    .service {
-      border-top: 1px solid var(--border-dk);
-      padding: 1.5rem 0;
-      display: flex;
-      gap: 24px;
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
-    .service:last-child { border-bottom: 1px solid var(--border-dk); }
-    .service-num { font-size: 11px; color: var(--gold); min-width: 24px; padding-top: 3px; letter-spacing: 0.06em; font-weight: 700; }
-    .service-body h3 { font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 6px; }
-    .service-body p { font-size: 13px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 10px; }
+    .service-card { background: var(--bg-card); border: 1px solid var(--border-dk); padding: 1.75rem; }
+    .service-num { font-size: 11px; color: var(--pink); letter-spacing: 0.06em; font-weight: 700; display: block; margin-bottom: 12px; }
+    .service-card h3 { font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
+    .service-card > p { font-size: 13px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 14px; }
     .tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tag { font-size: 11px; padding: 3px 9px; border: 1px solid rgba(200,169,110,0.25); color: var(--gold); border-radius: var(--radius); }
+    .tag { font-size: 11px; padding: 3px 9px; border: 1px solid rgba(240,32,96,0.25); color: var(--pink); border-radius: var(--radius); }
 
     /* WORK (light section) */
     .bg-light { background: var(--light-bg); }
@@ -147,42 +147,30 @@
     .work-card p { font-size: 13px; line-height: 1.65; color: var(--light-mid); }
 
     /* CTA BAND */
-    .cta-band { background: var(--gold); padding: 3.5rem 3rem; text-align: center; }
-    .cta-band h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--dark); margin-bottom: 8px; line-height: 1.15; }
-    .cta-band p { font-size: 15px; color: rgba(13,15,20,0.68); margin-bottom: 22px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-    .btn-dark {
-      display: inline-block;
-      padding: 11px 24px;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      background: var(--dark);
-      color: var(--cream);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      border-radius: var(--radius);
-    }
-    .btn-dark:hover { opacity: 0.85; }
+    .cta-band { background: var(--bg-card); padding: 3.5rem 3rem; text-align: center; border-top: 1px solid var(--border-dk); }
+    .cta-band h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.15; }
+    .cta-band p { font-size: 15px; color: var(--cream-dim); margin-bottom: 24px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
 
     /* FOOTER */
     footer {
-      background: var(--dark);
+      background: var(--bg);
       padding: 1.75rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid var(--border-dk);
     }
-    footer span { color: rgba(240,237,229,0.28); font-size: 12px; }
+    footer span { color: rgba(255,255,255,0.22); font-size: 12px; }
 
     @media (max-width: 900px) {
       .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
-      .pillars-grid, .work-grid { grid-template-columns: 1fr; }
+      .pillars-grid, .services-grid, .work-grid { grid-template-columns: 1fr; }
       .cta-band { padding: 2.5rem 1.25rem; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; gap: 8px; text-align: center; }
     }
@@ -211,7 +199,7 @@
   </div>
 
   <!-- HOW WE WORK -->
-  <div style="border-top: 1px solid rgba(255,255,255,0.05);">
+  <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec">
       <div class="sec-h">
         <div class="eyebrow">How we work</div>
@@ -244,65 +232,57 @@
   </div>
 
   <!-- SERVICES -->
-  <div style="border-top: 1px solid rgba(255,255,255,0.05);">
+  <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec">
       <div class="sec-h">
         <div class="eyebrow">Services</div>
         <h2>Four practice areas. No filler.</h2>
         <p>We don&rsquo;t take on work we can&rsquo;t do well. These are the areas where we have the depth to make a real difference.</p>
       </div>
-      <div>
-        <div class="service">
-          <div class="service-num">01</div>
-          <div class="service-body">
-            <h3>Brand &amp; Digital Strategy</h3>
-            <p>You get clarity on who you are, who you&rsquo;re for, and how to communicate that across every channel &mdash; from brand positioning to digital channel planning. Purpose becomes a roadmap.</p>
-            <div class="tags">
-              <span class="tag">Brand Positioning</span>
-              <span class="tag">Messaging Architecture</span>
-              <span class="tag">Digital Strategy</span>
-              <span class="tag">Audience Research</span>
-              <span class="tag">Channel Planning</span>
-            </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Brand &amp; Digital Strategy</h3>
+          <p>You get clarity on who you are, who you&rsquo;re for, and how to communicate that across every channel &mdash; from brand positioning to digital channel planning. Purpose becomes a roadmap.</p>
+          <div class="tags">
+            <span class="tag">Brand Positioning</span>
+            <span class="tag">Messaging Architecture</span>
+            <span class="tag">Digital Strategy</span>
+            <span class="tag">Audience Research</span>
+            <span class="tag">Channel Planning</span>
           </div>
         </div>
-        <div class="service">
-          <div class="service-num">02</div>
-          <div class="service-body">
-            <h3>Paid Media &amp; Analytics</h3>
-            <p>Performance without accountability is noise. You get paid media programs built to be measured, reported on, and improved &mdash; along with the analytics infrastructure to make that possible.</p>
-            <div class="tags">
-              <span class="tag">Paid Search &amp; Social</span>
-              <span class="tag">SEO / GEO</span>
-              <span class="tag">Analytics &amp; Reporting</span>
-              <span class="tag">Campaign Management</span>
-            </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>Paid Media &amp; Analytics</h3>
+          <p>Performance without accountability is noise. You get paid media programs built to be measured, reported on, and improved &mdash; along with the analytics infrastructure to make that possible.</p>
+          <div class="tags">
+            <span class="tag">Paid Search &amp; Social</span>
+            <span class="tag">SEO / GEO</span>
+            <span class="tag">Analytics &amp; Reporting</span>
+            <span class="tag">Campaign Management</span>
           </div>
         </div>
-        <div class="service">
-          <div class="service-num">03</div>
-          <div class="service-body">
-            <h3>Complex Project Execution</h3>
-            <p>Large-scale programs &mdash; conferences, campaigns, multi-stakeholder rollouts &mdash; require a different kind of partner. We&rsquo;ve managed the full communications lifecycle for enterprise events with dozens of vendors, thousands of attendees, and zero margin for error.</p>
-            <div class="tags">
-              <span class="tag">Event Communications</span>
-              <span class="tag">Vendor Coordination</span>
-              <span class="tag">Operations Management</span>
-              <span class="tag">Data Reconciliation</span>
-            </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>Complex Project Execution</h3>
+          <p>Large-scale programs &mdash; conferences, campaigns, multi-stakeholder rollouts &mdash; require a different kind of partner. We&rsquo;ve managed the full communications lifecycle for enterprise events with dozens of vendors, thousands of attendees, and zero margin for error.</p>
+          <div class="tags">
+            <span class="tag">Event Communications</span>
+            <span class="tag">Vendor Coordination</span>
+            <span class="tag">Operations Management</span>
+            <span class="tag">Data Reconciliation</span>
           </div>
         </div>
-        <div class="service">
-          <div class="service-num">04</div>
-          <div class="service-body">
-            <h3>Software &amp; Workflow Design</h3>
-            <p>The most expensive thing in most organizations is manual work that doesn&rsquo;t need to be manual. You get lightweight software solutions, automations, and workflow systems that give your team their time back.</p>
-            <div class="tags">
-              <span class="tag">Workflow Mapping</span>
-              <span class="tag">Custom Automations</span>
-              <span class="tag">Process Documentation</span>
-              <span class="tag">Efficiency Analysis</span>
-            </div>
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3>Software &amp; Workflow Design</h3>
+          <p>The most expensive thing in most organizations is manual work that doesn&rsquo;t need to be manual. You get lightweight software solutions, automations, and workflow systems that give your team their time back.</p>
+          <div class="tags">
+            <span class="tag">Workflow Mapping</span>
+            <span class="tag">Custom Automations</span>
+            <span class="tag">Process Documentation</span>
+            <span class="tag">Efficiency Analysis</span>
           </div>
         </div>
       </div>
@@ -341,7 +321,7 @@
   <div class="cta-band">
     <h2>Every engagement starts here.</h2>
     <p>Tell us where you are. We&rsquo;ll help you figure out where to go.</p>
-    <a href="#" class="btn-dark">Start the conversation &rarr;</a>
+    <a href="#" class="btn">Start the conversation &rarr;</a>
   </div>
 
   <footer>
