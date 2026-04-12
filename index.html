@@ -120,8 +120,9 @@
       gap: 14px;
     }
     .pillar { background: rgba(17,17,22,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-dk); padding: 2.8rem; border-radius: 12px; }
-    .pillar-num { font-size: 13px; color: var(--pink); letter-spacing: 0.08em; display: block; margin-bottom: 10px; font-weight: 700; }
-    .pillar h3 { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 7px; }
+    .pillar-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+    .pillar-num { font-size: 13px; color: var(--pink); letter-spacing: 0.08em; font-weight: 700; flex-shrink: 0; }
+    .pillar h3 { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 0; }
     .pillar p { font-size: 15.5px; line-height: 1.65; color: var(--cream-dim); }
 
     /* SERVICES */
@@ -208,23 +209,19 @@
     <div class="sec">
       <div class="pillars-grid">
         <div class="pillar">
-          <span class="pillar-num">01</span>
-          <h3>Purpose</h3>
+          <div class="pillar-header"><span class="pillar-num">01</span><h3>Purpose</h3></div>
           <p>Every engagement starts with your goals, not ours. We ground the work in a clear understanding of your mission, your audience, and what success actually looks like for your organization.</p>
         </div>
         <div class="pillar">
-          <span class="pillar-num">02</span>
-          <h3>Partnership</h3>
+          <div class="pillar-header"><span class="pillar-num">02</span><h3>Partnership</h3></div>
           <p>We work alongside your team, not above it. You get shared ownership and honest collaboration throughout &mdash; not a deliverable dropped on your desk at the end.</p>
         </div>
         <div class="pillar">
-          <span class="pillar-num">03</span>
-          <h3>Performance</h3>
+          <div class="pillar-header"><span class="pillar-num">03</span><h3>Performance</h3></div>
           <p>We measure what matters. Strategy that can&rsquo;t be evaluated isn&rsquo;t strategy &mdash; it&rsquo;s conjecture. Everything we build is designed to perform and be held accountable.</p>
         </div>
         <div class="pillar">
-          <span class="pillar-num">04</span>
-          <h3>Perspective</h3>
+          <div class="pillar-header"><span class="pillar-num">04</span><h3>Perspective</h3></div>
           <p>Years of cross-sector experience means we see patterns your team might miss. We bring an outside view &mdash; and we&rsquo;re not afraid to say what we see.</p>
         </div>
       </div>
