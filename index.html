@@ -62,7 +62,7 @@
 
     /* SECTION WRAPPER */
     .sec { padding: 3.5rem 3rem; }
-    .sec-tight-top { padding-top: 1.75rem; }
+    .sec-tight-top { padding-top: 0.875rem; }
 
     /* HERO */
     .hero { background: transparent; }
@@ -157,15 +157,114 @@
     .cta-band h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.15; }
     .cta-band p { font-size: 15px; color: var(--cream-dim); margin-bottom: 24px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
 
-    /* FOOTER */
-    footer {
-      background: transparent;
-      padding: 1.75rem 3rem;
+    /* STICKY FOOTER */
+    .site-footer {
+      position: relative;
+      height: 420px;
+      width: 100%;
+      clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+    }
+    .site-footer-inner {
+      position: fixed;
+      bottom: 0;
+      height: 420px;
+      width: 100%;
+    }
+    .site-footer-content {
+      position: sticky;
+      top: calc(100vh - 420px);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 3rem 2rem;
+      border-top: 1px solid var(--border-dk);
+      background: rgba(10,10,14,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .footer-top {
+      display: flex;
+      gap: 48px;
+    }
+    .footer-brand {
+      min-width: 220px;
+      max-width: 260px;
+    }
+    .footer-brand-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+    .footer-brand-desc {
+      font-size: 13px;
+      color: var(--cream-dim);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 8px;
+    }
+    .footer-social a {
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--border-dk);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-dim);
+      text-decoration: none;
+      font-size: 12px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--pink); color: var(--pink); }
+    .footer-links {
+      display: flex;
+      gap: 48px;
+      flex: 1;
+    }
+    .footer-col h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a {
+      font-size: 13px;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-top: 1px solid var(--border-dk);
+      padding-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
     }
-    footer span { color: rgba(255,255,255,0.22); font-size: 12px; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+      to   { opacity: 1; transform: translateY(0);   filter: blur(0); }
+    }
+    .footer-brand, .footer-col {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .footer-brand   { animation-delay: 0.1s; }
+    .footer-col:nth-child(1) { animation-delay: 0.15s; }
+    .footer-col:nth-child(2) { animation-delay: 0.22s; }
+    .footer-col:nth-child(3) { animation-delay: 0.29s; }
 
     @media (max-width: 900px) {
       .pillars-grid { grid-template-columns: repeat(2, 1fr); }
@@ -324,9 +423,52 @@
     </div>
   </div>
 
-  <footer>
-    <span>&copy; 2025 The Main Sequence LLC &middot; Chicago, IL</span>
-    <span>mainsequence.consulting &middot; mainsequence.studio</span>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-content">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">The Main Sequence</div>
+            <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
+            <div class="footer-social">
+              <a href="#" title="LinkedIn">in</a>
+              <a href="#" title="Twitter / X">&#x58;</a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-col">
+              <h3>Services</h3>
+              <ul>
+                <li><a href="#">Brand &amp; Digital Strategy</a></li>
+                <li><a href="#">Paid Media &amp; Analytics</a></li>
+                <li><a href="#">Complex Project Execution</a></li>
+                <li><a href="#">Software &amp; Workflow Design</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Work</h3>
+              <ul>
+                <li><a href="#">Enterprise Events</a></li>
+                <li><a href="#">Nonprofit / Education</a></li>
+                <li><a href="#">AEC / Legal</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Company</h3>
+              <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">mainsequence.studio</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2025 The Main Sequence LLC &middot; Chicago, IL</span>
+          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+        </div>
+      </div>
+    </div>
   </footer>
 
 
