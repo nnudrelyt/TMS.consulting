@@ -25,7 +25,7 @@
       font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.7;
-      background: var(--bg);
+      background: transparent;
       color: var(--cream);
       -webkit-font-smoothing: antialiased;
     }
@@ -36,7 +36,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 14px 3rem;
-      background: var(--bg);
+      background: rgba(17,17,22,0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-dk);
       position: sticky;
       top: 0;
@@ -61,7 +63,7 @@
     .sec { padding: 3.5rem 3rem; }
 
     /* HERO */
-    .hero { background: var(--bg); }
+    .hero { background: transparent; }
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -177,6 +179,8 @@
   </style>
 </head>
 <body>
+
+  <div id="shader-root"></div>
 
   <nav>
     <a class="logo" href="#">The Main Sequence</a>
@@ -329,6 +333,30 @@
     <span>mainsequence.consulting &middot; mainsequence.studio</span>
   </footer>
 
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react":                        "https://esm.sh/react@18",
+      "react/jsx-runtime":            "https://esm.sh/react@18/jsx-runtime",
+      "react-dom/client":             "https://esm.sh/react-dom@18/client",
+      "@paper-design/shaders-react":  "https://esm.sh/@paper-design/shaders-react@latest"
+    }
+  }
+  </script>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { GrainGradient, grainGradientPresets } from '@paper-design/shaders-react';
+
+    const root = createRoot(document.getElementById('shader-root'));
+    root.render(
+      React.createElement(GrainGradient, {
+        ...grainGradientPresets[0],
+        style: { position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none' }
+      })
+    );
+  </script>
 
 </body>
 </html>
