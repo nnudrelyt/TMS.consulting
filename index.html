@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Main Sequence &mdash; Consulting</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { background: #111116; }
@@ -19,7 +20,7 @@
       --radius: 2px;
     }
     body {
-      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif;
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
       font-size: 14px;
       line-height: 1.7;
       background: transparent;
@@ -130,6 +131,7 @@
 
     /* HERO */
     .hero { background: transparent; }
+    .hero .sec { padding-bottom: 1.5rem; }
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -205,31 +207,21 @@
     .cta-band h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.15; }
     .cta-band p { font-size: 15px; color: var(--cream-dim); margin-bottom: 24px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
 
-    /* STICKY FOOTER */
+    /* FOOTER */
     .site-footer {
       position: relative;
-      height: 560px;
-      width: 100%;
-      clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+      z-index: 2;
+      border-top: 1px solid var(--border-dk);
+      background: rgba(10,10,14,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
-    .site-footer-inner {
-      position: fixed;
-      bottom: 0;
-      height: 560px;
-      width: 100%;
-    }
+    .site-footer-inner { width: 100%; }
     .site-footer-content {
-      position: sticky;
-      top: calc(100vh - 560px);
-      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 4.5rem 4.5rem 3rem;
-      border-top: 1px solid var(--border-dk);
-      background: rgba(10,10,14,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
     }
     .footer-top { display: flex; gap: 64px; }
     .footer-brand { min-width: 260px; max-width: 300px; }
@@ -317,9 +309,7 @@
       .footer-top { flex-direction: column; gap: 32px; }
       .footer-brand { min-width: unset; max-width: unset; }
       .footer-links { flex-wrap: wrap; gap: 32px; }
-      .site-footer { height: auto; clip-path: none; }
-      .site-footer-inner { position: static; height: auto; }
-      .site-footer-content { position: static; top: unset; height: auto; padding: 3rem 2rem 2rem; }
+      .site-footer-content { padding: 3rem 2rem 2rem; }
     }
     @media (max-width: 640px) {
       nav { padding: 14px 1.25rem; }
@@ -345,11 +335,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="#">
-      <svg class="nav-logo-mark" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="2.5,28 7.5,28 13.5,4 8.5,4"/>
-        <polygon points="10.5,28 15.5,28 21.5,4 16.5,4"/>
-        <polygon points="18.5,28 23.5,28 29.5,4 24.5,4"/>
-      </svg>
+      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/en00mekb7fn3tiw6prs2d/TMS_Mark-01.png?rlkey=wi82r1dywvcuc4eve6zhydd17&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -498,11 +484,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <svg class="footer-logo-mark" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="2.5,28 7.5,28 13.5,4 8.5,4"/>
-                <polygon points="10.5,28 15.5,28 21.5,4 16.5,4"/>
-                <polygon points="18.5,28 23.5,28 29.5,4 24.5,4"/>
-              </svg>
+              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/en00mekb7fn3tiw6prs2d/TMS_Mark-01.png?rlkey=wi82r1dywvcuc4eve6zhydd17&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
