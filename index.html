@@ -62,6 +62,7 @@
 
     /* SECTION WRAPPER */
     .sec { padding: 3.5rem 3rem; }
+    .sec-tight-top { padding-top: 1.75rem; }
 
     /* HERO */
     .hero { background: transparent; }
@@ -151,18 +152,18 @@
     .work-card p { font-size: 15.5px; line-height: 1.65; color: var(--cream-dim); }
 
     /* CTA BAND */
-    .cta-band { background: rgba(17,17,22,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 3.5rem 3rem; text-align: center; border-top: 1px solid var(--border-dk); }
+    .cta-band { padding: 3.5rem 3rem; text-align: center; }
+    .cta-card { background: rgba(17,17,22,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-dk); border-radius: 12px; padding: 5rem 3rem; max-width: 860px; margin: 0 auto; }
     .cta-band h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.15; }
     .cta-band p { font-size: 15px; color: var(--cream-dim); margin-bottom: 24px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
 
     /* FOOTER */
     footer {
-      background: var(--bg);
+      background: transparent;
       padding: 1.75rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid var(--border-dk);
     }
     footer span { color: rgba(255,255,255,0.22); font-size: 12px; }
 
@@ -206,7 +207,7 @@
 
   <!-- HOW WE WORK -->
   <div style="border-top: 1px solid var(--border-dk);">
-    <div class="sec">
+    <div class="sec sec-tight-top">
       <div class="pillars-grid">
         <div class="pillar">
           <div class="pillar-header"><span class="pillar-num">01</span><h3>Purpose</h3></div>
@@ -316,9 +317,11 @@
 
   <!-- CTA BAND -->
   <div class="cta-band">
-    <h2>Every engagement starts here.</h2>
-    <p>Tell us where you are. We&rsquo;ll help you figure out where to go.</p>
-    <a href="#" class="btn">Start the conversation &rarr;</a>
+    <div class="cta-card">
+      <h2>Every engagement starts here.</h2>
+      <p>Tell us where you are. We&rsquo;ll help you figure out where to go.</p>
+      <a href="#" class="btn">Start the conversation &rarr;</a>
+    </div>
   </div>
 
   <footer>
