@@ -188,7 +188,22 @@
     .pillar h3 { font-size: 24px; font-weight: 700; color: var(--cream); margin-bottom: 0; }
     .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
 
-    /* SERVICES */
+    /* VALUES LIST (replaces services grid) */
+    .values-list { display: flex; flex-direction: column; }
+    .value-row {
+      display: grid;
+      grid-template-columns: 64px 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      border-top: 1px solid var(--border-dk);
+      padding: 2.4rem 0;
+    }
+    .value-row:last-child { border-bottom: 1px solid var(--border-dk); }
+    .value-num { font-size: 13px; color: var(--pink); letter-spacing: 0.1em; font-weight: 700; padding-top: 5px; }
+    .value-title { font-family: 'calvino', Georgia, serif; font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; color: var(--cream); line-height: 1.15; }
+    .value-body { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
+
+    /* SERVICES (cards) */
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .service-card { background: rgba(22,28,25,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-dk); padding: 3.5rem; border-radius: 12px; }
     .service-num { font-size: 13px; color: var(--blue); letter-spacing: 0.06em; font-weight: 700; display: block; margin-bottom: 12px; }
@@ -199,10 +214,13 @@
 
     /* WORK */
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .work-card { border: 1px solid var(--border-dk); padding: 2.8rem; background: rgba(22,28,25,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; }
-    .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
-    .work-card h3 { font-size: 24px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 7px; }
-    .work-card p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
+    .work-card { border: 1px solid var(--border-dk); background: rgba(22,28,25,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; }
+    .work-card-img { width: 100%; height: 200px; display: block; }
+    .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
+    .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 10px; font-weight: 700; }
+    .work-card h3 { font-size: 22px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
+    .work-card p { font-size: 17px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
+    .work-card .tags { margin-top: 4px; }
 
     /* CTA BAND */
     .cta-band { padding: 3.5rem 3rem; text-align: center; }
@@ -309,7 +327,8 @@
     }
     @media (max-width: 900px) {
       .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-      .services-grid { grid-template-columns: 1fr; }
+      .value-row { grid-template-columns: 48px 1fr; grid-template-rows: auto auto; }
+      .value-body { grid-column: 2; }
       .work-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { flex-direction: column; gap: 32px; }
       .footer-brand { min-width: unset; max-width: unset; }
@@ -319,7 +338,9 @@
     @media (max-width: 640px) {
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
-      .pillars-grid, .services-grid, .work-grid { grid-template-columns: 1fr; }
+      .pillars-grid, .work-grid { grid-template-columns: 1fr; }
+      .value-row { grid-template-columns: 1fr; gap: 0.75rem; }
+      .value-body { grid-column: 1; }
       .cta-band { padding: 2.5rem 1.25rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -358,8 +379,8 @@
   <!-- HERO -->
   <div class="hero">
     <div class="sec">
-      <div class="eyebrow">Chicago Technology Consulting</div>
-      <h1>We close the gap between strategy and result.</h1>
+      <div class="eyebrow">Chicago Tech Consultants</div>
+      <h1>Helping you close the gap between Purpose and Performance.</h1>
       <p>Whether the challenge is brand clarity, digital performance, or operational complexity &mdash; we help you build the strategy, systems, and execution to get where you&rsquo;re trying to go.</p>
       <a href="#" class="btn">Let&rsquo;s talk about your challenge &rarr;</a>
     </div>
@@ -370,78 +391,53 @@
     <div class="sec sec-tight-top">
       <div class="pillars-grid">
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">01</span><h3>Purpose</h3></div>
-          <p>Every engagement starts with your goals, not ours. We ground the work in a clear understanding of your mission, your audience, and what success actually looks like for your organization.</p>
+          <div class="pillar-header"><span class="pillar-num">01</span><h3>Brand &amp; Digital Strategy</h3></div>
+          <p>Clarity on who you are, who you&rsquo;re for, and how to communicate that &mdash; from brand positioning to digital channel planning.</p>
         </div>
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">02</span><h3>Partnership</h3></div>
-          <p>We work alongside your team, not above it. You get shared ownership and honest collaboration throughout &mdash; not a deliverable dropped on your desk at the end.</p>
+          <div class="pillar-header"><span class="pillar-num">02</span><h3>Paid Media &amp; Analytics</h3></div>
+          <p>Paid programs built to be measured and improved, with the analytics infrastructure to make accountability possible.</p>
         </div>
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">03</span><h3>Performance</h3></div>
-          <p>We measure what matters. Strategy that can&rsquo;t be evaluated isn&rsquo;t strategy &mdash; it&rsquo;s conjecture. Everything we build is designed to perform and be held accountable.</p>
+          <div class="pillar-header"><span class="pillar-num">03</span><h3>Complex Project Execution</h3></div>
+          <p>Full lifecycle management for large-scale programs &mdash; conferences, campaigns, and multi-stakeholder rollouts with zero margin for error.</p>
         </div>
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">04</span><h3>Perspective</h3></div>
-          <p>Years of cross-sector experience means we see patterns your team might miss. We bring an outside view &mdash; and we&rsquo;re not afraid to say what we see.</p>
+          <div class="pillar-header"><span class="pillar-num">04</span><h3>Software &amp; Workflow Design</h3></div>
+          <p>Lightweight software, automations, and workflow systems that eliminate manual work and give your team their time back.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SERVICES -->
+  <!-- VALUES -->
   <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec">
       <div class="sec-h">
-        <div class="eyebrow">Services</div>
-        <h2>Four practice areas. No filler.</h2>
-        <p>We don&rsquo;t take on work we can&rsquo;t do well. These are the areas where we have the depth to make a real difference.</p>
+        <div class="eyebrow">How We Work</div>
+        <h2>What you can count on.</h2>
+        <p>Every engagement is shaped by four principles that govern how we show up and what we deliver.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="service-num">01</span>
-          <h3>Brand &amp; Digital Strategy</h3>
-          <p>You get clarity on who you are, who you&rsquo;re for, and how to communicate that across every channel &mdash; from brand positioning to digital channel planning. Purpose becomes a roadmap.</p>
-          <div class="tags">
-            <span class="tag">Brand Positioning</span>
-            <span class="tag">Messaging Architecture</span>
-            <span class="tag">Digital Strategy</span>
-            <span class="tag">Audience Research</span>
-            <span class="tag">Channel Planning</span>
-          </div>
+      <div class="values-list">
+        <div class="value-row">
+          <div class="value-num">01</div>
+          <div class="value-title">Purpose</div>
+          <div class="value-body">Every engagement starts with your goals, not ours. We ground the work in a clear understanding of your mission, your audience, and what success actually looks like for your organization &mdash; before we recommend anything.</div>
         </div>
-        <div class="service-card">
-          <span class="service-num">02</span>
-          <h3>Paid Media &amp; Analytics</h3>
-          <p>Performance without accountability is noise. You get paid media programs built to be measured, reported on, and improved &mdash; along with the analytics infrastructure to make that possible.</p>
-          <div class="tags">
-            <span class="tag">Paid Search &amp; Social</span>
-            <span class="tag">SEO / GEO</span>
-            <span class="tag">Analytics &amp; Reporting</span>
-            <span class="tag">Campaign Management</span>
-          </div>
+        <div class="value-row">
+          <div class="value-num">02</div>
+          <div class="value-title">Partnership</div>
+          <div class="value-body">We work alongside your team, not above it. You get shared ownership and honest collaboration throughout &mdash; not a deliverable dropped on your desk at the end of an engagement you weren&rsquo;t part of.</div>
         </div>
-        <div class="service-card">
-          <span class="service-num">03</span>
-          <h3>Complex Project Execution</h3>
-          <p>Large-scale programs &mdash; conferences, campaigns, multi-stakeholder rollouts &mdash; require a different kind of partner. We&rsquo;ve managed the full communications lifecycle for enterprise events with dozens of vendors, thousands of attendees, and zero margin for error.</p>
-          <div class="tags">
-            <span class="tag">Event Communications</span>
-            <span class="tag">Vendor Coordination</span>
-            <span class="tag">Operations Management</span>
-            <span class="tag">Data Reconciliation</span>
-          </div>
+        <div class="value-row">
+          <div class="value-num">03</div>
+          <div class="value-title">Performance</div>
+          <div class="value-body">We measure what matters. Strategy that can&rsquo;t be evaluated isn&rsquo;t strategy &mdash; it&rsquo;s conjecture. Everything we build is designed to perform and be held accountable to real outcomes.</div>
         </div>
-        <div class="service-card">
-          <span class="service-num">04</span>
-          <h3>Software &amp; Workflow Design</h3>
-          <p>The most expensive thing in most organizations is manual work that doesn&rsquo;t need to be manual. You get lightweight software solutions, automations, and workflow systems that give your team their time back.</p>
-          <div class="tags">
-            <span class="tag">Workflow Mapping</span>
-            <span class="tag">Custom Automations</span>
-            <span class="tag">Process Documentation</span>
-            <span class="tag">Efficiency Analysis</span>
-          </div>
+        <div class="value-row">
+          <div class="value-num">04</div>
+          <div class="value-title">Perspective</div>
+          <div class="value-body">Years of cross-sector experience means we see patterns your team might miss. We bring an outside view &mdash; and we&rsquo;re not afraid to say what we see, even when it&rsquo;s not what you expected to hear.</div>
         </div>
       </div>
     </div>
@@ -451,25 +447,80 @@
   <div>
     <div class="sec">
       <div class="sec-h">
-        <div class="eyebrow">Selected Engagements</div>
+        <div class="eyebrow">Case Studies</div>
         <h2>What good looks like.</h2>
         <p>We don&rsquo;t name every client. But we can tell you what we did &mdash; and what it meant.</p>
       </div>
       <div class="work-grid">
         <div class="work-card">
-          <div class="work-cat">Enterprise Events</div>
-          <h3>A 1,000-person technology conference, managed end-to-end</h3>
-          <p>Full communications lifecycle management for a major airline&rsquo;s annual supplier conference &mdash; from pre-event email campaigns to attendee data reconciliation, dietary logistics, and VIP coordination.</p>
+          <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="wg1a" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1A2C33"/>
+                <stop offset="60%" stop-color="#3D2215"/>
+                <stop offset="100%" stop-color="#1A1210"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="200" fill="url(#wg1a)"/>
+            <circle cx="420" cy="80" r="120" fill="#7A4428" fill-opacity="0.25"/>
+          </svg>
+          <div class="work-card-body">
+            <div class="work-cat">Enterprise Events</div>
+            <h3>A 1,000-person technology conference, managed end-to-end</h3>
+            <p>Full communications lifecycle management for a major airline&rsquo;s annual supplier conference &mdash; from pre-event email campaigns to attendee data reconciliation, dietary logistics, and VIP coordination.</p>
+            <div class="tags">
+              <span class="tag">Event Communications</span>
+              <span class="tag">Vendor Coordination</span>
+              <span class="tag">Data Reconciliation</span>
+              <span class="tag">VIP Logistics</span>
+            </div>
+          </div>
         </div>
         <div class="work-card">
-          <div class="work-cat">Nonprofit / Education</div>
-          <h3>SEO &amp; content strategy for a K&ndash;12 education foundation</h3>
-          <p>GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation. Included SOW refinement and page-level strategy for high-traffic content.</p>
+          <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="wg2a" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1E2A20"/>
+                <stop offset="55%" stop-color="#2A3830"/>
+                <stop offset="100%" stop-color="#141210"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="200" fill="url(#wg2a)"/>
+            <circle cx="180" cy="120" r="100" fill="#7BADB8" fill-opacity="0.18"/>
+          </svg>
+          <div class="work-card-body">
+            <div class="work-cat">Nonprofit / Education</div>
+            <h3>SEO &amp; content strategy for a K&ndash;12 education foundation</h3>
+            <p>GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation. Included SOW refinement and page-level strategy for high-traffic content.</p>
+            <div class="tags">
+              <span class="tag">SEO / GEO</span>
+              <span class="tag">Content Strategy</span>
+              <span class="tag">Analytics &amp; Reporting</span>
+            </div>
+          </div>
         </div>
         <div class="work-card">
-          <div class="work-cat">AEC / Legal</div>
-          <h3>Two brand concepts. One very good decision.</h3>
-          <p>Two distinct brand and web concepts &mdash; each with full copy, information architecture, and positioning rationale &mdash; enabling the client to make a fully informed strategic choice.</p>
+          <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="wg3a" x1="50%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" stop-color="#26201A"/>
+                <stop offset="60%" stop-color="#1C2830"/>
+                <stop offset="100%" stop-color="#141210"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="200" fill="url(#wg3a)"/>
+            <circle cx="300" cy="60" r="90" fill="#C4B096" fill-opacity="0.14"/>
+          </svg>
+          <div class="work-card-body">
+            <div class="work-cat">AEC / Legal</div>
+            <h3>Two brand concepts. One very good decision.</h3>
+            <p>Two distinct brand and web concepts &mdash; each with full copy, information architecture, and positioning rationale &mdash; enabling the client to make a fully informed strategic choice.</p>
+            <div class="tags">
+              <span class="tag">Brand Positioning</span>
+              <span class="tag">Messaging Architecture</span>
+              <span class="tag">Digital Strategy</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
