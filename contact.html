@@ -104,7 +104,7 @@
     /* CONTACT LAYOUT */
     .contact-layout {
       display: grid;
-      grid-template-columns: 1fr 440px;
+      grid-template-columns: 440px 1fr;
       gap: 5rem;
       align-items: start;
       padding: 0 3rem 5rem;
@@ -285,7 +285,8 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .contact-sidebar { order: -1; }
+      .contact-sidebar { order: 2; }
+      .contact-form { order: 1; }
     }
     @media (max-width: 900px) {
       .footer-top { flex-direction: column; gap: 32px; }
@@ -343,6 +344,46 @@
   <!-- CONTACT LAYOUT -->
   <div class="contact-layout">
 
+    <!-- SIDEBAR -->
+    <div class="contact-sidebar">
+
+      <div class="sidebar-block">
+        <div class="eyebrow">What to expect</div>
+        <h3>A real conversation, not a pitch.</h3>
+        <p>Our first call is diagnostic, not transactional. We want to understand your situation well enough to tell you honestly whether we can help &mdash; and if so, what that looks like.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="sidebar-block">
+        <ul class="trust-list">
+          <li>Response within one business day</li>
+          <li>30-minute introductory call, no prep required</li>
+          <li>Honest assessment of fit before any proposal</li>
+          <li>Scope defined collaboratively, not handed down</li>
+          <li>Fixed or retainer engagements — no surprise overages</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="sidebar-block">
+        <div class="eyebrow">Prefer email?</div>
+        <h3>Reach us directly.</h3>
+        <div class="direct-contact">
+          <a href="mailto:hello@mainsequence.consulting">hello@mainsequence.consulting</a>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="sidebar-block">
+        <div class="eyebrow">Based in Chicago</div>
+        <p>We work with clients nationally. Most engagements are remote-first with on-site availability when the work calls for it.</p>
+      </div>
+
+    </div>
+
     <!-- FORM -->
     <div class="contact-form" id="contact-form-wrap">
       <form id="contact-form" onsubmit="handleSubmit(event)">
@@ -390,45 +431,6 @@
       </div>
     </div>
 
-    <!-- SIDEBAR -->
-    <div class="contact-sidebar">
-
-      <div class="sidebar-block">
-        <div class="eyebrow">What to expect</div>
-        <h3>A real conversation, not a pitch.</h3>
-        <p>Our first call is diagnostic, not transactional. We want to understand your situation well enough to tell you honestly whether we can help &mdash; and if so, what that looks like.</p>
-      </div>
-
-      <hr class="divider">
-
-      <div class="sidebar-block">
-        <ul class="trust-list">
-          <li>Response within one business day</li>
-          <li>30-minute introductory call, no prep required</li>
-          <li>Honest assessment of fit before any proposal</li>
-          <li>Scope defined collaboratively, not handed down</li>
-          <li>Fixed or retainer engagements — no surprise overages</li>
-        </ul>
-      </div>
-
-      <hr class="divider">
-
-      <div class="sidebar-block">
-        <div class="eyebrow">Prefer email?</div>
-        <h3>Reach us directly.</h3>
-        <div class="direct-contact">
-          <a href="mailto:hello@mainsequence.consulting">hello@mainsequence.consulting</a>
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <div class="sidebar-block">
-        <div class="eyebrow">Based in Chicago</div>
-        <p>We work with clients nationally. Most engagements are remote-first with on-site availability when the work calls for it.</p>
-      </div>
-
-    </div>
   </div>
 
   <footer class="site-footer">
