@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Main Sequence &mdash; Contact</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #141210; }
+    :root {
+      --bg:         #141210;
+      --pink:       #9E5A35;
+      --pink-dim:   rgba(158,90,53,0.12);
+      --cream:      #FFFFFF;
+      --cream-dim:  rgba(255,255,255,0.5);
+      --border-dk:  rgba(255,255,255,0.07);
+      --blue:       #7BADB8;
+      --radius: 2px;
+    }
+    body {
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      background: transparent;
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 3rem;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(20,18,16,0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border-dk);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .btn-nav {
+      border: 1px solid #C8D47A;
+      color: #C8D47A !important;
+      background: transparent;
+      padding: 9px 20px;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-nav:hover { background: #C8D47A !important; color: #000 !important; }
+
+    /* MOBILE MENU */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; inset: 0; background: rgba(18,16,14,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 32px; font-weight: 700; color: var(--cream); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-mobile a:hover { color: var(--pink); }
+    .nav-mobile .btn-nav { font-size: 24px; padding: 12px 32px; }
+
+    /* SECTION WRAPPER */
+    .sec { padding: 3.5rem 3rem; }
+
+    /* EYEBROW */
+    .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; font-weight: 700; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 5rem 3rem 4rem; }
+    .page-hero h1 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(42px, 5.5vw, 72px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--cream);
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+    .page-hero p {
+      font-size: 22px;
+      line-height: 1.7;
+      color: var(--cream-dim);
+      max-width: 560px;
+    }
+
+    /* CONTACT LAYOUT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 5rem;
+      align-items: start;
+      padding: 0 3rem 5rem;
+    }
+
+    /* FORM */
+    .contact-form {
+      background: rgba(22,28,25,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-dk);
+      border-radius: 12px;
+      padding: 3rem 3rem 3.5rem;
+    }
+    .form-row { margin-bottom: 1.6rem; }
+    .form-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.6rem; }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 8px;
+    }
+    input, textarea, select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      color: var(--cream);
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 18px;
+      padding: 13px 16px;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(123,173,184,0.5);
+      background: rgba(255,255,255,0.07);
+    }
+    select { cursor: pointer; }
+    select option { background: #1C2B2F; color: var(--cream); }
+    textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      display: inline-block;
+      width: 100%;
+      padding: 15px 29px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      background: #C8D47A;
+      color: #1A1710;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      border: none;
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
+      text-align: center;
+      margin-top: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.88; }
+    .form-note {
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* SIDEBAR */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 3rem; padding-top: 0.5rem; }
+    .sidebar-block h3 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .sidebar-block p { font-size: 18px; line-height: 1.7; color: var(--cream-dim); }
+
+    /* TRUST SIGNALS */
+    .trust-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .trust-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 18px;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+    .trust-list li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7BADB9;
+      flex-shrink: 0;
+      margin-top: 9px;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border-dk); margin: 0; }
+
+    /* DIRECT CONTACT */
+    .direct-contact { display: flex; flex-direction: column; gap: 10px; }
+    .direct-contact a {
+      font-size: 18px;
+      color: var(--blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .direct-contact a:hover { color: var(--cream); }
+
+    /* SUCCESS STATE */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .form-success h3 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .form-success p { font-size: 18px; color: var(--cream-dim); line-height: 1.7; }
+    .form-success .check {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(200,212,122,0.12);
+      border: 1px solid rgba(200,212,122,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 24px;
+    }
+
+    /* FOOTER */
+    .site-footer { position: relative; z-index: 2; border-top: 1px solid var(--border-dk); background: rgba(18,16,14,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .site-footer-inner { width: 100%; }
+    .site-footer-content { display: flex; flex-direction: column; padding: 4.5rem 4.5rem 3rem; }
+    .footer-top { display: flex; gap: 64px; }
+    .footer-brand { min-width: 260px; max-width: 300px; }
+    .footer-brand-name { font-size: 13px; font-weight: 700; color: var(--cream); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 18px; }
+    .footer-logo-mark { width: 34px; height: 34px; flex-shrink: 0; }
+    .footer-brand-desc { font-size: 18px; color: var(--cream-dim); line-height: 1.65; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social a { width: 36px; height: 36px; border: 1px solid var(--border-dk); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--cream-dim); text-decoration: none; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+    .footer-social a:hover { border-color: var(--pink); color: var(--pink); }
+    .footer-links { display: flex; gap: 64px; flex: 1; }
+    .footer-col h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { font-size: 18px; color: var(--cream-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dk); margin-top: 90px; padding-top: 20px; font-size: 18px; color: rgba(255,255,255,0.25); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+      to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .footer-brand, .footer-col { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .footer-brand             { animation-delay: 0.1s; }
+    .footer-col:nth-child(1)  { animation-delay: 0.15s; }
+    .footer-col:nth-child(2)  { animation-delay: 0.22s; }
+    .footer-col:nth-child(3)  { animation-delay: 0.29s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-sidebar { order: -1; }
+    }
+    @media (max-width: 900px) {
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-brand { min-width: unset; max-width: unset; }
+      .footer-links { flex-wrap: wrap; gap: 32px; }
+      .site-footer-content { padding: 3rem 2rem 2rem; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 14px 1.25rem; }
+      .page-hero { padding: 3rem 1.25rem 2.5rem; }
+      .contact-layout { padding: 0 1.25rem 3rem; }
+      .contact-form { padding: 2rem 1.5rem 2.5rem; }
+      .form-row-split { grid-template-columns: 1fr; }
+      .footer-links { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
+  <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="nav-mobile" id="mobile-menu">
+    <a href="about.html" onclick="closeMobile()">About</a>
+    <a href="services.html" onclick="closeMobile()">Services</a>
+    <a href="index.html#work" onclick="closeMobile()">Work</a>
+    <a href="contact.html" class="btn-nav" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <nav id="main-nav">
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <span class="nav-logo-text">The Main Sequence</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="contact.html" class="btn-nav">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="eyebrow">Start a Conversation</div>
+    <h1>Tell us about <span style="font-weight:300;">your challenge.</span></h1>
+    <p>We respond to every inquiry within one business day. No sales process, no pitch deck &mdash; just an honest conversation about whether we&rsquo;re the right fit.</p>
+  </div>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="contact-layout">
+
+    <!-- FORM -->
+    <div class="contact-form" id="contact-form-wrap">
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row-split">
+          <div>
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Jane" required>
+          </div>
+          <div>
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="email">Work Email</label>
+          <input type="email" id="email" name="email" placeholder="jane@yourcompany.com" required>
+        </div>
+        <div class="form-row">
+          <label for="org">Organization</label>
+          <input type="text" id="org" name="organization" placeholder="Your company or organization">
+        </div>
+        <div class="form-row">
+          <label for="service">What are you working on?</label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a practice area</option>
+            <option value="brand">Brand &amp; Digital Strategy</option>
+            <option value="media">Paid Media &amp; Analytics</option>
+            <option value="project">Complex Project Execution</option>
+            <option value="software">Software &amp; Workflow Design</option>
+            <option value="multiple">Multiple areas / not sure yet</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Tell us more</label>
+          <textarea id="message" name="message" placeholder="What&rsquo;s the challenge you&rsquo;re trying to solve? Where are you stuck? The more context you share, the better our first conversation will be." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message &rarr;</button>
+        <p class="form-note">We don&rsquo;t share your information. We don&rsquo;t run a sales pipeline. This goes directly to a person.</p>
+      </form>
+
+      <div class="form-success" id="form-success">
+        <div class="check">&#10003;</div>
+        <h3>Message received.</h3>
+        <p>Thanks for reaching out. We&rsquo;ll be in touch within one business day to set up a conversation.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="contact-sidebar">
+
+      <div class="sidebar-block">
+        <div class="eyebrow">What to expect</div>
+        <h3>A real conversation, not a pitch.</h3>
+        <p>Our first call is diagnostic, not transactional. We want to understand your situation well enough to tell you honestly whether we can help &mdash; and if so, what that looks like.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="sidebar-block">
+        <ul class="trust-list">
+          <li>Response within one business day</li>
+          <li>30-minute introductory call, no prep required</li>
+          <li>Honest assessment of fit before any proposal</li>
+          <li>Scope defined collaboratively, not handed down</li>
+          <li>Fixed or retainer engagements — no surprise overages</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="sidebar-block">
+        <div class="eyebrow">Prefer email?</div>
+        <h3>Reach us directly.</h3>
+        <div class="direct-contact">
+          <a href="mailto:hello@mainsequence.consulting">hello@mainsequence.consulting</a>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="sidebar-block">
+        <div class="eyebrow">Based in Chicago</div>
+        <p>We work with clients nationally. Most engagements are remote-first with on-site availability when the work calls for it.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-content">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">
+              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              The Main Sequence
+            </div>
+            <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
+            <div class="footer-social">
+              <a href="#" title="LinkedIn">in</a>
+              <a href="#" title="Twitter / X">&#x58;</a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-col">
+              <h3>Services</h3>
+              <ul>
+                <li><a href="services.html">Brand &amp; Digital Strategy</a></li>
+                <li><a href="services.html">Paid Media &amp; Analytics</a></li>
+                <li><a href="services.html">Complex Project Execution</a></li>
+                <li><a href="services.html">Software &amp; Workflow Design</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Work</h3>
+              <ul>
+                <li><a href="index.html#work">Enterprise Events</a></li>
+                <li><a href="index.html#work">Nonprofit / Education</a></li>
+                <li><a href="index.html#work">AEC / Legal</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Company</h3>
+              <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">mainsequence.studio</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
+          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react":                        "https://esm.sh/react@18",
+      "react/jsx-runtime":            "https://esm.sh/react@18/jsx-runtime",
+      "react-dom/client":             "https://esm.sh/react-dom@18/client",
+      "@paper-design/shaders-react":  "https://esm.sh/@paper-design/shaders-react@latest?external=react"
+    }
+  }
+  </script>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { GrainGradient, grainGradientPresets } from '@paper-design/shaders-react';
+    const root = createRoot(document.getElementById('shader-root'));
+    root.render(React.createElement(GrainGradient, {
+      ...grainGradientPresets[0],
+      colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
+      style: { width: '100%', height: '100%' }
+    }));
+  </script>
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    function toggleMobile() {
+      const menu = document.getElementById('mobile-menu');
+      const burger = document.getElementById('hamburger');
+      const open = menu.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobile() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
