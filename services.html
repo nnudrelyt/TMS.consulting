@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Main Sequence &mdash; Services</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #141210; }
+    :root {
+      --bg:         #141210;
+      --bg-card:    #1E2824;
+      --pink:       #9E5A35;
+      --pink-dim:   rgba(158,90,53,0.12);
+      --cream:      #FFFFFF;
+      --cream-dim:  rgba(255,255,255,0.5);
+      --border-dk:  rgba(255,255,255,0.07);
+      --terra:      #9E5A35;
+      --blue:       #7BADB8;
+      --radius: 2px;
+    }
+    body {
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      background: transparent;
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 3rem;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(20,18,16,0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border-dk);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--cream); }
+    .btn-nav {
+      border: 1px solid #C8D47A;
+      color: #C8D47A !important;
+      background: transparent;
+      padding: 9px 20px;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-nav:hover { background: #C8D47A !important; color: #000 !important; }
+
+    /* MOBILE MENU */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18,16,14,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 32px; font-weight: 700; color: var(--cream); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-mobile a:hover { color: var(--pink); }
+    .nav-mobile .btn-nav { font-size: 24px; padding: 12px 32px; }
+
+    /* SECTION WRAPPER */
+    .sec { padding: 3.5rem 3rem; }
+
+    /* HERO */
+    .hero { background: transparent; }
+    .hero .sec { padding-bottom: 4rem; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; font-weight: 700; }
+    .hero h1 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(48px, 6.5vw, 82px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--cream);
+      max-width: 820px;
+      margin-bottom: 24px;
+    }
+    .hero p { font-size: 22px; line-height: 1.7; color: var(--cream-dim); max-width: 640px; }
+
+    /* SECTION HEADINGS */
+    .sec-h { margin-bottom: 2.5rem; }
+    .sec-h .eyebrow { margin-bottom: 10px; }
+    .sec-h h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; line-height: 1.15; color: var(--cream); margin-bottom: 8px; }
+    .sec-h p { font-size: 18px; line-height: 1.7; color: var(--cream-dim); max-width: 760px; }
+
+    /* SERVICE DETAIL ROWS */
+    .service-detail {
+      border-top: 1px solid var(--border-dk);
+      padding: 4rem 0;
+    }
+    .service-detail:last-child { border-bottom: 1px solid var(--border-dk); }
+    .service-detail-inner {
+      display: grid;
+      grid-template-columns: 64px 340px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .sd-num { font-size: 13px; color: #7BADB9; letter-spacing: 0.1em; font-weight: 700; padding-top: 8px; }
+    .sd-title { font-family: 'calvino', Georgia, serif; font-size: clamp(24px, 2.8vw, 38px); font-weight: 700; color: var(--cream); line-height: 1.15; margin-bottom: 1.5rem; }
+    .sd-body { font-size: 18px; line-height: 1.75; color: var(--cream-dim); }
+    .sd-body p + p { margin-top: 1rem; }
+    .sd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; }
+    .tag { font-size: 14px; padding: 4px 12px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
+
+    /* PROCESS */
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .process-step {
+      border-left: 1px solid var(--border-dk);
+      padding: 2.4rem 2rem 2.4rem 2.4rem;
+    }
+    .process-step:first-child { border-left: none; }
+    .process-step-num { font-size: 13px; color: var(--pink); letter-spacing: 0.1em; font-weight: 700; margin-bottom: 14px; }
+    .process-step h3 { font-family: 'calvino', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 10px; line-height: 1.2; }
+    .process-step p { font-size: 17px; line-height: 1.65; color: var(--cream-dim); }
+
+    /* PILLARS MINI */
+    .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .pillar { background: rgba(22,28,25,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-dk); padding: 2.8rem; border-radius: 12px; }
+    .pillar-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+    .pillar-num { font-size: 13px; color: #7BADB9; letter-spacing: 0.08em; font-weight: 700; flex-shrink: 0; }
+    .pillar h3 { font-size: 24px; font-weight: 700; color: var(--cream); margin-bottom: 0; }
+    .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
+
+    /* CTA BAND */
+    .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
+    .cta-card { max-width: 720px; margin: 0 auto; }
+    .cta-band h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 58px); font-weight: 700; color: #1A1710; margin-bottom: 12px; line-height: 1.1; }
+    .cta-band p { font-size: 22px; color: rgba(26,23,16,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .btn {
+      display: inline-block;
+      padding: 13px 29px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      background: #C8D47A;
+      color: #1A1710;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+    }
+    .btn:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border-dk);
+      background: rgba(18,16,14,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .site-footer-inner { width: 100%; }
+    .site-footer-content { display: flex; flex-direction: column; padding: 4.5rem 4.5rem 3rem; }
+    .footer-top { display: flex; gap: 64px; }
+    .footer-brand { min-width: 260px; max-width: 300px; }
+    .footer-brand-name { font-size: 13px; font-weight: 700; color: var(--cream); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 18px; }
+    .footer-logo-mark { width: 34px; height: 34px; flex-shrink: 0; }
+    .footer-brand-desc { font-size: 18px; color: var(--cream-dim); line-height: 1.65; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social a { width: 36px; height: 36px; border: 1px solid var(--border-dk); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--cream-dim); text-decoration: none; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+    .footer-social a:hover { border-color: var(--pink); color: var(--pink); }
+    .footer-links { display: flex; gap: 64px; flex: 1; }
+    .footer-col h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { font-size: 18px; color: var(--cream-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dk); margin-top: 90px; padding-top: 20px; font-size: 18px; color: rgba(255,255,255,0.25); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+      to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .footer-brand, .footer-col { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .footer-brand             { animation-delay: 0.1s; }
+    .footer-col:nth-child(1)  { animation-delay: 0.15s; }
+    .footer-col:nth-child(2)  { animation-delay: 0.22s; }
+    .footer-col:nth-child(3)  { animation-delay: 0.29s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 900px) {
+      .service-detail-inner { grid-template-columns: 48px 1fr; }
+      .sd-body { grid-column: 2; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-step { border-left: none; border-top: 1px solid var(--border-dk); }
+      .process-step:nth-child(odd) { border-left: none; }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-brand { min-width: unset; max-width: unset; }
+      .footer-links { flex-wrap: wrap; gap: 32px; }
+      .site-footer-content { padding: 3rem 2rem 2rem; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 14px 1.25rem; }
+      .sec { padding: 2.5rem 1.25rem; }
+      .service-detail-inner { grid-template-columns: 1fr; gap: 1rem; }
+      .sd-body { grid-column: 1; }
+      .process-grid, .pillars-grid { grid-template-columns: 1fr; }
+      .cta-band { padding: 2.5rem 1.25rem; }
+      .footer-links { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
+  <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="nav-mobile" id="mobile-menu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="about.html" onclick="closeMobile()">About</a>
+    <a href="services.html" class="active" onclick="closeMobile()">Services</a>
+    <a href="index.html#work" onclick="closeMobile()">Work</a>
+    <a href="#" class="btn-nav" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <nav id="main-nav">
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <span class="nav-logo-text">The Main Sequence</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="#" class="btn-nav">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="sec">
+      <div class="eyebrow">Our Services</div>
+      <h1>Four practice areas. <span style="font-weight:300;">No filler.</span></h1>
+      <p>We don&rsquo;t take on work we can&rsquo;t do well. These are the areas where we have the depth, the track record, and the conviction to make a real difference.</p>
+    </div>
+  </div>
+
+  <!-- SERVICE DETAILS -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec">
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <div class="sd-num">01</div>
+          <div class="sd-title">Brand &amp; Digital Strategy</div>
+          <div class="sd-body">
+            <p>You get clarity on who you are, who you&rsquo;re for, and how to communicate that across every channel. From brand positioning to digital channel planning, we help purpose become a roadmap that your team can actually execute.</p>
+            <p>This is where most organizations are weakest and where the impact of getting it right is largest. We do this work at the positioning level, the messaging level, and the channel level &mdash; and we make sure the three are aligned before we hand anything over.</p>
+            <div class="sd-tags">
+              <span class="tag">Brand Positioning</span>
+              <span class="tag">Messaging Architecture</span>
+              <span class="tag">Digital Strategy</span>
+              <span class="tag">Audience Research</span>
+              <span class="tag">Channel Planning</span>
+              <span class="tag">Competitive Analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <div class="sd-num">02</div>
+          <div class="sd-title">Paid Media &amp; Analytics</div>
+          <div class="sd-body">
+            <p>Performance without accountability is noise. You get paid media programs built to be measured, reported on, and improved &mdash; along with the analytics infrastructure to make that possible.</p>
+            <p>We design campaigns around outcomes, not outputs. Every program we build includes clear KPIs, honest reporting, and a feedback loop that makes the next cycle smarter than the last.</p>
+            <div class="sd-tags">
+              <span class="tag">Paid Search &amp; Social</span>
+              <span class="tag">SEO / GEO</span>
+              <span class="tag">Analytics &amp; Reporting</span>
+              <span class="tag">Campaign Management</span>
+              <span class="tag">Attribution Modeling</span>
+              <span class="tag">Dashboard Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <div class="sd-num">03</div>
+          <div class="sd-title">Complex Project Execution</div>
+          <div class="sd-body">
+            <p>Large-scale programs &mdash; conferences, campaigns, multi-stakeholder rollouts &mdash; require a different kind of partner. We&rsquo;ve managed the full communications lifecycle for enterprise events with dozens of vendors, thousands of attendees, and zero margin for error.</p>
+            <p>We bring the same operational rigor to campaigns, product launches, and cross-functional initiatives. If it&rsquo;s complex, high-stakes, and needs to run on time, this is what we do.</p>
+            <div class="sd-tags">
+              <span class="tag">Event Communications</span>
+              <span class="tag">Vendor Coordination</span>
+              <span class="tag">Operations Management</span>
+              <span class="tag">Data Reconciliation</span>
+              <span class="tag">Stakeholder Reporting</span>
+              <span class="tag">Risk Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <div class="sd-num">04</div>
+          <div class="sd-title">Software &amp; Workflow Design</div>
+          <div class="sd-body">
+            <p>The most expensive thing in most organizations is manual work that doesn&rsquo;t need to be manual. You get lightweight software solutions, automations, and workflow systems that give your team their time back.</p>
+            <p>We&rsquo;re not a development shop. We&rsquo;re pragmatic problem-solvers who know how to find the right tool for the job, build the thing that fits your reality, and document it well enough that your team can own it after we&rsquo;re gone.</p>
+            <div class="sd-tags">
+              <span class="tag">Workflow Mapping</span>
+              <span class="tag">Custom Automations</span>
+              <span class="tag">Process Documentation</span>
+              <span class="tag">Efficiency Analysis</span>
+              <span class="tag">Systems Integration</span>
+              <span class="tag">Tool Selection</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW AN ENGAGEMENT WORKS -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec">
+      <div class="sec-h">
+        <div class="eyebrow">Our Process</div>
+        <h2>How an engagement works.</h2>
+        <p>Every engagement is different. But the shape of how we work is consistent &mdash; because good process isn&rsquo;t bureaucracy, it&rsquo;s how you make sure nothing important gets skipped.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-step-num">01</div>
+          <h3>Discovery</h3>
+          <p>We start by listening. Before we recommend anything, we need to understand your situation &mdash; your goals, your constraints, your team, and what you&rsquo;ve already tried.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">02</div>
+          <h3>Definition</h3>
+          <p>We align on scope, success criteria, and deliverables. You know exactly what we&rsquo;re building together and how we&rsquo;ll know it worked.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">03</div>
+          <h3>Execution</h3>
+          <p>We do the work &mdash; collaboratively, transparently, and with regular check-ins. No surprises at delivery. No deliverables that land without context.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">04</div>
+          <h3>Handoff</h3>
+          <p>We build for your ownership from day one. When the engagement ends, you have the work, the documentation, and the knowledge to run with it independently.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="cta-card">
+      <div class="eyebrow" style="color:rgba(26,23,16,0.5);">Ready to work together?</div>
+      <h2>Every engagement starts with a conversation.</h2>
+      <p>Tell us where you are. We&rsquo;ll help you figure out where to go &mdash; and build the plan to get there.</p>
+      <a href="#" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-content">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">
+              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              The Main Sequence
+            </div>
+            <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
+            <div class="footer-social">
+              <a href="#" title="LinkedIn">in</a>
+              <a href="#" title="Twitter / X">&#x58;</a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-col">
+              <h3>Services</h3>
+              <ul>
+                <li><a href="services.html">Brand &amp; Digital Strategy</a></li>
+                <li><a href="services.html">Paid Media &amp; Analytics</a></li>
+                <li><a href="services.html">Complex Project Execution</a></li>
+                <li><a href="services.html">Software &amp; Workflow Design</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Work</h3>
+              <ul>
+                <li><a href="index.html#work">Enterprise Events</a></li>
+                <li><a href="index.html#work">Nonprofit / Education</a></li>
+                <li><a href="index.html#work">AEC / Legal</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Company</h3>
+              <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">mainsequence.studio</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
+          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react":                        "https://esm.sh/react@18",
+      "react/jsx-runtime":            "https://esm.sh/react@18/jsx-runtime",
+      "react-dom/client":             "https://esm.sh/react-dom@18/client",
+      "@paper-design/shaders-react":  "https://esm.sh/@paper-design/shaders-react@latest?external=react"
+    }
+  }
+  </script>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { GrainGradient, grainGradientPresets } from '@paper-design/shaders-react';
+    const root = createRoot(document.getElementById('shader-root'));
+    root.render(React.createElement(GrainGradient, {
+      ...grainGradientPresets[0],
+      colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
+      style: { width: '100%', height: '100%' }
+    }));
+  </script>
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+    function toggleMobile() {
+      const menu = document.getElementById('mobile-menu');
+      const burger = document.getElementById('hamburger');
+      const open = menu.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobile() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
+</html>
