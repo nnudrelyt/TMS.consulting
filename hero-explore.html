@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero Explore — The Main Sequence</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #141210; height: 100%; }
+    :root {
+      --bg: #141210;
+      --pink: #9E5A35;
+      --cream: #FFFFFF;
+      --cream-dim: rgba(255,255,255,0.5);
+      --border-dk: rgba(255,255,255,0.07);
+      --blue: #7BADB8;
+      --radius: 2px;
+    }
+    body {
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      background: transparent;
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 3rem;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.55); }
+    .btn-nav { border: 1px solid #C8D47A; color: #C8D47A !important; background: transparent; padding: 9px 20px; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: var(--radius); }
+
+    /* EYEBROW */
+    .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; font-weight: 700; }
+
+    /* HERO SPLIT GRID */
+    .hero-split {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      padding: 4rem 3rem;
+      min-height: calc(100vh - 68px);
+      align-items: center;
+    }
+    .hero-left { grid-column: 1 / 4; }
+    .hero-right { grid-column: 4; align-self: stretch; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border-dk); padding-left: 3rem; }
+
+    /* H1 — larger now that it has 3 columns of room */
+    .hero-split h1 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(52px, 5.8vw, 96px);
+      font-weight: 700;
+      line-height: 1.07;
+      color: var(--cream);
+      margin-bottom: 22px;
+    }
+    .hero-split .hero-sub {
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--cream-dim);
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+
+    /* CTA BUTTON */
+    .btn {
+      display: inline-block;
+      padding: 13px 29px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      background: #C8D47A;
+      color: #1A1710;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+    }
+    .btn:hover { opacity: 0.88; }
+
+    /* RIGHT COLUMN — compact service list */
+    .pillar-list { display: flex; flex-direction: column; width: 100%; }
+    .pillar-item {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 0.75rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border-dk);
+      align-items: start;
+    }
+    .pillar-item:first-child { border-top: 1px solid var(--border-dk); }
+    .pillar-item-num { font-size: 12px; color: #7BADB9; letter-spacing: 0.1em; font-weight: 700; padding-top: 3px; }
+    .pillar-item h3 { font-size: 17px; font-weight: 700; color: var(--cream); margin-bottom: 3px; line-height: 1.3; }
+    .pillar-item p { font-size: 14px; line-height: 1.55; color: var(--cream-dim); }
+
+    .services-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 1rem; }
+
+    /* SHADER */
+    #shader-root { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+    .overlay { position: fixed; inset: 0; z-index: -1; pointer-events: none; background: rgba(0,0,0,0.35); }
+  </style>
+</head>
+<body>
+
+  <div id="shader-root"></div>
+  <div class="overlay"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <span class="nav-logo-text">The Main Sequence</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="contact.html" class="btn-nav">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-split">
+
+    <!-- LEFT: 3 columns -->
+    <div class="hero-left">
+      <div class="eyebrow">Chicago Tech Consultants</div>
+      <h1>Helping you <span style="font-weight:300;">close the gap between Purpose and Performance.</span></h1>
+      <p class="hero-sub">Whether the challenge is brand clarity, digital performance, or operational complexity &mdash; we help you build the strategy, systems, and execution to get where you&rsquo;re trying to go.</p>
+      <a href="contact.html" class="btn">Tell us about your challenge &rarr;</a>
+    </div>
+
+    <!-- RIGHT: column 4 — compact service list -->
+    <div class="hero-right">
+      <div class="services-label">Our Services</div>
+      <div class="pillar-list">
+        <div class="pillar-item">
+          <span class="pillar-item-num">01</span>
+          <div>
+            <h3>Brand &amp; Digital Strategy</h3>
+            <p>Clarity on who you are, who you&rsquo;re for, and how to communicate it.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-item-num">02</span>
+          <div>
+            <h3>Paid Media &amp; Analytics</h3>
+            <p>Programs built to be measured, reported on, and improved.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-item-num">03</span>
+          <div>
+            <h3>Complex Project Execution</h3>
+            <p>Full lifecycle management for high-stakes, multi-stakeholder programs.</p>
+          </div>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-item-num">04</span>
+          <div>
+            <h3>Software &amp; Workflow Design</h3>
+            <p>Lightweight tools and automations that give your team their time back.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react":                        "https://esm.sh/react@18",
+      "react/jsx-runtime":            "https://esm.sh/react@18/jsx-runtime",
+      "react-dom/client":             "https://esm.sh/react-dom@18/client",
+      "@paper-design/shaders-react":  "https://esm.sh/@paper-design/shaders-react@latest?external=react"
+    }
+  }
+  </script>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { GrainGradient, grainGradientPresets } from '@paper-design/shaders-react';
+    createRoot(document.getElementById('shader-root')).render(
+      React.createElement(GrainGradient, {
+        ...grainGradientPresets[0],
+        colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
+        scale: 2.4,
+        style: { width: '100%', height: '100%' }
+      })
+    );
+  </script>
+
+</body>
+</html>
