@@ -213,30 +213,53 @@
     .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
 
     /* LOGO STRIP */
-    .logo-strip-sec { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-    .logo-strip {
+    .logo-strip-sec { padding-top: 2.5rem; padding-bottom: 2.5rem; overflow: hidden; }
+    .logo-marquee-track {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4rem;
-      flex-wrap: wrap;
+      gap: 5rem;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .logo-marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .logo-item {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      opacity: 0.45;
+      gap: 0.75rem;
+      opacity: 0.4;
       transition: opacity 0.2s;
+      flex-shrink: 0;
     }
-    .logo-item:hover { opacity: 0.75; }
-    .logo-svg { width: 100px; height: 34px; }
-    .logo-name { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-dim); font-weight: 700; }
+    .logo-item:hover { opacity: 0.7; }
+    .logo-svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .logo-name { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); font-weight: 700; white-space: nowrap; }
 
     /* TESTIMONIALS */
-    .testimonial-sec { max-width: 860px; }
-    .testimonial-stage { position: relative; }
-    .testimonial-slides { position: relative; min-height: 200px; }
+    .testimonial-sec { }
+    .testimonial-stage {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .testimonial-headshot-col { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+    .testimonial-headshot {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      overflow: hidden;
+      background: rgba(22,28,25,0.55);
+      border: 1px solid var(--border-dk);
+      position: relative;
+    }
+    .testimonial-headshot svg { width: 100%; height: 100%; display: block; }
+    .testimonial-headshot-name { font-size: 15px; font-weight: 700; color: var(--cream); }
+    .testimonial-headshot-role { font-size: 13px; color: var(--cream-dim); line-height: 1.5; }
+    .testimonial-content-col { padding-top: 1rem; }
+    .testimonial-slides { position: relative; min-height: 240px; }
     .testimonial-slide {
       display: none;
       animation: tFadeIn 0.45s ease;
@@ -249,17 +272,13 @@
       font-weight: 400;
       line-height: 1.45;
       color: var(--cream);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       quotes: none;
     }
-    .testimonial-attr { display: flex; flex-direction: column; gap: 4px; }
-    .testimonial-name { font-size: 15px; font-weight: 700; color: var(--cream); letter-spacing: 0.04em; }
-    .testimonial-role { font-size: 14px; color: var(--cream-dim); }
     .testimonial-controls {
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      margin-top: 2.5rem;
     }
     .t-prev, .t-next {
       background: none;
@@ -288,6 +307,23 @@
       transition: background 0.2s;
     }
     .t-dot.active { background: #C8D47A; border-color: #C8D47A; }
+    .t-progress {
+      height: 1px;
+      background: var(--border-dk);
+      margin-top: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .t-progress-bar {
+      position: absolute;
+      inset: 0 100% 0 0;
+      background: #C8D47A;
+      transition: none;
+    }
+    .t-progress-bar.running {
+      right: 0;
+      transition: right 5s linear;
+    }
 
     /* WORK */
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -492,31 +528,27 @@
   <!-- LOGO STRIP -->
   <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec logo-strip-sec">
-      <div class="eyebrow" style="text-align:center; margin-bottom: 2rem;">Trusted by</div>
-      <div class="logo-strip">
-        <div class="logo-item">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="0" y="12" width="120" height="16" rx="2" fill="rgba(255,255,255,0.15)"/></svg>
-          <span class="logo-name">Acme Corp</span>
-        </div>
-        <div class="logo-item">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="10" y="8" width="100" height="24" rx="12" fill="rgba(255,255,255,0.15)"/></svg>
-          <span class="logo-name">Brightline</span>
-        </div>
-        <div class="logo-item">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><polygon points="60,4 116,36 4,36" fill="rgba(255,255,255,0.15)"/></svg>
-          <span class="logo-name">Northfield</span>
-        </div>
-        <div class="logo-item">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><circle cx="60" cy="20" r="18" fill="rgba(255,255,255,0.15)"/></svg>
-          <span class="logo-name">Meridian</span>
-        </div>
-        <div class="logo-item">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="0" y="12" width="50" height="16" rx="2" fill="rgba(255,255,255,0.15)"/><rect x="58" y="12" width="62" height="16" rx="2" fill="rgba(255,255,255,0.15)"/></svg>
-          <span class="logo-name">Halcyon Group</span>
-        </div>
-        <div class="logo-item">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="20" y="6" width="80" height="28" rx="4" fill="rgba(255,255,255,0.15)"/></svg>
-          <span class="logo-name">Verdant</span>
+      <div class="eyebrow" style="margin-bottom: 1.5rem;">Trusted by</div>
+      <div style="overflow:hidden;">
+        <div class="logo-marquee-track">
+          <!-- Set 1 -->
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="24" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Acme Corp</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="11" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Brightline</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,2 26,24 2,24" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Northfield</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="24" height="24" rx="6" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Meridian</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="16" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Halcyon Group</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5"/><circle cx="14" cy="14" r="3" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Verdant</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="12" width="24" height="4" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="10" y="4" width="8" height="20" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Lumen</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,3 25,9 25,20 14,26 3,20 3,9" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Hexfield</span></div>
+          <!-- Set 2 — duplicate for seamless loop -->
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="24" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Acme Corp</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="11" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Brightline</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,2 26,24 2,24" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Northfield</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="24" height="24" rx="6" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Meridian</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="16" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Halcyon Group</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5"/><circle cx="14" cy="14" r="3" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Verdant</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="12" width="24" height="4" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="10" y="4" width="8" height="20" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Lumen</span></div>
+          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,3 25,9 25,20 14,26 3,20 3,9" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Hexfield</span></div>
         </div>
       </div>
     </div>
@@ -556,45 +588,61 @@
   </div>
 
   <!-- TESTIMONIALS -->
-  <div style="border-top: 1px solid var(--border-dk);">
+  <div>
     <div class="sec testimonial-sec">
       <div class="eyebrow" style="margin-bottom: 2.5rem;">What clients say</div>
       <div class="testimonial-stage">
-        <div class="testimonial-slides">
-          <div class="testimonial-slide active">
-            <blockquote class="testimonial-quote">&ldquo;They diagnosed in two weeks what we&rsquo;d been unable to articulate for two years. The strategic clarity alone was worth the engagement &mdash; the execution that followed was exceptional.&rdquo;</blockquote>
-            <div class="testimonial-attr">
-              <span class="testimonial-name">Placeholder Name</span>
-              <span class="testimonial-role">VP of Marketing, Enterprise Client</span>
-            </div>
+
+        <!-- HEADSHOT COLUMN -->
+        <div class="testimonial-headshot-col">
+          <div class="testimonial-headshot">
+            <svg viewBox="0 0 280 373" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="hs1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1C2B2F"/>
+                  <stop offset="100%" stop-color="#1A1512"/>
+                </linearGradient>
+              </defs>
+              <rect width="280" height="373" fill="url(#hs1)"/>
+              <circle cx="140" cy="140" r="58" fill="rgba(123,173,184,0.12)" stroke="rgba(123,173,184,0.18)" stroke-width="1"/>
+              <rect x="80" y="290" width="120" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+            </svg>
           </div>
-          <div class="testimonial-slide">
-            <blockquote class="testimonial-quote">&ldquo;Working with The Main Sequence felt genuinely different. No fluff, no over-engineered deck. Just clear thinking and people who were as invested in the outcome as we were.&rdquo;</blockquote>
-            <div class="testimonial-attr">
-              <span class="testimonial-name">Placeholder Name</span>
-              <span class="testimonial-role">Executive Director, Nonprofit</span>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <blockquote class="testimonial-quote">&ldquo;Our annual conference ran flawlessly for the first time in years. They handled complexity we couldn&rsquo;t see coming and kept the whole team aligned through every moving part.&rdquo;</blockquote>
-            <div class="testimonial-attr">
-              <span class="testimonial-name">Placeholder Name</span>
-              <span class="testimonial-role">Director of Events, National Association</span>
-            </div>
+          <div>
+            <div class="testimonial-headshot-name" id="t-name">Placeholder Name</div>
+            <div class="testimonial-headshot-role" id="t-role">VP of Marketing, Enterprise Client</div>
           </div>
         </div>
-        <div class="testimonial-controls">
-          <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
-          <div class="t-dots">
-            <button class="t-dot active" onclick="testimonialGo(0)"></button>
-            <button class="t-dot" onclick="testimonialGo(1)"></button>
-            <button class="t-dot" onclick="testimonialGo(2)"></button>
+
+        <!-- QUOTE COLUMN -->
+        <div class="testimonial-content-col">
+          <div class="testimonial-slides">
+            <div class="testimonial-slide active">
+              <blockquote class="testimonial-quote">&ldquo;They diagnosed in two weeks what we&rsquo;d been unable to articulate for two years. The strategic clarity alone was worth the engagement &mdash; the execution that followed was exceptional.&rdquo;</blockquote>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">&ldquo;Working with The Main Sequence felt genuinely different. No fluff, no over-engineered deck. Just clear thinking and people who were as invested in the outcome as we were.&rdquo;</blockquote>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">&ldquo;Our annual conference ran flawlessly for the first time in years. They handled complexity we couldn&rsquo;t see coming and kept the whole team aligned through every moving part.&rdquo;</blockquote>
+            </div>
           </div>
-          <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
+          <div class="testimonial-controls">
+            <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
+            <div class="t-dots">
+              <button class="t-dot active" onclick="clearAutoplay();testimonialGo(0);startAutoplay()"></button>
+              <button class="t-dot" onclick="clearAutoplay();testimonialGo(1);startAutoplay()"></button>
+              <button class="t-dot" onclick="clearAutoplay();testimonialGo(2);startAutoplay()"></button>
+            </div>
+            <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
+          </div>
+          <div class="t-progress"><div class="t-progress-bar" id="t-progress-bar"></div></div>
         </div>
+
       </div>
     </div>
   </div>
+  <div style="border-top: 1px solid var(--border-dk);"></div>
 
   <!-- WORK -->
   <div id="work">
@@ -773,17 +821,41 @@
     }, { passive: true });
 
     // Testimonials
+    const tData = [
+      { name: 'Placeholder Name', role: 'VP of Marketing, Enterprise Client' },
+      { name: 'Placeholder Name', role: 'Executive Director, Nonprofit' },
+      { name: 'Placeholder Name', role: 'Director of Events, National Association' },
+    ];
     let tCurrent = 0;
+    let tTimer = null;
     const tSlides = document.querySelectorAll('.testimonial-slide');
     const tDots = document.querySelectorAll('.t-dot');
+    const tNameEl = document.getElementById('t-name');
+    const tRoleEl = document.getElementById('t-role');
+    const tBar = document.getElementById('t-progress-bar');
+
     function testimonialGo(n) {
       tSlides[tCurrent].classList.remove('active');
       tDots[tCurrent].classList.remove('active');
       tCurrent = (n + tSlides.length) % tSlides.length;
       tSlides[tCurrent].classList.add('active');
       tDots[tCurrent].classList.add('active');
+      tNameEl.textContent = tData[tCurrent].name;
+      tRoleEl.textContent = tData[tCurrent].role;
+      resetProgress();
     }
-    function testimonialStep(dir) { testimonialGo(tCurrent + dir); }
+    function testimonialStep(dir) { clearAutoplay(); testimonialGo(tCurrent + dir); startAutoplay(); }
+    function resetProgress() {
+      tBar.classList.remove('running');
+      void tBar.offsetWidth; // reflow
+      tBar.classList.add('running');
+    }
+    function startAutoplay() {
+      tTimer = setInterval(() => testimonialGo(tCurrent + 1), 5000);
+    }
+    function clearAutoplay() { clearInterval(tTimer); }
+    resetProgress();
+    startAutoplay();
 
     // Mobile menu
     function toggleMobile() {
