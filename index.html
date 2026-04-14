@@ -212,6 +212,83 @@
     .tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
 
+    /* LOGO STRIP */
+    .logo-strip-sec { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .logo-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.45;
+      transition: opacity 0.2s;
+    }
+    .logo-item:hover { opacity: 0.75; }
+    .logo-svg { width: 100px; height: 34px; }
+    .logo-name { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-dim); font-weight: 700; }
+
+    /* TESTIMONIALS */
+    .testimonial-sec { max-width: 860px; }
+    .testimonial-stage { position: relative; }
+    .testimonial-slides { position: relative; min-height: 200px; }
+    .testimonial-slide {
+      display: none;
+      animation: tFadeIn 0.45s ease;
+    }
+    .testimonial-slide.active { display: block; }
+    @keyframes tFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .testimonial-quote {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(22px, 2.4vw, 32px);
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      quotes: none;
+    }
+    .testimonial-attr { display: flex; flex-direction: column; gap: 4px; }
+    .testimonial-name { font-size: 15px; font-weight: 700; color: var(--cream); letter-spacing: 0.04em; }
+    .testimonial-role { font-size: 14px; color: var(--cream-dim); }
+    .testimonial-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .t-prev, .t-next {
+      background: none;
+      border: 1px solid var(--border-dk);
+      color: var(--cream-dim);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .t-prev:hover, .t-next:hover { border-color: var(--cream); color: var(--cream); }
+    .t-dots { display: flex; gap: 8px; align-items: center; }
+    .t-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-dk);
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .t-dot.active { background: #C8D47A; border-color: #C8D47A; }
+
     /* WORK */
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .work-card { border: 1px solid var(--border-dk); background: rgba(22,28,25,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; }
@@ -412,6 +489,39 @@
     </div>
   </div>
 
+  <!-- LOGO STRIP -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec logo-strip-sec">
+      <div class="eyebrow" style="text-align:center; margin-bottom: 2rem;">Trusted by</div>
+      <div class="logo-strip">
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="0" y="12" width="120" height="16" rx="2" fill="rgba(255,255,255,0.15)"/></svg>
+          <span class="logo-name">Acme Corp</span>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="10" y="8" width="100" height="24" rx="12" fill="rgba(255,255,255,0.15)"/></svg>
+          <span class="logo-name">Brightline</span>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><polygon points="60,4 116,36 4,36" fill="rgba(255,255,255,0.15)"/></svg>
+          <span class="logo-name">Northfield</span>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><circle cx="60" cy="20" r="18" fill="rgba(255,255,255,0.15)"/></svg>
+          <span class="logo-name">Meridian</span>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="0" y="12" width="50" height="16" rx="2" fill="rgba(255,255,255,0.15)"/><rect x="58" y="12" width="62" height="16" rx="2" fill="rgba(255,255,255,0.15)"/></svg>
+          <span class="logo-name">Halcyon Group</span>
+        </div>
+        <div class="logo-item">
+          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg"><rect x="20" y="6" width="80" height="28" rx="4" fill="rgba(255,255,255,0.15)"/></svg>
+          <span class="logo-name">Verdant</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- VALUES -->
   <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec">
@@ -440,6 +550,47 @@
           <div class="value-num">04</div>
           <div class="value-title">Perspective</div>
           <div class="value-body">Years of cross-sector experience means we see patterns your team might miss. We bring an outside view &mdash; and we&rsquo;re not afraid to say what we see, even when it&rsquo;s not what you expected to hear.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec testimonial-sec">
+      <div class="eyebrow" style="margin-bottom: 2.5rem;">What clients say</div>
+      <div class="testimonial-stage">
+        <div class="testimonial-slides">
+          <div class="testimonial-slide active">
+            <blockquote class="testimonial-quote">&ldquo;They diagnosed in two weeks what we&rsquo;d been unable to articulate for two years. The strategic clarity alone was worth the engagement &mdash; the execution that followed was exceptional.&rdquo;</blockquote>
+            <div class="testimonial-attr">
+              <span class="testimonial-name">Placeholder Name</span>
+              <span class="testimonial-role">VP of Marketing, Enterprise Client</span>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;Working with The Main Sequence felt genuinely different. No fluff, no over-engineered deck. Just clear thinking and people who were as invested in the outcome as we were.&rdquo;</blockquote>
+            <div class="testimonial-attr">
+              <span class="testimonial-name">Placeholder Name</span>
+              <span class="testimonial-role">Executive Director, Nonprofit</span>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;Our annual conference ran flawlessly for the first time in years. They handled complexity we couldn&rsquo;t see coming and kept the whole team aligned through every moving part.&rdquo;</blockquote>
+            <div class="testimonial-attr">
+              <span class="testimonial-name">Placeholder Name</span>
+              <span class="testimonial-role">Director of Events, National Association</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-controls">
+          <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
+          <div class="t-dots">
+            <button class="t-dot active" onclick="testimonialGo(0)"></button>
+            <button class="t-dot" onclick="testimonialGo(1)"></button>
+            <button class="t-dot" onclick="testimonialGo(2)"></button>
+          </div>
+          <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
         </div>
       </div>
     </div>
@@ -620,6 +771,19 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
+
+    // Testimonials
+    let tCurrent = 0;
+    const tSlides = document.querySelectorAll('.testimonial-slide');
+    const tDots = document.querySelectorAll('.t-dot');
+    function testimonialGo(n) {
+      tSlides[tCurrent].classList.remove('active');
+      tDots[tCurrent].classList.remove('active');
+      tCurrent = (n + tSlides.length) % tSlides.length;
+      tSlides[tCurrent].classList.add('active');
+      tDots[tCurrent].classList.add('active');
+    }
+    function testimonialStep(dir) { testimonialGo(tCurrent + dir); }
 
     // Mobile menu
     function toggleMobile() {
