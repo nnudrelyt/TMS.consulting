@@ -238,27 +238,8 @@
     .logo-name { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); font-weight: 700; white-space: nowrap; }
 
     /* TESTIMONIALS */
-    .testimonial-sec { }
-    .testimonial-stage {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .testimonial-headshot-col { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-    .testimonial-headshot {
-      width: 100%;
-      aspect-ratio: 3/4;
-      border-radius: 4px;
-      overflow: hidden;
-      background: rgba(22,28,25,0.55);
-      border: 1px solid var(--border-dk);
-      position: relative;
-    }
-    .testimonial-headshot svg { width: 100%; height: 100%; display: block; }
-    .testimonial-headshot-name { font-size: 15px; font-weight: 700; color: var(--cream); }
-    .testimonial-headshot-role { font-size: 13px; color: var(--cream-dim); line-height: 1.5; }
-    .testimonial-content-col { padding-top: 1rem; }
+    .testimonial-sec { max-width: 920px; }
+    .testimonial-stage { }
     .testimonial-slides { position: relative; min-height: 240px; }
     .testimonial-slide {
       display: none;
@@ -268,7 +249,7 @@
     @keyframes tFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     .testimonial-quote {
       font-family: 'calvino', Georgia, serif;
-      font-size: clamp(22px, 2.4vw, 32px);
+      font-size: clamp(26px, 2.8vw, 40px);
       font-weight: 400;
       line-height: 1.45;
       color: var(--cream);
@@ -322,7 +303,7 @@
     }
     .t-progress-bar.running {
       right: 0;
-      transition: right 5s linear;
+      transition: right 6.25s linear;
     }
 
     /* WORK */
@@ -593,51 +574,30 @@
       <div class="eyebrow" style="margin-bottom: 2.5rem;">What clients say</div>
       <div class="testimonial-stage">
 
-        <!-- HEADSHOT COLUMN -->
-        <div class="testimonial-headshot-col">
-          <div class="testimonial-headshot">
-            <svg viewBox="0 0 280 373" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="hs1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#1C2B2F"/>
-                  <stop offset="100%" stop-color="#1A1512"/>
-                </linearGradient>
-              </defs>
-              <rect width="280" height="373" fill="url(#hs1)"/>
-              <circle cx="140" cy="140" r="58" fill="rgba(123,173,184,0.12)" stroke="rgba(123,173,184,0.18)" stroke-width="1"/>
-              <rect x="80" y="290" width="120" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
-            </svg>
+        <div class="testimonial-slides">
+          <div class="testimonial-slide active">
+            <blockquote class="testimonial-quote">&ldquo;They diagnosed in two weeks what we&rsquo;d been unable to articulate for two years. The strategic clarity alone was worth the engagement &mdash; the execution that followed was exceptional.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Placeholder Name</span><span class="testimonial-role">VP of Marketing, Enterprise Client</span></div>
           </div>
-          <div>
-            <div class="testimonial-headshot-name" id="t-name">Placeholder Name</div>
-            <div class="testimonial-headshot-role" id="t-role">VP of Marketing, Enterprise Client</div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;Working with The Main Sequence felt genuinely different. No fluff, no over-engineered deck. Just clear thinking and people who were as invested in the outcome as we were.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Placeholder Name</span><span class="testimonial-role">Executive Director, Nonprofit</span></div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;Our annual conference ran flawlessly for the first time in years. They handled complexity we couldn&rsquo;t see coming and kept the whole team aligned through every moving part.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Placeholder Name</span><span class="testimonial-role">Director of Events, National Association</span></div>
           </div>
         </div>
-
-        <!-- QUOTE COLUMN -->
-        <div class="testimonial-content-col">
-          <div class="testimonial-slides">
-            <div class="testimonial-slide active">
-              <blockquote class="testimonial-quote">&ldquo;They diagnosed in two weeks what we&rsquo;d been unable to articulate for two years. The strategic clarity alone was worth the engagement &mdash; the execution that followed was exceptional.&rdquo;</blockquote>
-            </div>
-            <div class="testimonial-slide">
-              <blockquote class="testimonial-quote">&ldquo;Working with The Main Sequence felt genuinely different. No fluff, no over-engineered deck. Just clear thinking and people who were as invested in the outcome as we were.&rdquo;</blockquote>
-            </div>
-            <div class="testimonial-slide">
-              <blockquote class="testimonial-quote">&ldquo;Our annual conference ran flawlessly for the first time in years. They handled complexity we couldn&rsquo;t see coming and kept the whole team aligned through every moving part.&rdquo;</blockquote>
-            </div>
+        <div class="testimonial-controls">
+          <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
+          <div class="t-dots">
+            <button class="t-dot active" onclick="clearAutoplay();testimonialGo(0);startAutoplay()"></button>
+            <button class="t-dot" onclick="clearAutoplay();testimonialGo(1);startAutoplay()"></button>
+            <button class="t-dot" onclick="clearAutoplay();testimonialGo(2);startAutoplay()"></button>
           </div>
-          <div class="testimonial-controls">
-            <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
-            <div class="t-dots">
-              <button class="t-dot active" onclick="clearAutoplay();testimonialGo(0);startAutoplay()"></button>
-              <button class="t-dot" onclick="clearAutoplay();testimonialGo(1);startAutoplay()"></button>
-              <button class="t-dot" onclick="clearAutoplay();testimonialGo(2);startAutoplay()"></button>
-            </div>
-            <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
-          </div>
-          <div class="t-progress"><div class="t-progress-bar" id="t-progress-bar"></div></div>
+          <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
         </div>
+        <div class="t-progress"><div class="t-progress-bar" id="t-progress-bar"></div></div>
 
       </div>
     </div>
@@ -830,8 +790,6 @@
     let tTimer = null;
     const tSlides = document.querySelectorAll('.testimonial-slide');
     const tDots = document.querySelectorAll('.t-dot');
-    const tNameEl = document.getElementById('t-name');
-    const tRoleEl = document.getElementById('t-role');
     const tBar = document.getElementById('t-progress-bar');
 
     function testimonialGo(n) {
@@ -840,8 +798,6 @@
       tCurrent = (n + tSlides.length) % tSlides.length;
       tSlides[tCurrent].classList.add('active');
       tDots[tCurrent].classList.add('active');
-      tNameEl.textContent = tData[tCurrent].name;
-      tRoleEl.textContent = tData[tCurrent].role;
       resetProgress();
     }
     function testimonialStep(dir) { clearAutoplay(); testimonialGo(tCurrent + dir); startAutoplay(); }
@@ -851,7 +807,7 @@
       tBar.classList.add('running');
     }
     function startAutoplay() {
-      tTimer = setInterval(() => testimonialGo(tCurrent + 1), 5000);
+      tTimer = setInterval(() => testimonialGo(tCurrent + 1), 6250);
     }
     function clearAutoplay() { clearInterval(tTimer); }
     resetProgress();
