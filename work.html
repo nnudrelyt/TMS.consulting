@@ -161,7 +161,7 @@
     }
 
     /* ── DETAIL LAYOUT ────────────────────────────────────────────── */
-    .detail-sec { padding: 3.5rem max(3rem, 12.5%) 6rem; }
+    .detail-sec { padding: 3.5rem 3rem 6rem; }
 
     .detail-back {
       display: inline-flex;
@@ -188,6 +188,7 @@
       grid-template-columns: 1fr 280px;
       gap: 5rem;
       align-items: start;
+      max-width: 75vw;
     }
 
     /* LEFT COLUMN */
@@ -288,6 +289,33 @@
     }
     .detail-nav-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.45); }
 
+    /* INLINE ARTICLE CTA */
+    .detail-cta-card {
+      margin-top: 4rem;
+      padding: 2.8rem 3rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      background: rgba(20,18,16,0.54);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .detail-cta-card .eyebrow { margin-bottom: 12px; }
+    .detail-cta-card h3 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(24px, 2vw, 30px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .detail-cta-card p {
+      font-size: 18px;
+      color: var(--cream-dim);
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+      max-width: 460px;
+    }
+
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
     .cta-card { max-width: 720px; margin: 0 auto; }
@@ -335,7 +363,7 @@
       .footer-brand { min-width: unset; max-width: unset; }
       .footer-links { flex-wrap: wrap; gap: 32px; }
       .site-footer-content { padding: 3rem 2rem 2rem; }
-      .detail-grid { grid-template-columns: 1fr; gap: 0; }
+      .detail-grid { grid-template-columns: 1fr; gap: 0; max-width: 100%; }
       .detail-sidebar { position: static; flex-direction: row; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-dk); }
       .detail-meta-block { min-width: 180px; }
     }
@@ -500,6 +528,12 @@
           <h1 class="detail-h1" id="detail-title"></h1>
           <div class="detail-sector" id="detail-sector"></div>
           <div class="detail-body" id="detail-body"></div>
+          <div class="detail-cta-card">
+            <div class="eyebrow">Ready to work together?</div>
+            <h3>Every engagement starts with a conversation.</h3>
+            <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
+            <a href="contact.html" class="btn">Let&rsquo;s talk &rarr;</a>
+          </div>
         </div>
 
         <!-- RIGHT: sticky meta sidebar -->
