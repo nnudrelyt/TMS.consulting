@@ -138,70 +138,109 @@
     .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
     .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; }
 
-    /* INLINE PANEL */
+    /* SCRIM */
+    .drawer-scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0);
+      pointer-events: none;
+      transition: background 0.35s ease;
+    }
+    .drawer-scrim.open {
+      background: rgba(0,0,0,0.55);
+      pointer-events: auto;
+    }
+
+    /* RIGHT DRAWER */
     .case-panel {
-      display: none;
-      grid-column: 1 / -1;
-      background: rgba(20,18,16,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 12px;
-      overflow: hidden;
-      animation: panelOpen 0.35s ease;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(560px, 100vw);
+      z-index: 201;
+      background: rgba(18,16,14,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-left: 1px solid rgba(255,255,255,0.1);
+      transform: translateX(100%);
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      display: flex;
+      flex-direction: column;
     }
-    .case-panel.open { display: block; }
-    @keyframes panelOpen {
-      from { opacity: 0; transform: translateY(-8px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .case-panel.open { transform: translateX(0); }
+
+    .case-panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 2rem 2rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(18,16,14,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 1;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-dk);
     }
-    .case-panel-inner {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      min-height: 480px;
-    }
-    .case-panel-body { padding: 3.5rem 4rem 3.5rem 3.5rem; border-right: 1px solid var(--border-dk); }
-    .case-panel-meta { padding: 3.5rem 3rem; display: flex; flex-direction: column; gap: 2.5rem; }
+    .case-panel-header-left { display: flex; flex-direction: column; gap: 6px; }
     .case-panel-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+      flex-shrink: 0;
       background: none;
       border: 1px solid var(--border-dk);
       color: var(--cream-dim);
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: border-color 0.2s, color 0.2s;
+      margin-top: 2px;
     }
     .case-panel-close:hover { border-color: var(--cream); color: var(--cream); }
-    .case-panel-wrap { position: relative; }
-    .panel-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 12px; }
+
+    .case-panel-body { padding: 2.5rem 2rem; flex: 1; }
+    .case-panel-meta {
+      padding: 0 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-top: 1px solid var(--border-dk);
+      padding-top: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .panel-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
     .panel-h2 {
       font-family: 'calvino', Georgia, serif;
-      font-size: clamp(26px, 2.8vw, 40px);
+      font-size: clamp(22px, 2vw, 30px);
       font-weight: 700;
-      line-height: 1.15;
+      line-height: 1.2;
       color: var(--cream);
       margin-bottom: 1.8rem;
     }
-    .panel-body p { font-size: 18px; line-height: 1.75; color: var(--cream-dim); margin-bottom: 1.2rem; }
+    .panel-body p { font-size: 17px; line-height: 1.75; color: var(--cream-dim); margin-bottom: 1.2rem; }
     .panel-body p:last-child { margin-bottom: 0; }
     .panel-meta-block { display: flex; flex-direction: column; gap: 6px; }
     .panel-meta-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
-    .panel-meta-value { font-size: 17px; color: var(--cream-dim); line-height: 1.55; }
+    .panel-meta-value { font-size: 16px; color: var(--cream-dim); line-height: 1.55; }
     .panel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
     .panel-nav {
       display: flex;
       gap: 1rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
+      padding: 1.5rem 2rem;
       border-top: 1px solid var(--border-dk);
+      background: rgba(18,16,14,0.97);
+      position: sticky;
+      bottom: 0;
     }
     .panel-nav-btn {
       font-family: 'brandon-grotesque', sans-serif;
@@ -216,6 +255,8 @@
       color: var(--cream-dim);
       cursor: pointer;
       transition: border-color 0.2s, color 0.2s;
+      flex: 1;
+      text-align: center;
     }
     .panel-nav-btn:hover { border-color: rgba(255,255,255,0.35); color: var(--cream); }
 
@@ -259,8 +300,6 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .work-grid { grid-template-columns: repeat(2, 1fr); }
-      .case-panel-inner { grid-template-columns: 1fr; }
-      .case-panel-body { border-right: none; border-bottom: 1px solid var(--border-dk); }
     }
     @media (max-width: 900px) {
       .footer-top { flex-direction: column; gap: 32px; }
@@ -274,8 +313,7 @@
       .filter-bar { padding: 0 1.25rem 2rem; }
       .work-section { padding: 0 1.25rem 3rem; }
       .work-grid { grid-template-columns: 1fr; }
-      .case-panel-body { padding: 2rem 1.5rem; }
-      .case-panel-meta { padding: 2rem 1.5rem; }
+      .case-panel { width: 100vw; }
       .cta-band { padding: 2.5rem 1.25rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -286,6 +324,42 @@
 
   <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
   <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
+
+  <!-- SCRIM -->
+  <div class="drawer-scrim" id="drawer-scrim" onclick="closePanel()"></div>
+
+  <!-- RIGHT DRAWER PANEL -->
+  <div class="case-panel" id="case-panel">
+    <div class="case-panel-header">
+      <div class="case-panel-header-left">
+        <div class="panel-eyebrow" id="panel-cat"></div>
+        <div style="font-size:13px;color:var(--cream-dim);" id="panel-sector"></div>
+      </div>
+      <button class="case-panel-close" onclick="closePanel()" aria-label="Close">&times;</button>
+    </div>
+    <div class="case-panel-body">
+      <h2 class="panel-h2" id="panel-title"></h2>
+      <div class="panel-body" id="panel-body"></div>
+    </div>
+    <div class="case-panel-meta">
+      <div class="panel-meta-block">
+        <div class="panel-meta-label">Engagement type</div>
+        <div class="panel-meta-value" id="panel-type"></div>
+      </div>
+      <div class="panel-meta-block">
+        <div class="panel-meta-label">Outcomes</div>
+        <div class="panel-meta-value" id="panel-outcomes"></div>
+      </div>
+      <div class="panel-meta-block">
+        <div class="panel-meta-label">Services delivered</div>
+        <div class="panel-tags" id="panel-tags"></div>
+      </div>
+    </div>
+    <div class="panel-nav">
+      <button class="panel-nav-btn" onclick="panelStep(-1)">&#8592; Prev</button>
+      <button class="panel-nav-btn" onclick="panelStep(1)">Next &#8594;</button>
+    </div>
+  </div>
 
   <div class="nav-mobile" id="mobile-menu">
     <a href="about.html" onclick="closeMobile()">About</a>
@@ -394,40 +468,6 @@
             <span class="tag">Digital Strategy</span>
           </div>
           <div class="work-card-cta">Read case study &rarr;</div>
-        </div>
-      </div>
-
-      <!-- INLINE PANEL (shared, repositioned by JS) -->
-      <div class="case-panel case-panel-wrap" id="case-panel">
-        <button class="case-panel-close" onclick="closePanel()" aria-label="Close">&times;</button>
-        <div class="case-panel-inner">
-          <div class="case-panel-body">
-            <div class="panel-eyebrow" id="panel-cat"></div>
-            <h2 class="panel-h2" id="panel-title"></h2>
-            <div class="panel-body" id="panel-body"></div>
-            <div class="panel-nav">
-              <button class="panel-nav-btn" onclick="panelStep(-1)">&#8592; Prev</button>
-              <button class="panel-nav-btn" onclick="panelStep(1)">Next &#8594;</button>
-            </div>
-          </div>
-          <div class="case-panel-meta">
-            <div class="panel-meta-block">
-              <div class="panel-meta-label">Sector</div>
-              <div class="panel-meta-value" id="panel-sector"></div>
-            </div>
-            <div class="panel-meta-block">
-              <div class="panel-meta-label">Engagement type</div>
-              <div class="panel-meta-value" id="panel-type"></div>
-            </div>
-            <div class="panel-meta-block">
-              <div class="panel-meta-label">Outcomes</div>
-              <div class="panel-meta-value" id="panel-outcomes"></div>
-            </div>
-            <div class="panel-meta-block">
-              <div class="panel-meta-label">Services delivered</div>
-              <div class="panel-tags" id="panel-tags"></div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -559,49 +599,54 @@
     ];
 
     let activeId = null;
-    const panel = document.getElementById('case-panel');
-    const grid  = document.getElementById('work-grid');
-    const cards = document.querySelectorAll('.work-card');
+    const panel  = document.getElementById('case-panel');
+    const scrim  = document.getElementById('drawer-scrim');
+    const cards  = document.querySelectorAll('.work-card');
+
+    function populate(id) {
+      const c = cases[id];
+      document.getElementById('panel-cat').innerHTML      = c.cat;
+      document.getElementById('panel-title').innerHTML    = c.title;
+      document.getElementById('panel-body').innerHTML     = c.body;
+      document.getElementById('panel-sector').textContent = c.sector;
+      document.getElementById('panel-type').textContent   = c.type;
+      document.getElementById('panel-outcomes').textContent = c.outcomes;
+      document.getElementById('panel-tags').innerHTML     = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      panel.scrollTop = 0;
+    }
 
     function openPanel(id, cardEl) {
-      if (activeId === id) { closePanel(); return; }
       activeId = id;
-
-      // Populate
-      const c = cases[id];
-      document.getElementById('panel-cat').innerHTML     = c.cat;
-      document.getElementById('panel-title').innerHTML   = c.title;
-      document.getElementById('panel-body').innerHTML    = c.body;
-      document.getElementById('panel-sector').textContent = c.sector;
-      document.getElementById('panel-type').textContent  = c.type;
-      document.getElementById('panel-outcomes').textContent = c.outcomes;
-      document.getElementById('panel-tags').innerHTML    = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
-
-      // Move panel after the clicked card, spanning full row
-      cardEl.after(panel);
+      populate(id);
       panel.classList.add('open');
-
-      // Scroll panel into view
-      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
-
-      // Active card state
+      scrim.classList.add('open');
+      document.body.style.overflow = 'hidden';
       cards.forEach(c => c.classList.remove('active'));
       cardEl.classList.add('active');
     }
 
     function closePanel() {
       panel.classList.remove('open');
+      scrim.classList.remove('open');
+      document.body.style.overflow = '';
       cards.forEach(c => c.classList.remove('active'));
       activeId = null;
     }
 
     function panelStep(dir) {
-      const ids = [...cards].filter(c => !c.classList.contains('hidden')).map(c => parseInt(c.dataset.id));
+      const visible = [...cards].filter(c => !c.classList.contains('hidden'));
+      const ids = visible.map(c => parseInt(c.dataset.id));
       const cur = ids.indexOf(activeId);
       const next = ids[(cur + dir + ids.length) % ids.length];
-      const nextCard = [...cards].find(c => parseInt(c.dataset.id) === next);
-      openPanel(next, nextCard);
+      const nextCard = visible[ids.indexOf(next)];
+      populate(next);
+      activeId = next;
+      cards.forEach(c => c.classList.remove('active'));
+      nextCard.classList.add('active');
     }
+
+    // Close on Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 
     // ── Filter ────────────────────────────────────────────────────────
     document.querySelectorAll('.filter-pill').forEach(pill => {
