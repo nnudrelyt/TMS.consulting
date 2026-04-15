@@ -308,13 +308,50 @@
 
     /* WORK */
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .work-card { border: 1px solid var(--border-dk); background: rgba(22,28,25,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; }
-    .work-card-img { width: 100%; height: 200px; display: block; }
+    .work-card { border: 1px solid var(--border-dk); background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color 0.25s, transform 0.25s; }
+    .work-card:hover { border-color: rgba(255,255,255,0.22); transform: translateY(-3px); }
+    .work-card-img-wrap { overflow: hidden; }
+    .work-card-img { width: 100%; height: 200px; display: block; transition: transform 0.5s ease; }
+    .work-card:hover .work-card-img { transform: scale(1.04); }
     .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
     .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
     .work-card h3 { font-size: 22px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
     .work-card p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
     .work-card .tags { margin-top: 4px; }
+    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; transition: gap 0.2s; }
+    .work-card:hover .work-card-cta { gap: 10px; }
+
+    /* VIEW TRANSITIONS */
+    #home-list-view { transition: opacity 0.36s ease, transform 0.36s ease; }
+    #home-list-view.view-out { opacity: 0; transform: translateY(-14px); pointer-events: none; }
+    #home-detail-view { display: none; opacity: 0; transform: translateY(18px); transition: opacity 0.36s ease, transform 0.36s ease; }
+    #home-detail-view.view-in { opacity: 1; transform: translateY(0); }
+
+    /* DETAIL CONTENT */
+    .detail-sec { padding: 3.5rem 3rem 6rem; }
+    .detail-back { display: inline-flex; align-items: center; gap: 7px; font-family: 'brandon-grotesque', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-dim); cursor: pointer; border: none; background: none; padding: 0; margin-bottom: 3rem; transition: color 0.2s, gap 0.2s; }
+    .detail-back:hover { color: var(--cream); gap: 11px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; max-width: 75vw; }
+    .detail-h1 { font-family: 'calvino', Georgia, serif; font-size: clamp(44px, 4.4vw, 70px); font-weight: 700; line-height: 1.07; color: var(--cream); margin-bottom: 1.4rem; }
+    .detail-sector { font-size: 18px; color: var(--cream-dim); margin-bottom: 3rem; }
+    .detail-body p { font-size: 22px; line-height: 1.75; color: var(--cream-dim); margin-bottom: 1.6rem; }
+    .detail-body p:last-child { margin-bottom: 0; }
+    .detail-h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(22px, 2vw, 28px); font-weight: 700; color: var(--cream); line-height: 1.2; margin-top: 3.5rem; margin-bottom: 1.2rem; }
+    .detail-img { width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; margin: 2.5rem 0; border: 1px solid var(--border-dk); }
+    .detail-img svg { width: 100%; height: 100%; display: block; }
+    .detail-sidebar { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 2.2rem; padding-top: 0.4rem; }
+    .detail-meta-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 8px; }
+    .detail-meta-value { font-size: 17px; color: var(--cream-dim); line-height: 1.65; }
+    .detail-meta-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .detail-nav { display: flex; flex-direction: row; gap: 8px; padding-top: 1.8rem; border-top: 1px solid var(--border-dk); }
+    .detail-nav-btn { font-family: 'brandon-grotesque', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.22); border-radius: 2px; background: rgba(255,255,255,0.07); color: var(--cream); cursor: pointer; flex: 1; text-align: center; transition: background 0.2s, border-color 0.2s; }
+    .detail-nav-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.45); }
+    .detail-cta-card { margin-top: 4rem; padding: 2.8rem 3rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .detail-cta-card .eyebrow { margin-bottom: 12px; }
+    .detail-cta-card h3 { font-family: 'calvino', Georgia, serif; font-size: clamp(24px, 2vw, 30px); font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 10px; }
+    .detail-cta-card p { font-size: 18px; color: var(--cream-dim); line-height: 1.65; margin-bottom: 1.8rem; max-width: 460px; }
+    @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; gap: 0; max-width: 100%; } .detail-sidebar { position: static; flex-direction: row; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-dk); } }
+    @media (max-width: 640px) { .detail-sec { padding: 2.5rem 1.25rem 4rem !important; } .detail-h1 { font-size: clamp(36px, 8vw, 60px); } .detail-sidebar { flex-direction: column; } .detail-img { height: 200px; } }
 
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
@@ -471,13 +508,15 @@
     </button>
   </nav>
 
+  <div id="home-list-view">
+
   <!-- HERO -->
   <div class="hero">
     <div class="sec">
       <div class="eyebrow">Chicago Tech Consultants</div>
       <h1>Helping you close the gap<br><span style="font-weight:300;">between purpose and performance.</span></h1>
       <p>Whether the challenge is brand clarity, digital performance, or operational complexity &mdash; we help you diagnose the problem clearly, align your team around what matters, and build the strategy, systems, and execution capacity to get where you&rsquo;re trying to go.</p>
-      <a href="#" class="btn">Tell us about your challenge &rarr;</a>
+      <a href="contact.html" class="btn">Tell us about your challenge &rarr;</a>
     </div>
   </div>
 
@@ -613,18 +652,14 @@
         <p>We don&rsquo;t name every client. But we can tell you what we did &mdash; and what it meant.</p>
       </div>
       <div class="work-grid">
-        <div class="work-card">
-          <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="wg1a" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1A2C33"/>
-                <stop offset="60%" stop-color="#3D2215"/>
-                <stop offset="100%" stop-color="#1A1210"/>
-              </linearGradient>
-            </defs>
-            <rect width="600" height="200" fill="url(#wg1a)"/>
-            <circle cx="420" cy="80" r="120" fill="#7A4428" fill-opacity="0.25"/>
-          </svg>
+        <div class="work-card" data-id="0" onclick="openDetail(0)">
+          <div class="work-card-img-wrap">
+            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="wg1a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1A2C33"/><stop offset="60%" stop-color="#3D2215"/><stop offset="100%" stop-color="#1A1210"/></linearGradient></defs>
+              <rect width="600" height="200" fill="url(#wg1a)"/>
+              <circle cx="420" cy="80" r="120" fill="#7A4428" fill-opacity="0.25"/>
+            </svg>
+          </div>
           <div class="work-card-body">
             <div class="work-cat">Enterprise Events</div>
             <h3>A 1,000-person technology conference, managed end-to-end</h3>
@@ -633,24 +668,20 @@
               <span class="tag">Event Communications</span>
               <span class="tag">Vendor Coordination</span>
               <span class="tag">Data Reconciliation</span>
-              <span class="tag">VIP Logistics</span>
             </div>
+            <div class="work-card-cta">Read case study &rarr;</div>
           </div>
         </div>
-        <div class="work-card">
-          <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="wg2a" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#1E2A20"/>
-                <stop offset="55%" stop-color="#2A3830"/>
-                <stop offset="100%" stop-color="#141210"/>
-              </linearGradient>
-            </defs>
-            <rect width="600" height="200" fill="url(#wg2a)"/>
-            <circle cx="180" cy="120" r="100" fill="#7BADB8" fill-opacity="0.18"/>
-          </svg>
+        <div class="work-card" data-id="1" onclick="openDetail(1)">
+          <div class="work-card-img-wrap">
+            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="wg2a" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <rect width="600" height="200" fill="url(#wg2a)"/>
+              <circle cx="180" cy="120" r="100" fill="#7BADB8" fill-opacity="0.18"/>
+            </svg>
+          </div>
           <div class="work-card-body">
-            <div class="work-cat">Nonprofit / Education</div>
+            <div class="work-cat">Nonprofit &amp; Education</div>
             <h3>SEO &amp; content strategy for a K&ndash;12 education foundation</h3>
             <p>GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation. Included SOW refinement and page-level strategy for high-traffic content.</p>
             <div class="tags">
@@ -658,22 +689,19 @@
               <span class="tag">Content Strategy</span>
               <span class="tag">Analytics &amp; Reporting</span>
             </div>
+            <div class="work-card-cta">Read case study &rarr;</div>
           </div>
         </div>
-        <div class="work-card">
-          <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="wg3a" x1="50%" y1="0%" x2="50%" y2="100%">
-                <stop offset="0%" stop-color="#26201A"/>
-                <stop offset="60%" stop-color="#1C2830"/>
-                <stop offset="100%" stop-color="#141210"/>
-              </linearGradient>
-            </defs>
-            <rect width="600" height="200" fill="url(#wg3a)"/>
-            <circle cx="300" cy="60" r="90" fill="#C4B096" fill-opacity="0.14"/>
-          </svg>
+        <div class="work-card" data-id="2" onclick="openDetail(2)">
+          <div class="work-card-img-wrap">
+            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="wg3a" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#26201A"/><stop offset="60%" stop-color="#1C2830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <rect width="600" height="200" fill="url(#wg3a)"/>
+              <circle cx="300" cy="60" r="90" fill="#C4B096" fill-opacity="0.14"/>
+            </svg>
+          </div>
           <div class="work-card-body">
-            <div class="work-cat">AEC / Legal</div>
+            <div class="work-cat">AEC / Legal &middot; Brand &amp; Strategy</div>
             <h3>Two brand concepts. One very good decision.</h3>
             <p>Two distinct brand and web concepts &mdash; each with full copy, information architecture, and positioning rationale &mdash; enabling the client to make a fully informed strategic choice.</p>
             <div class="tags">
@@ -681,6 +709,7 @@
               <span class="tag">Messaging Architecture</span>
               <span class="tag">Digital Strategy</span>
             </div>
+            <div class="work-card-cta">Read case study &rarr;</div>
           </div>
         </div>
       </div>
@@ -693,7 +722,48 @@
       <div class="eyebrow" style="color:rgba(26,23,16,0.5);">Ready to work together?</div>
       <h2>Every engagement starts with a conversation.</h2>
       <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
-      <a href="#" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+      <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+    </div>
+  </div>
+
+  </div><!-- /home-list-view -->
+
+  <!-- DETAIL VIEW -->
+  <div id="home-detail-view">
+    <div class="detail-sec">
+      <button class="detail-back" onclick="closeDetail()">&#8592; Back</button>
+      <div class="eyebrow" id="detail-cat"></div>
+      <div class="detail-grid">
+        <div class="detail-main">
+          <h1 class="detail-h1" id="detail-title"></h1>
+          <div class="detail-sector" id="detail-sector"></div>
+          <div class="detail-body" id="detail-body"></div>
+          <div class="detail-cta-card">
+            <div class="eyebrow">Ready to work together?</div>
+            <h3>Every engagement starts with a conversation.</h3>
+            <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
+            <a href="contact.html" class="btn">Let&rsquo;s talk &rarr;</a>
+          </div>
+        </div>
+        <div class="detail-sidebar">
+          <div>
+            <div class="detail-meta-label">Engagement type</div>
+            <div class="detail-meta-value" id="detail-type"></div>
+          </div>
+          <div>
+            <div class="detail-meta-label">Outcomes</div>
+            <div class="detail-meta-value" id="detail-outcomes"></div>
+          </div>
+          <div>
+            <div class="detail-meta-label">Services delivered</div>
+            <div class="detail-meta-tags" id="detail-tags"></div>
+          </div>
+          <div class="detail-nav">
+            <button class="detail-nav-btn" onclick="detailStep(-1)">&#8592; Prev</button>
+            <button class="detail-nav-btn" onclick="detailStep(1)">Next &#8594;</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -716,24 +786,24 @@
             <div class="footer-col">
               <h3>Services</h3>
               <ul>
-                <li><a href="#">Brand &amp; Digital Strategy</a></li>
-                <li><a href="#">Paid Media &amp; Analytics</a></li>
-                <li><a href="#">Project Execution</a></li>
-                <li><a href="#">Workflow Automation</a></li>
+                <li><a href="services.html">Brand &amp; Digital Strategy</a></li>
+                <li><a href="services.html">Paid Media &amp; Analytics</a></li>
+                <li><a href="services.html">Project Execution</a></li>
+                <li><a href="services.html">Workflow Automation</a></li>
               </ul>
             </div>
             <div class="footer-col">
               <h3>Work</h3>
               <ul>
-                <li><a href="#">Enterprise Events</a></li>
-                <li><a href="#">Nonprofit / Education</a></li>
-                <li><a href="#">AEC / Legal</a></li>
+                <li><a href="work.html">Enterprise Events</a></li>
+                <li><a href="work.html">Nonprofit / Education</a></li>
+                <li><a href="work.html">AEC / Legal</a></li>
               </ul>
             </div>
             <div class="footer-col">
               <h3>Company</h3>
               <ul>
-                <li><a href="#">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="#">mainsequence.studio</a></li>
               </ul>
@@ -825,6 +895,105 @@
       document.getElementById('mobile-menu').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
       document.body.style.overflow = '';
+    }
+
+    // ── Case study detail view ────────────────────────────────────────
+    const cases = [
+      {
+        id: 0, cat: 'Enterprise Events',
+        title: 'A 1,000-person technology conference, managed end-to-end',
+        sector: 'Aviation / Enterprise', type: 'Project Execution',
+        outcomes: 'Zero critical incidents across a 3-day program. Attendee data reconciled across 14 vendor systems. VIP satisfaction rated highest in event history.',
+        tags: ['Event Communications', 'Vendor Coordination', 'Data Reconciliation', 'VIP Logistics', 'Stakeholder Reporting'],
+        body: `<p>A major U.S. airline needed a communications and operations partner for their annual technology supplier conference — a three-day program involving over 1,000 attendees, dozens of vendors, and executives from more than 200 supplier organizations.</p>
+               <p>The event had run for years, but never with a single partner managing the full communications stack. Internally, responsibilities were split across teams with different tools, cadences, and priorities. The result was a reliable program — but one held together by individual effort rather than system.</p>
+               <h2 class="detail-h2">Scope and approach</h2>
+               <p>We managed the full communications lifecycle from initial save-the-dates through post-event follow-up: campaign development and scheduling, attendee registration management, dietary and accessibility data collection, logistics coordination across 14 vendor systems, on-site communications support, and VIP-track programming.</p>
+               <div class="detail-img"><svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hdi0" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1A2C33"/><stop offset="55%" stop-color="#3D2215"/><stop offset="100%" stop-color="#1A1210"/></linearGradient></defs><rect width="900" height="280" fill="url(#hdi0)"/><circle cx="680" cy="100" r="240" fill="#7A4428" fill-opacity="0.18"/><circle cx="100" cy="240" r="120" fill="#7BADB8" fill-opacity="0.1"/></svg></div>
+               <h2 class="detail-h2">What we delivered</h2>
+               <p>Across three days and four concurrent program tracks, we managed over 40 distinct communications touchpoints. Every vendor received accurate, formatted data. Every VIP received individually tailored communications. Every deadline was met.</p>
+               <p>The post-event close-out included a full attendee data reconciliation delivered within 48 hours — clean, formatted, and immediately actionable for the client's internal reporting team.</p>`
+      },
+      {
+        id: 1, cat: 'Nonprofit & Education',
+        title: 'SEO &amp; content strategy for a K&ndash;12 education foundation',
+        sector: 'Nonprofit / Education', type: 'Brand &amp; Digital Strategy',
+        outcomes: 'Identified 34 high-priority content gaps. Delivered a 12-month editorial calendar with page-level optimization briefs. Client reported 40% increase in organic sessions within two quarters.',
+        tags: ['SEO / GEO', 'Content Strategy', 'Analytics &amp; Reporting', 'Communications Planning'],
+        body: `<p>A Chicago-area K–12 education foundation had strong program outcomes but wasn't reaching the audiences most likely to support or partner with them. Their website ranked well on branded terms but had almost no organic presence for the searches that mattered most.</p>
+               <h2 class="detail-h2">Starting from the data</h2>
+               <p>We conducted a comprehensive GEO/SEO audit across the full site, mapping their existing content against search intent across three primary audience segments: prospective partner organizations, individual donors, and families exploring enrollment options.</p>
+               <div class="detail-img"><svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hdi1" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs><rect width="900" height="280" fill="url(#hdi1)"/><circle cx="220" cy="140" r="200" fill="#7BADB8" fill-opacity="0.14"/><circle cx="700" cy="50" r="100" fill="#C4B096" fill-opacity="0.1"/></svg></div>
+               <h2 class="detail-h2">What we built</h2>
+               <p>The deliverable was a 12-month editorial calendar with page-level optimization briefs — specific enough that their existing communications team could implement without outside resources. Each brief included target keyword clusters, recommended page structure, and a plain-language summary of the audience intent it was designed to serve.</p>
+               <p>Within two quarters of implementation, the client reported a 40% increase in organic sessions and meaningful improvement in time-on-page across the newly optimized sections.</p>`
+      },
+      {
+        id: 2, cat: 'AEC / Legal · Brand & Strategy',
+        title: 'Two brand concepts. One very good decision.',
+        sector: 'Architecture / Legal', type: 'Brand &amp; Digital Strategy',
+        outcomes: 'Client selected a direction with full confidence — not compromise. Both concepts were fully buildable, which meant the choice was truly strategic rather than budgetary.',
+        tags: ['Brand Positioning', 'Messaging Architecture', 'Digital Strategy', 'Information Architecture', 'Competitive Analysis'],
+        body: `<p>A firm at the intersection of architecture and legal services needed a brand that could speak credibly to two very different audiences: design professionals and institutional clients. Prior attempts had produced work that felt like a compromise — technically acceptable, genuinely compelling to neither audience.</p>
+               <h2 class="detail-h2">Why two concepts</h2>
+               <p>We proposed two fully realized brand directions, each built to a standard of completion that made them genuinely comparable. Not a hero and a foil — two real strategies, each with its own logic, each capable of being built.</p>
+               <div class="detail-img"><svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hdi2" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#26201A"/><stop offset="55%" stop-color="#1C2830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs><rect width="900" height="280" fill="url(#hdi2)"/><circle cx="300" cy="80" r="180" fill="#C4B096" fill-opacity="0.11"/><circle cx="700" cy="200" r="140" fill="#7A4428" fill-opacity="0.16"/></svg></div>
+               <h2 class="detail-h2">The decision</h2>
+               <p>The client selected a direction with full confidence — not compromise. They understood exactly what they were choosing and why, and moved into build without the lingering second-guessing that typically follows a single-recommendation process.</p>`
+      }
+    ];
+
+    const listView   = document.getElementById('home-list-view');
+    const detailView = document.getElementById('home-detail-view');
+    const homeCards  = document.querySelectorAll('#work .work-card');
+    const DURATION   = 340;
+    let activeId     = null;
+
+    function populateDetail(id) {
+      const c = cases[id];
+      document.getElementById('detail-cat').textContent      = c.cat;
+      document.getElementById('detail-title').innerHTML      = c.title;
+      document.getElementById('detail-body').innerHTML       = c.body;
+      document.getElementById('detail-sector').textContent   = c.sector;
+      document.getElementById('detail-type').innerHTML       = c.type;
+      document.getElementById('detail-outcomes').textContent = c.outcomes;
+      document.getElementById('detail-tags').innerHTML       = c.tags.map(t => `<span class="tag" style="font-size:14px;padding:3px 9px;border:1px solid rgba(123,173,184,0.3);color:#7BADB8;border-radius:2px;">${t}</span>`).join('');
+      activeId = id;
+    }
+
+    function openDetail(id) {
+      populateDetail(id);
+      listView.classList.add('view-out');
+      setTimeout(() => {
+        listView.style.display = 'none';
+        detailView.style.display = 'block';
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          detailView.classList.add('view-in');
+        }));
+      }, DURATION);
+    }
+
+    function closeDetail() {
+      detailView.classList.remove('view-in');
+      setTimeout(() => {
+        detailView.style.display = 'none';
+        listView.style.display = '';
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          listView.classList.remove('view-out');
+        }));
+      }, DURATION);
+    }
+
+    function detailStep(dir) {
+      const ids = [0, 1, 2];
+      const cur = ids.indexOf(activeId);
+      const next = ids[(cur + dir + ids.length) % ids.length];
+      const body = detailView.querySelector('.detail-sec');
+      body.style.transition = 'opacity 0.18s ease';
+      body.style.opacity = '0';
+      setTimeout(() => { populateDetail(next); window.scrollTo(0, 0); body.style.opacity = '1'; }, 200);
     }
   </script>
 

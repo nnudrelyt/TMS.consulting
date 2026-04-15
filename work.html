@@ -316,6 +316,15 @@
       max-width: 460px;
     }
 
+    /* PROCESS GRID */
+    .process-grid-inline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .pgi-step { padding: 2rem; border-left: 1px solid var(--border-dk); }
+    .pgi-num { font-size: 13px; color: var(--pink); letter-spacing: 0.1em; font-weight: 700; margin-bottom: 14px; }
+    .pgi-h { font-family: 'calvino', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 10px; line-height: 1.2; }
+    .pgi-p { font-size: 17px; line-height: 1.65; color: var(--cream-dim); }
+    @media (max-width: 900px) { .process-grid-inline { grid-template-columns: 1fr 1fr; } .pgi-step:nth-child(odd) { border-left: none; } }
+    @media (max-width: 640px) { .process-grid-inline { grid-template-columns: 1fr; } .pgi-step { border-left: none; border-top: 1px solid var(--border-dk); } .pgi-step:first-child { border-top: none; } }
+
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
     .cta-card { max-width: 720px; margin: 0 auto; }
@@ -499,6 +508,39 @@
           </div>
         </div>
 
+      </div>
+    </div>
+
+    <!-- HOW AN ENGAGEMENT WORKS -->
+    <div style="border-top: 1px solid var(--border-dk);">
+      <div class="sec">
+        <div style="margin-bottom: 2.5rem;">
+          <div class="eyebrow">Our Process</div>
+          <h2 style="font-family:'calvino',Georgia,serif;font-size:clamp(32px,4.5vw,54px);font-weight:700;line-height:1.15;color:var(--cream);margin-bottom:8px;">How an engagement works.</h2>
+          <p style="font-size:22px;line-height:1.7;color:var(--cream-dim);max-width:760px;">Every engagement is different. But the shape of how we work is consistent &mdash; because good process isn&rsquo;t bureaucracy, it&rsquo;s how you make sure nothing important gets skipped.</p>
+        </div>
+        <div class="process-grid-inline">
+          <div class="pgi-step" style="border-left:none;padding-left:0;">
+            <div class="pgi-num">01</div>
+            <h3 class="pgi-h">Discovery</h3>
+            <p class="pgi-p">We start by listening. Before we recommend anything, we need to understand your situation &mdash; your goals, your constraints, your team, and what you&rsquo;ve already tried.</p>
+          </div>
+          <div class="pgi-step">
+            <div class="pgi-num">02</div>
+            <h3 class="pgi-h">Definition</h3>
+            <p class="pgi-p">We align on scope, success criteria, and deliverables. You know exactly what we&rsquo;re building together and how we&rsquo;ll know it worked.</p>
+          </div>
+          <div class="pgi-step">
+            <div class="pgi-num">03</div>
+            <h3 class="pgi-h">Execution</h3>
+            <p class="pgi-p">We do the work &mdash; collaboratively, transparently, and with regular check-ins. No surprises at delivery. No deliverables that land without context.</p>
+          </div>
+          <div class="pgi-step">
+            <div class="pgi-num">04</div>
+            <h3 class="pgi-h">Handoff</h3>
+            <p class="pgi-p">We build for your ownership from day one. When the engagement ends, you have the work, the documentation, and the knowledge to run with it independently.</p>
+          </div>
+        </div>
       </div>
     </div>
 
