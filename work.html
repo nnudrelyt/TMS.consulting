@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Main Sequence &mdash; Work</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #141210; }
+    :root {
+      --bg:         #141210;
+      --pink:       #9E5A35;
+      --cream:      #FFFFFF;
+      --cream-dim:  rgba(255,255,255,0.5);
+      --border-dk:  rgba(255,255,255,0.07);
+      --blue:       #7BADB8;
+      --radius: 2px;
+    }
+    body {
+      font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      background: transparent;
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 3rem;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(20,18,16,0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border-dk);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--cream); }
+    .btn-nav { border: 1px solid #C8D47A; color: #C8D47A !important; background: transparent; padding: 9px 20px; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: var(--radius); transition: background 0.2s, color 0.2s; }
+    .btn-nav:hover { background: #C8D47A !important; color: #000 !important; }
+
+    /* MOBILE MENU */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; inset: 0; background: rgba(18,16,14,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 32px; font-weight: 700; color: var(--cream); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--pink); }
+    .nav-mobile .btn-nav { font-size: 24px; padding: 12px 32px; }
+
+    /* SECTION */
+    .sec { padding: 3.5rem 3rem; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; font-weight: 700; }
+
+    /* HERO */
+    .hero { background: transparent; }
+    .hero .sec { padding-bottom: 2rem; }
+    .hero h1 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(44px, 4.4vw, 70px);
+      font-weight: 700;
+      line-height: 1.07;
+      color: var(--cream);
+      max-width: none;
+      margin-bottom: 16px;
+    }
+    .hero p { font-size: 22px; line-height: 1.7; color: var(--cream-dim); max-width: 780px; }
+
+    /* FILTER BAR */
+    .filter-bar {
+      padding: 0 3rem 2.5rem;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-pill {
+      font-family: 'brandon-grotesque', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--cream-dim);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .filter-pill:hover { border-color: rgba(255,255,255,0.4); color: var(--cream); }
+    .filter-pill.active { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.35); color: var(--cream); }
+
+    /* WORK GRID */
+    .work-section { padding: 0 3rem 5rem; }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .work-card {
+      border: 1px solid var(--border-dk);
+      background: rgba(20,18,16,0.54);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .work-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+    .work-card.active { border-color: rgba(200,212,122,0.5); }
+    .work-card.hidden { display: none; }
+    .work-card-img { width: 100%; height: 200px; display: block; }
+    .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
+    .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
+    .work-card h3 { font-size: 22px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
+    .work-card-desc { font-size: 18px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
+    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; }
+
+    /* INLINE PANEL */
+    .case-panel {
+      display: none;
+      grid-column: 1 / -1;
+      background: rgba(20,18,16,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      animation: panelOpen 0.35s ease;
+    }
+    .case-panel.open { display: block; }
+    @keyframes panelOpen {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .case-panel-inner {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      min-height: 480px;
+    }
+    .case-panel-body { padding: 3.5rem 4rem 3.5rem 3.5rem; border-right: 1px solid var(--border-dk); }
+    .case-panel-meta { padding: 3.5rem 3rem; display: flex; flex-direction: column; gap: 2.5rem; }
+    .case-panel-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: 1px solid var(--border-dk);
+      color: var(--cream-dim);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-panel-close:hover { border-color: var(--cream); color: var(--cream); }
+    .case-panel-wrap { position: relative; }
+    .panel-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 12px; }
+    .panel-h2 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 1.8rem;
+    }
+    .panel-body p { font-size: 18px; line-height: 1.75; color: var(--cream-dim); margin-bottom: 1.2rem; }
+    .panel-body p:last-child { margin-bottom: 0; }
+    .panel-meta-block { display: flex; flex-direction: column; gap: 6px; }
+    .panel-meta-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
+    .panel-meta-value { font-size: 17px; color: var(--cream-dim); line-height: 1.55; }
+    .panel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .panel-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border-dk);
+    }
+    .panel-nav-btn {
+      font-family: 'brandon-grotesque', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border: 1px solid var(--border-dk);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--cream-dim);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .panel-nav-btn:hover { border-color: rgba(255,255,255,0.35); color: var(--cream); }
+
+    /* CTA BAND */
+    .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
+    .cta-card { max-width: 720px; margin: 0 auto; }
+    .cta-band h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 58px); font-weight: 700; color: #1A1710; margin-bottom: 12px; line-height: 1.1; }
+    .cta-band p { font-size: 22px; color: rgba(26,23,16,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .cta-band .eyebrow { color: rgba(26,23,16,0.5); }
+    .btn { display: inline-block; padding: 13px 29px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; background: #C8D47A; color: #1A1710; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); }
+    .btn:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    .site-footer { position: relative; z-index: 2; border-top: 1px solid var(--border-dk); background: rgba(18,16,14,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .site-footer-inner { width: 100%; }
+    .site-footer-content { display: flex; flex-direction: column; justify-content: space-between; padding: 4.5rem 4.5rem 3rem; }
+    .footer-top { display: flex; gap: 64px; }
+    .footer-brand { min-width: 260px; max-width: 300px; }
+    .footer-brand-name { font-size: 13px; font-weight: 700; color: var(--cream); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 18px; }
+    .footer-logo-mark { width: 34px; height: 34px; flex-shrink: 0; }
+    .footer-brand-desc { font-size: 18px; color: var(--cream-dim); line-height: 1.65; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social a { width: 36px; height: 36px; border: 1px solid var(--border-dk); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--cream-dim); text-decoration: none; font-size: 14px; transition: border-color 0.2s, color 0.2s; }
+    .footer-social a:hover { border-color: var(--pink); color: var(--pink); }
+    .footer-links { display: flex; gap: 64px; flex: 1; }
+    .footer-col h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { font-size: 18px; color: var(--cream-dim); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dk); margin-top: 90px; padding-top: 20px; font-size: 18px; color: rgba(255,255,255,0.25); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+    .footer-brand, .footer-col { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .footer-brand { animation-delay: 0.1s; }
+    .footer-col:nth-child(1) { animation-delay: 0.15s; }
+    .footer-col:nth-child(2) { animation-delay: 0.22s; }
+    .footer-col:nth-child(3) { animation-delay: 0.29s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .case-panel-inner { grid-template-columns: 1fr; }
+      .case-panel-body { border-right: none; border-bottom: 1px solid var(--border-dk); }
+    }
+    @media (max-width: 900px) {
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-brand { min-width: unset; max-width: unset; }
+      .footer-links { flex-wrap: wrap; gap: 32px; }
+      .site-footer-content { padding: 3rem 2rem 2rem; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 14px 1.25rem; }
+      .sec { padding: 2.5rem 1.25rem; }
+      .filter-bar { padding: 0 1.25rem 2rem; }
+      .work-section { padding: 0 1.25rem 3rem; }
+      .work-grid { grid-template-columns: 1fr; }
+      .case-panel-body { padding: 2rem 1.5rem; }
+      .case-panel-meta { padding: 2rem 1.5rem; }
+      .cta-band { padding: 2.5rem 1.25rem; }
+      .footer-links { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
+  <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
+
+  <div class="nav-mobile" id="mobile-menu">
+    <a href="about.html" onclick="closeMobile()">About</a>
+    <a href="services.html" onclick="closeMobile()">Services</a>
+    <a href="work.html" onclick="closeMobile()">Work</a>
+    <a href="contact.html" class="btn-nav" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <nav id="main-nav">
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <span class="nav-logo-text">The Main Sequence</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html" class="btn-nav">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="sec">
+      <div class="eyebrow">Our Work</div>
+      <h1>What good looks like.</h1>
+      <p>We don&rsquo;t name every client. But we can tell you what we did &mdash; and what it meant.</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill" data-filter="enterprise-events">Enterprise Events</button>
+    <button class="filter-pill" data-filter="nonprofit">Nonprofit &amp; Education</button>
+    <button class="filter-pill" data-filter="brand-strategy">Brand &amp; Strategy</button>
+    <button class="filter-pill" data-filter="aec">AEC / Legal</button>
+  </div>
+
+  <!-- WORK GRID -->
+  <div class="work-section">
+    <div class="work-grid" id="work-grid">
+
+      <!-- CARD 1 -->
+      <div class="work-card" data-cat="enterprise-events" data-id="0" onclick="openPanel(0, this)">
+        <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1A2C33"/><stop offset="60%" stop-color="#3D2215"/><stop offset="100%" stop-color="#1A1210"/></linearGradient></defs>
+          <rect width="600" height="200" fill="url(#wg1)"/>
+          <circle cx="420" cy="80" r="130" fill="#7A4428" fill-opacity="0.22"/>
+          <circle cx="80" cy="160" r="60" fill="#7BADB8" fill-opacity="0.1"/>
+        </svg>
+        <div class="work-card-body">
+          <div class="work-cat">Enterprise Events</div>
+          <h3>A 1,000-person technology conference, managed end-to-end</h3>
+          <p class="work-card-desc">Full communications lifecycle management for a major airline&rsquo;s annual supplier conference.</p>
+          <div class="tags">
+            <span class="tag">Event Communications</span>
+            <span class="tag">Vendor Coordination</span>
+            <span class="tag">Data Reconciliation</span>
+          </div>
+          <div class="work-card-cta">Read case study &rarr;</div>
+        </div>
+      </div>
+
+      <!-- PANEL 1 — inserted after card 1 in JS -->
+
+      <!-- CARD 2 -->
+      <div class="work-card" data-cat="nonprofit" data-id="1" onclick="openPanel(1, this)">
+        <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="wg2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+          <rect width="600" height="200" fill="url(#wg2)"/>
+          <circle cx="180" cy="120" r="110" fill="#7BADB8" fill-opacity="0.16"/>
+          <circle cx="500" cy="40" r="50" fill="#C4B096" fill-opacity="0.1"/>
+        </svg>
+        <div class="work-card-body">
+          <div class="work-cat">Nonprofit &amp; Education</div>
+          <h3>SEO &amp; content strategy for a K&ndash;12 education foundation</h3>
+          <p class="work-card-desc">GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation.</p>
+          <div class="tags">
+            <span class="tag">SEO / GEO</span>
+            <span class="tag">Content Strategy</span>
+            <span class="tag">Analytics</span>
+          </div>
+          <div class="work-card-cta">Read case study &rarr;</div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="work-card" data-cat="brand-strategy aec" data-id="2" onclick="openPanel(2, this)">
+        <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="wg3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#26201A"/><stop offset="60%" stop-color="#1C2830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+          <rect width="600" height="200" fill="url(#wg3)"/>
+          <circle cx="300" cy="60" r="100" fill="#C4B096" fill-opacity="0.13"/>
+          <circle cx="500" cy="160" r="70" fill="#7A4428" fill-opacity="0.18"/>
+        </svg>
+        <div class="work-card-body">
+          <div class="work-cat">AEC / Legal &middot; Brand &amp; Strategy</div>
+          <h3>Two brand concepts. One very good decision.</h3>
+          <p class="work-card-desc">Two distinct brand and web concepts, each with full copy, information architecture, and positioning rationale.</p>
+          <div class="tags">
+            <span class="tag">Brand Positioning</span>
+            <span class="tag">Messaging Architecture</span>
+            <span class="tag">Digital Strategy</span>
+          </div>
+          <div class="work-card-cta">Read case study &rarr;</div>
+        </div>
+      </div>
+
+      <!-- INLINE PANEL (shared, repositioned by JS) -->
+      <div class="case-panel case-panel-wrap" id="case-panel">
+        <button class="case-panel-close" onclick="closePanel()" aria-label="Close">&times;</button>
+        <div class="case-panel-inner">
+          <div class="case-panel-body">
+            <div class="panel-eyebrow" id="panel-cat"></div>
+            <h2 class="panel-h2" id="panel-title"></h2>
+            <div class="panel-body" id="panel-body"></div>
+            <div class="panel-nav">
+              <button class="panel-nav-btn" onclick="panelStep(-1)">&#8592; Prev</button>
+              <button class="panel-nav-btn" onclick="panelStep(1)">Next &#8594;</button>
+            </div>
+          </div>
+          <div class="case-panel-meta">
+            <div class="panel-meta-block">
+              <div class="panel-meta-label">Sector</div>
+              <div class="panel-meta-value" id="panel-sector"></div>
+            </div>
+            <div class="panel-meta-block">
+              <div class="panel-meta-label">Engagement type</div>
+              <div class="panel-meta-value" id="panel-type"></div>
+            </div>
+            <div class="panel-meta-block">
+              <div class="panel-meta-label">Outcomes</div>
+              <div class="panel-meta-value" id="panel-outcomes"></div>
+            </div>
+            <div class="panel-meta-block">
+              <div class="panel-meta-label">Services delivered</div>
+              <div class="panel-tags" id="panel-tags"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /work-grid -->
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="cta-card">
+      <div class="eyebrow">Ready to work together?</div>
+      <h2>Every engagement starts with a conversation.</h2>
+      <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
+      <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-content">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-brand-name">
+              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              The Main Sequence
+            </div>
+            <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
+            <div class="footer-social">
+              <a href="#" title="LinkedIn">in</a>
+              <a href="#" title="Twitter / X">&#x58;</a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-col">
+              <h3>Services</h3>
+              <ul>
+                <li><a href="services.html">Brand &amp; Digital Strategy</a></li>
+                <li><a href="services.html">Paid Media &amp; Analytics</a></li>
+                <li><a href="services.html">Project Execution</a></li>
+                <li><a href="services.html">Workflow Automation</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Company</h3>
+              <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h3>Connect</h3>
+              <ul>
+                <li><a href="contact.html">Start a conversation</a></li>
+                <li><a href="#">LinkedIn</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
+          <span>mainsequence.consulting</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react":                        "https://esm.sh/react@18",
+      "react/jsx-runtime":            "https://esm.sh/react@18/jsx-runtime",
+      "react-dom/client":             "https://esm.sh/react-dom@18/client",
+      "@paper-design/shaders-react":  "https://esm.sh/@paper-design/shaders-react@latest?external=react"
+    }
+  }
+  </script>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { GrainGradient, grainGradientPresets } from '@paper-design/shaders-react';
+    createRoot(document.getElementById('shader-root')).render(
+      React.createElement(GrainGradient, {
+        ...grainGradientPresets[0],
+        colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
+        scale: 2.4,
+        style: { width: '100%', height: '100%' }
+      })
+    );
+  </script>
+  <script>
+    // ── Case study data ──────────────────────────────────────────────
+    const cases = [
+      {
+        id: 0,
+        cat: 'Enterprise Events',
+        title: 'A 1,000-person technology conference, managed end-to-end',
+        sector: 'Aviation / Enterprise',
+        type: 'Project Execution',
+        outcomes: 'Zero critical incidents across a 3-day program. Attendee data reconciled across 14 vendor systems. VIP satisfaction rated highest in event history.',
+        tags: ['Event Communications', 'Vendor Coordination', 'Data Reconciliation', 'VIP Logistics', 'Stakeholder Reporting'],
+        body: `<p>A major U.S. airline needed a communications and operations partner for their annual technology supplier conference — a three-day program involving over 1,000 attendees, dozens of vendors, and executives from more than 200 supplier organizations.</p>
+               <p>We managed the full communications lifecycle from initial save-the-dates through post-event follow-up: email campaign development, attendee registration management, dietary and logistics data reconciliation across 14 vendor systems, on-site coordination support, and VIP-track communications.</p>
+               <p>The engagement required building and maintaining a data infrastructure that could handle real-time changes across multiple stakeholder groups without error. We delivered zero critical incidents and a clean handoff of post-event data, enabling the client's internal team to act on outcomes immediately.</p>`
+      },
+      {
+        id: 1,
+        cat: 'Nonprofit &amp; Education',
+        title: 'SEO &amp; content strategy for a K&ndash;12 education foundation',
+        sector: 'Nonprofit / Education',
+        type: 'Brand &amp; Digital Strategy',
+        outcomes: 'Identified 34 high-priority content gaps. Delivered a 12-month editorial calendar with page-level optimization briefs. Client reported 40% increase in organic sessions within two quarters of implementation.',
+        tags: ['SEO / GEO', 'Content Strategy', 'Analytics &amp; Reporting', 'Communications Planning'],
+        body: `<p>A Chicago-area K–12 education foundation had strong program outcomes but wasn't reaching the audiences most likely to support or partner with them. Their website ranked well on branded terms but had almost no organic presence for the searches that mattered most to their mission.</p>
+               <p>We conducted a comprehensive GEO/SEO audit, mapped their content against search intent across three primary audience segments, and identified 34 high-priority gaps in their existing site structure.</p>
+               <p>The deliverable was a 12-month editorial calendar with page-level optimization briefs — specific enough that their existing communications team could implement without additional resources. We also refined their SOW structure for future content vendors to ensure work stayed aligned with strategy.</p>`
+      },
+      {
+        id: 2,
+        cat: 'AEC / Legal &middot; Brand &amp; Strategy',
+        title: 'Two brand concepts. One very good decision.',
+        sector: 'Architecture / Legal',
+        type: 'Brand &amp; Digital Strategy',
+        outcomes: 'Client selected a direction with full confidence — not compromise. Both concepts were fully buildable, which meant the choice was truly strategic rather than budgetary.',
+        tags: ['Brand Positioning', 'Messaging Architecture', 'Digital Strategy', 'Information Architecture', 'Competitive Analysis'],
+        body: `<p>A firm at the intersection of architecture and legal services needed a brand that could speak credibly to two very different audiences: design professionals and institutional clients. Prior attempts had produced work that felt like a compromise — neither audience found it compelling.</p>
+               <p>We developed two fully realized brand concepts, each with a distinct positioning thesis, messaging architecture, information architecture for the web, and representative copy. Both were production-ready — the difference between them was strategic, not executional.</p>
+               <p>Presenting two real options — rather than one recommendation with alternatives — gave the client the ability to make a genuinely informed decision. They selected a direction, understood exactly why, and moved into build with confidence rather than lingering doubt.</p>`
+      }
+    ];
+
+    let activeId = null;
+    const panel = document.getElementById('case-panel');
+    const grid  = document.getElementById('work-grid');
+    const cards = document.querySelectorAll('.work-card');
+
+    function openPanel(id, cardEl) {
+      if (activeId === id) { closePanel(); return; }
+      activeId = id;
+
+      // Populate
+      const c = cases[id];
+      document.getElementById('panel-cat').innerHTML     = c.cat;
+      document.getElementById('panel-title').innerHTML   = c.title;
+      document.getElementById('panel-body').innerHTML    = c.body;
+      document.getElementById('panel-sector').textContent = c.sector;
+      document.getElementById('panel-type').textContent  = c.type;
+      document.getElementById('panel-outcomes').textContent = c.outcomes;
+      document.getElementById('panel-tags').innerHTML    = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+      // Move panel after the clicked card, spanning full row
+      cardEl.after(panel);
+      panel.classList.add('open');
+
+      // Scroll panel into view
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+
+      // Active card state
+      cards.forEach(c => c.classList.remove('active'));
+      cardEl.classList.add('active');
+    }
+
+    function closePanel() {
+      panel.classList.remove('open');
+      cards.forEach(c => c.classList.remove('active'));
+      activeId = null;
+    }
+
+    function panelStep(dir) {
+      const ids = [...cards].filter(c => !c.classList.contains('hidden')).map(c => parseInt(c.dataset.id));
+      const cur = ids.indexOf(activeId);
+      const next = ids[(cur + dir + ids.length) % ids.length];
+      const nextCard = [...cards].find(c => parseInt(c.dataset.id) === next);
+      openPanel(next, nextCard);
+    }
+
+    // ── Filter ────────────────────────────────────────────────────────
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        closePanel();
+        const filter = pill.dataset.filter;
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        cards.forEach(card => {
+          const cats = card.dataset.cat || '';
+          card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+        });
+      });
+    });
+
+    // ── Nav ───────────────────────────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    function toggleMobile() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+    function closeMobile() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
