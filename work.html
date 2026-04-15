@@ -152,95 +152,89 @@
       pointer-events: auto;
     }
 
-    /* RIGHT DRAWER */
+    /* BOTTOM SHEET */
     .case-panel {
       position: fixed;
-      top: 0;
+      bottom: 0;
+      left: 0;
       right: 0;
-      height: 100vh;
-      width: min(560px, 100vw);
+      height: 65vh;
       z-index: 201;
-      background: rgba(18,16,14,0.97);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-left: 1px solid rgba(255,255,255,0.1);
-      transform: translateX(100%);
-      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto;
-      overscroll-behavior: contain;
+      background: rgba(20,18,16,0.82);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px 16px 0 0;
+      transform: translateY(100%);
+      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
-    .case-panel.open { transform: translateX(0); }
+    .case-panel.open { transform: translateY(0); }
 
+    /* STICKY HEADER BAR */
     .case-panel-header {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
-      padding: 2rem 2rem 0;
-      position: sticky;
-      top: 0;
-      background: rgba(18,16,14,0.97);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      z-index: 1;
-      padding-bottom: 1.5rem;
+      padding: 1.25rem 2.5rem;
       border-bottom: 1px solid var(--border-dk);
+      background: rgba(20,18,16,0.6);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      flex-shrink: 0;
     }
-    .case-panel-header-left { display: flex; flex-direction: column; gap: 6px; }
+    .case-panel-header-left { display: flex; align-items: center; gap: 1.5rem; }
     .case-panel-close {
       flex-shrink: 0;
       background: none;
-      border: 1px solid var(--border-dk);
+      border: 1px solid rgba(255,255,255,0.15);
       color: var(--cream-dim);
       width: 34px;
       height: 34px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: border-color 0.2s, color 0.2s;
-      margin-top: 2px;
     }
     .case-panel-close:hover { border-color: var(--cream); color: var(--cream); }
 
-    .case-panel-body { padding: 2.5rem 2rem; flex: 1; }
+    /* TWO-COLUMN BODY */
+    .case-panel-inner {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
     .case-panel-meta {
-      padding: 0 2rem 2rem;
+      padding: 2rem 2rem;
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      border-top: 1px solid var(--border-dk);
-      padding-top: 2rem;
-      margin-top: 0.5rem;
+      border-right: 1px solid var(--border-dk);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .case-panel-body {
+      padding: 2rem 3rem;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
 
-    .panel-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
-    .panel-h2 {
-      font-family: 'calvino', Georgia, serif;
-      font-size: clamp(22px, 2vw, 30px);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--cream);
-      margin-bottom: 1.8rem;
-    }
-    .panel-body p { font-size: 17px; line-height: 1.75; color: var(--cream-dim); margin-bottom: 1.2rem; }
-    .panel-body p:last-child { margin-bottom: 0; }
-    .panel-meta-block { display: flex; flex-direction: column; gap: 6px; }
-    .panel-meta-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
-    .panel-meta-value { font-size: 16px; color: var(--cream-dim); line-height: 1.55; }
-    .panel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    /* STICKY FOOTER NAV */
     .panel-nav {
       display: flex;
       gap: 1rem;
-      padding: 1.5rem 2rem;
+      padding: 1rem 2.5rem;
       border-top: 1px solid var(--border-dk);
-      background: rgba(18,16,14,0.97);
-      position: sticky;
-      bottom: 0;
+      background: rgba(20,18,16,0.6);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      flex-shrink: 0;
     }
     .panel-nav-btn {
       font-family: 'brandon-grotesque', sans-serif;
@@ -248,17 +242,31 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 9px 20px;
+      padding: 8px 20px;
       border: 1px solid var(--border-dk);
       border-radius: var(--radius);
       background: transparent;
       color: var(--cream-dim);
       cursor: pointer;
       transition: border-color 0.2s, color 0.2s;
-      flex: 1;
-      text-align: center;
     }
     .panel-nav-btn:hover { border-color: rgba(255,255,255,0.35); color: var(--cream); }
+
+    .panel-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
+    .panel-h2 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(24px, 2.2vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--cream);
+      margin-bottom: 1.6rem;
+    }
+    .panel-body p { font-size: 18px; line-height: 1.75; color: var(--cream-dim); margin-bottom: 1.2rem; }
+    .panel-body p:last-child { margin-bottom: 0; }
+    .panel-meta-block { display: flex; flex-direction: column; gap: 6px; }
+    .panel-meta-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 2px; }
+    .panel-meta-value { font-size: 15px; color: var(--cream-dim); line-height: 1.55; }
+    .panel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
 
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
@@ -328,7 +336,7 @@
   <!-- SCRIM -->
   <div class="drawer-scrim" id="drawer-scrim" onclick="closePanel()"></div>
 
-  <!-- RIGHT DRAWER PANEL -->
+  <!-- BOTTOM SHEET PANEL -->
   <div class="case-panel" id="case-panel">
     <div class="case-panel-header">
       <div class="case-panel-header-left">
@@ -337,22 +345,24 @@
       </div>
       <button class="case-panel-close" onclick="closePanel()" aria-label="Close">&times;</button>
     </div>
-    <div class="case-panel-body">
-      <h2 class="panel-h2" id="panel-title"></h2>
-      <div class="panel-body" id="panel-body"></div>
-    </div>
-    <div class="case-panel-meta">
-      <div class="panel-meta-block">
-        <div class="panel-meta-label">Engagement type</div>
-        <div class="panel-meta-value" id="panel-type"></div>
+    <div class="case-panel-inner">
+      <div class="case-panel-meta">
+        <div class="panel-meta-block">
+          <div class="panel-meta-label">Engagement type</div>
+          <div class="panel-meta-value" id="panel-type"></div>
+        </div>
+        <div class="panel-meta-block">
+          <div class="panel-meta-label">Outcomes</div>
+          <div class="panel-meta-value" id="panel-outcomes"></div>
+        </div>
+        <div class="panel-meta-block">
+          <div class="panel-meta-label">Services delivered</div>
+          <div class="panel-tags" id="panel-tags"></div>
+        </div>
       </div>
-      <div class="panel-meta-block">
-        <div class="panel-meta-label">Outcomes</div>
-        <div class="panel-meta-value" id="panel-outcomes"></div>
-      </div>
-      <div class="panel-meta-block">
-        <div class="panel-meta-label">Services delivered</div>
-        <div class="panel-tags" id="panel-tags"></div>
+      <div class="case-panel-body">
+        <h2 class="panel-h2" id="panel-title"></h2>
+        <div class="panel-body" id="panel-body"></div>
       </div>
     </div>
     <div class="panel-nav">
@@ -612,7 +622,7 @@
       document.getElementById('panel-type').textContent   = c.type;
       document.getElementById('panel-outcomes').textContent = c.outcomes;
       document.getElementById('panel-tags').innerHTML     = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
-      panel.scrollTop = 0;
+      document.querySelectorAll('.case-panel-meta, .case-panel-body').forEach(el => el.scrollTop = 0);
     }
 
     function openPanel(id, cardEl) {
