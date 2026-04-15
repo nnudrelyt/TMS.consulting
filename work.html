@@ -140,7 +140,7 @@
     .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; transition: gap 0.2s; }
     .work-card:hover .work-card-cta { gap: 10px; }
 
-    /* ── VIEW TRANSITIONS ───────────────────────────────────────────── */
+    /* ── VIEW TRANSITIONS ─────────────────────────────────────────── */
     #work-list-view {
       transition: opacity 0.36s ease, transform 0.36s ease;
     }
@@ -149,7 +149,6 @@
       transform: translateY(-14px);
       pointer-events: none;
     }
-
     #case-detail-view {
       display: none;
       opacity: 0;
@@ -161,8 +160,8 @@
       transform: translateY(0);
     }
 
-    /* ── DETAIL CONTENT ─────────────────────────────────────────────── */
-    .detail-sec { padding: 3.5rem 3rem 5rem; }
+    /* ── DETAIL LAYOUT ────────────────────────────────────────────── */
+    .detail-sec { padding: 3.5rem 3rem 6rem; }
 
     .detail-back {
       display: inline-flex;
@@ -181,7 +180,18 @@
       margin-bottom: 3rem;
       transition: color 0.2s, gap 0.2s;
     }
-    .detail-back:hover { color: var(--cream); gap: 10px; }
+    .detail-back:hover { color: var(--cream); gap: 11px; }
+
+    /* Two-column grid: main content | sticky sidebar */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* LEFT COLUMN */
+    .detail-main {}
 
     .detail-h1 {
       font-family: 'calvino', Georgia, serif;
@@ -189,8 +199,7 @@
       font-weight: 700;
       line-height: 1.07;
       color: var(--cream);
-      max-width: none;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.4rem;
     }
 
     .detail-sector {
@@ -199,45 +208,83 @@
       margin-bottom: 3rem;
     }
 
-    .detail-body { max-width: 820px; margin-bottom: 4rem; }
-    .detail-body p { font-size: 20px; line-height: 1.8; color: var(--cream-dim); margin-bottom: 1.5rem; }
+    .detail-body p {
+      font-size: 22px;
+      line-height: 1.75;
+      color: var(--cream-dim);
+      margin-bottom: 1.6rem;
+    }
     .detail-body p:last-child { margin-bottom: 0; }
 
-    .detail-meta-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-      border-top: 1px solid var(--border-dk);
-      padding-top: 2.5rem;
-      max-width: 820px;
+    .detail-h2 {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(22px, 2vw, 28px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-top: 3.5rem;
+      margin-bottom: 1.2rem;
     }
-    .detail-meta-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 8px; }
-    .detail-meta-value { font-size: 15px; color: var(--cream-dim); line-height: 1.6; }
+
+    .detail-img {
+      width: 100%;
+      height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 2.5rem 0;
+      border: 1px solid var(--border-dk);
+    }
+    .detail-img svg { width: 100%; height: 100%; display: block; }
+
+    /* RIGHT COLUMN — sticky sidebar */
+    .detail-sidebar {
+      position: sticky;
+      top: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      padding-top: 0.4rem;
+    }
+
+    .detail-meta-block {}
+    .detail-meta-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .detail-meta-value {
+      font-size: 15px;
+      color: var(--cream-dim);
+      line-height: 1.65;
+    }
     .detail-meta-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 
+    /* PREV / NEXT */
     .detail-nav {
       display: flex;
-      gap: 1rem;
+      gap: 10px;
       margin-top: 4rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border-dk);
-      max-width: 820px;
     }
     .detail-nav-btn {
       font-family: 'brandon-grotesque', sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      padding: 10px 22px;
-      border: 1px solid var(--border-dk);
+      padding: 13px 28px;
+      border: 1px solid rgba(255,255,255,0.22);
       border-radius: var(--radius);
-      background: transparent;
-      color: var(--cream-dim);
+      background: rgba(255,255,255,0.07);
+      color: var(--cream);
       cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .detail-nav-btn:hover { border-color: rgba(255,255,255,0.35); color: var(--cream); }
+    .detail-nav-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.45); }
 
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
@@ -279,26 +326,30 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .detail-grid { grid-template-columns: 1fr 240px; gap: 3.5rem; }
     }
     @media (max-width: 900px) {
       .footer-top { flex-direction: column; gap: 32px; }
       .footer-brand { min-width: unset; max-width: unset; }
       .footer-links { flex-wrap: wrap; gap: 32px; }
       .site-footer-content { padding: 3rem 2rem 2rem; }
-      .detail-meta-row { grid-template-columns: 1fr 1fr; }
+      .detail-grid { grid-template-columns: 1fr; gap: 0; }
+      .detail-sidebar { position: static; flex-direction: row; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-dk); }
+      .detail-meta-block { min-width: 180px; }
     }
     @media (max-width: 640px) {
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
-      .detail-sec { padding: 2.5rem 1.25rem 3.5rem; }
+      .detail-sec { padding: 2.5rem 1.25rem 4rem; }
       .filter-bar { padding: 0 1.25rem 2rem; }
       .work-section { padding: 0 1.25rem 3rem; }
       .work-grid { grid-template-columns: 1fr; }
       .cta-band { padding: 2.5rem 1.25rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-      .detail-meta-row { grid-template-columns: 1fr; }
       .detail-h1 { font-size: clamp(36px, 8vw, 60px); }
+      .detail-sidebar { flex-direction: column; }
+      .detail-img { height: 200px; }
     }
   </style>
 </head>
@@ -330,10 +381,9 @@
     </button>
   </nav>
 
-  <!-- ── LIST VIEW ───────────────────────────────────────────────────── -->
+  <!-- ── LIST VIEW ───────────────────────────────────────────────── -->
   <div id="work-list-view">
 
-    <!-- HERO -->
     <div class="hero">
       <div class="sec">
         <div class="eyebrow">Our Work</div>
@@ -342,7 +392,6 @@
       </div>
     </div>
 
-    <!-- FILTER BAR -->
     <div class="filter-bar">
       <button class="filter-pill active" data-filter="all">All</button>
       <button class="filter-pill" data-filter="enterprise-events">Enterprise Events</button>
@@ -351,11 +400,9 @@
       <button class="filter-pill" data-filter="aec">AEC / Legal</button>
     </div>
 
-    <!-- WORK GRID -->
     <div class="work-section">
       <div class="work-grid" id="work-grid">
 
-        <!-- CARD 0 -->
         <div class="work-card" data-cat="enterprise-events" data-id="0" onclick="openDetail(0)">
           <div class="work-card-img-wrap">
             <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -378,7 +425,6 @@
           </div>
         </div>
 
-        <!-- CARD 1 -->
         <div class="work-card" data-cat="nonprofit" data-id="1" onclick="openDetail(1)">
           <div class="work-card-img-wrap">
             <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -401,7 +447,6 @@
           </div>
         </div>
 
-        <!-- CARD 2 -->
         <div class="work-card" data-cat="brand-strategy aec" data-id="2" onclick="openDetail(2)">
           <div class="work-card-img-wrap">
             <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -424,10 +469,9 @@
           </div>
         </div>
 
-      </div><!-- /work-grid -->
+      </div>
     </div>
 
-    <!-- CTA BAND -->
     <div class="cta-band">
       <div class="cta-card">
         <div class="eyebrow">Ready to work together?</div>
@@ -439,38 +483,44 @@
 
   </div><!-- /work-list-view -->
 
-  <!-- ── DETAIL VIEW ─────────────────────────────────────────────────── -->
+  <!-- ── DETAIL VIEW ─────────────────────────────────────────────── -->
   <div id="case-detail-view">
     <div class="detail-sec">
 
       <button class="detail-back" onclick="closeDetail()">&#8592; All work</button>
 
       <div class="eyebrow" id="detail-cat"></div>
-      <h1 class="detail-h1" id="detail-title"></h1>
-      <div class="detail-sector" id="detail-sector"></div>
 
-      <div class="detail-body" id="detail-body"></div>
+      <div class="detail-grid">
 
-      <div class="detail-meta-row">
-        <div>
-          <div class="detail-meta-label">Engagement type</div>
-          <div class="detail-meta-value" id="detail-type"></div>
+        <!-- LEFT: headline + body -->
+        <div class="detail-main">
+          <h1 class="detail-h1" id="detail-title"></h1>
+          <div class="detail-sector" id="detail-sector"></div>
+          <div class="detail-body" id="detail-body"></div>
+          <div class="detail-nav">
+            <button class="detail-nav-btn" onclick="detailStep(-1)">&#8592; Previous</button>
+            <button class="detail-nav-btn" onclick="detailStep(1)">Next &#8594;</button>
+          </div>
         </div>
-        <div>
-          <div class="detail-meta-label">Outcomes</div>
-          <div class="detail-meta-value" id="detail-outcomes"></div>
-        </div>
-        <div>
-          <div class="detail-meta-label">Services delivered</div>
-          <div class="detail-meta-tags" id="detail-tags"></div>
-        </div>
-      </div>
 
-      <div class="detail-nav">
-        <button class="detail-nav-btn" onclick="detailStep(-1)">&#8592; Prev</button>
-        <button class="detail-nav-btn" onclick="detailStep(1)">Next &#8594;</button>
-      </div>
+        <!-- RIGHT: sticky meta sidebar -->
+        <div class="detail-sidebar">
+          <div class="detail-meta-block">
+            <div class="detail-meta-label">Engagement type</div>
+            <div class="detail-meta-value" id="detail-type"></div>
+          </div>
+          <div class="detail-meta-block">
+            <div class="detail-meta-label">Outcomes</div>
+            <div class="detail-meta-value" id="detail-outcomes"></div>
+          </div>
+          <div class="detail-meta-block">
+            <div class="detail-meta-label">Services delivered</div>
+            <div class="detail-meta-tags" id="detail-tags"></div>
+          </div>
+        </div>
 
+      </div><!-- /detail-grid -->
     </div>
   </div>
 
@@ -548,7 +598,6 @@
     );
   </script>
   <script>
-    // ── Case study data ──────────────────────────────────────────────
     const cases = [
       {
         id: 0,
@@ -558,9 +607,40 @@
         type: 'Project Execution',
         outcomes: 'Zero critical incidents across a 3-day program. Attendee data reconciled across 14 vendor systems. VIP satisfaction rated highest in event history.',
         tags: ['Event Communications', 'Vendor Coordination', 'Data Reconciliation', 'VIP Logistics', 'Stakeholder Reporting'],
-        body: `<p>A major U.S. airline needed a communications and operations partner for their annual technology supplier conference — a three-day program involving over 1,000 attendees, dozens of vendors, and executives from more than 200 supplier organizations.</p>
-               <p>We managed the full communications lifecycle from initial save-the-dates through post-event follow-up: email campaign development, attendee registration management, dietary and logistics data reconciliation across 14 vendor systems, on-site coordination support, and VIP-track communications.</p>
-               <p>The engagement required building and maintaining a data infrastructure that could handle real-time changes across multiple stakeholder groups without error. We delivered zero critical incidents and a clean handoff of post-event data, enabling the client's internal team to act on outcomes immediately.</p>`
+        body: `
+          <p>A major U.S. airline needed a communications and operations partner for their annual technology supplier conference — a three-day program involving over 1,000 attendees, dozens of vendors, and executives from more than 200 supplier organizations.</p>
+          <p>The event had run for years, but never with a single partner managing the full communications stack. Internally, responsibilities were split across teams with different tools, cadences, and priorities. The result was a reliable program — but one held together by individual effort rather than system.</p>
+
+          <div class="detail-img">
+            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="di0a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1A2C33"/><stop offset="55%" stop-color="#3D2215"/><stop offset="100%" stop-color="#1A1210"/></linearGradient></defs>
+              <rect width="900" height="280" fill="url(#di0a)"/>
+              <circle cx="680" cy="100" r="240" fill="#7A4428" fill-opacity="0.18"/>
+              <circle cx="100" cy="240" r="120" fill="#7BADB8" fill-opacity="0.1"/>
+              <circle cx="450" cy="30" r="80" fill="#C4B096" fill-opacity="0.08"/>
+            </svg>
+          </div>
+
+          <h2 class="detail-h2">Scope and approach</h2>
+          <p>We managed the full communications lifecycle from initial save-the-dates through post-event follow-up: campaign development and scheduling, attendee registration management, dietary and accessibility data collection, logistics coordination across 14 vendor systems, on-site communications support, and VIP-track programming.</p>
+          <p>The engagement required us to build a shared data infrastructure capable of handling real-time changes — dietary updates, last-minute registrations, executive substitutions — across multiple stakeholder groups simultaneously. We mapped every data dependency at the outset and designed handoff protocols that made error visible before it became incident.</p>
+
+          <div class="detail-img">
+            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="di0b" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1C2B2F"/><stop offset="60%" stop-color="#2A1A12"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <rect width="900" height="280" fill="url(#di0b)"/>
+              <circle cx="200" cy="160" r="180" fill="#7BADB8" fill-opacity="0.13"/>
+              <circle cx="750" cy="60" r="140" fill="#7A4428" fill-opacity="0.16"/>
+            </svg>
+          </div>
+
+          <h2 class="detail-h2">What we delivered</h2>
+          <p>Across three days and four concurrent program tracks, we managed over 40 distinct communications touchpoints — from pre-conference logistics emails to real-time session updates to executive briefing packets distributed same-day. Every vendor received accurate, formatted data. Every VIP received individually tailored communications. Every deadline was met.</p>
+          <p>The post-event close-out included a full attendee data reconciliation delivered within 48 hours of the final session — clean, formatted, and immediately actionable for the client's internal reporting team.</p>
+
+          <h2 class="detail-h2">The takeaway</h2>
+          <p>Complex events don't fail because something goes wrong. They fail because nobody built the system to catch it first. What we delivered wasn't just execution — it was a documented, repeatable communications infrastructure the client could carry forward. The following year, they asked us back.</p>
+        `
       },
       {
         id: 1,
@@ -570,9 +650,39 @@
         type: 'Brand &amp; Digital Strategy',
         outcomes: 'Identified 34 high-priority content gaps. Delivered a 12-month editorial calendar with page-level optimization briefs. Client reported 40% increase in organic sessions within two quarters of implementation.',
         tags: ['SEO / GEO', 'Content Strategy', 'Analytics &amp; Reporting', 'Communications Planning'],
-        body: `<p>A Chicago-area K–12 education foundation had strong program outcomes but wasn't reaching the audiences most likely to support or partner with them. Their website ranked well on branded terms but had almost no organic presence for the searches that mattered most to their mission.</p>
-               <p>We conducted a comprehensive GEO/SEO audit, mapped their content against search intent across three primary audience segments, and identified 34 high-priority gaps in their existing site structure.</p>
-               <p>The deliverable was a 12-month editorial calendar with page-level optimization briefs — specific enough that their existing communications team could implement without additional resources. We also refined their SOW structure for future content vendors to ensure work stayed aligned with strategy.</p>`
+        body: `
+          <p>A Chicago-area K&ndash;12 education foundation had strong program outcomes but wasn&rsquo;t reaching the audiences most likely to support or partner with them. Their website ranked well on branded terms but had almost no organic presence for the searches that mattered most to their mission.</p>
+          <p>The team had invested in content over the years — program descriptions, impact reports, staff bios — but it had accumulated without a strategy behind it. What existed was thorough. It just wasn&rsquo;t findable by anyone who didn&rsquo;t already know to look.</p>
+
+          <div class="detail-img">
+            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="di1a" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <rect width="900" height="280" fill="url(#di1a)"/>
+              <circle cx="220" cy="140" r="200" fill="#7BADB8" fill-opacity="0.14"/>
+              <circle cx="700" cy="50" r="100" fill="#C4B096" fill-opacity="0.1"/>
+            </svg>
+          </div>
+
+          <h2 class="detail-h2">Starting from the data</h2>
+          <p>We conducted a comprehensive GEO/SEO audit across the full site — evaluating page structure, metadata, internal linking, keyword targeting, and content depth. We mapped their existing content against search intent across three primary audience segments: prospective partner organizations, individual donors, and families exploring enrollment options for their children.</p>
+          <p>What we found was a consistent pattern: the foundation was creating content for audiences who were already invested, and largely ignoring the searches that could bring new ones in. High-intent queries were going unanswered. Pages that should have been landing destinations were buried three clicks deep.</p>
+
+          <div class="detail-img">
+            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="di1b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#141210"/><stop offset="50%" stop-color="#1A2820"/><stop offset="100%" stop-color="#1C2B2F"/></linearGradient></defs>
+              <rect width="900" height="280" fill="url(#di1b)"/>
+              <circle cx="550" cy="180" r="160" fill="#7BADB8" fill-opacity="0.12"/>
+              <circle cx="150" cy="80" r="90" fill="#C4B096" fill-opacity="0.09"/>
+            </svg>
+          </div>
+
+          <h2 class="detail-h2">What we built</h2>
+          <p>The deliverable was a 12-month editorial calendar with page-level optimization briefs — specific enough that their existing communications team could implement without outside resources. Each brief included target keyword clusters, recommended page structure, internal linking suggestions, and a plain-language summary of the audience intent it was designed to serve.</p>
+          <p>We also restructured their site&rsquo;s navigation taxonomy and updated metadata across 40+ existing pages, capturing quick-win gains that didn&rsquo;t require new content at all.</p>
+
+          <h2 class="detail-h2">Results</h2>
+          <p>Within two quarters of beginning implementation, the client reported a 40% increase in organic sessions and meaningful improvement in time-on-page across the newly optimized sections. More importantly, they had a process — a way of thinking about content as a findability asset, not just a communication tool. That shift outlasts any individual deliverable.</p>
+        `
       },
       {
         id: 2,
@@ -582,20 +692,49 @@
         type: 'Brand &amp; Digital Strategy',
         outcomes: 'Client selected a direction with full confidence — not compromise. Both concepts were fully buildable, which meant the choice was truly strategic rather than budgetary.',
         tags: ['Brand Positioning', 'Messaging Architecture', 'Digital Strategy', 'Information Architecture', 'Competitive Analysis'],
-        body: `<p>A firm at the intersection of architecture and legal services needed a brand that could speak credibly to two very different audiences: design professionals and institutional clients. Prior attempts had produced work that felt like a compromise — neither audience found it compelling.</p>
-               <p>We developed two fully realized brand concepts, each with a distinct positioning thesis, messaging architecture, information architecture for the web, and representative copy. Both were production-ready — the difference between them was strategic, not executional.</p>
-               <p>Presenting two real options — rather than one recommendation with alternatives — gave the client the ability to make a genuinely informed decision. They selected a direction, understood exactly why, and moved into build with confidence rather than lingering doubt.</p>`
+        body: `
+          <p>A firm at the intersection of architecture and legal services needed a brand that could speak credibly to two very different audiences: design professionals and institutional clients. Prior branding attempts had produced work that felt like a compromise — technically acceptable, genuinely compelling to neither audience.</p>
+          <p>The challenge wasn&rsquo;t a lack of good options. It was that no one had given them real ones to choose from. Every prior engagement had delivered a single recommendation with minor variations — which meant every &ldquo;choice&rdquo; was really just a ratification of someone else&rsquo;s preference.</p>
+
+          <div class="detail-img">
+            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="di2a" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#26201A"/><stop offset="55%" stop-color="#1C2830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <rect width="900" height="280" fill="url(#di2a)"/>
+              <circle cx="300" cy="80" r="180" fill="#C4B096" fill-opacity="0.11"/>
+              <circle cx="700" cy="200" r="140" fill="#7A4428" fill-opacity="0.16"/>
+            </svg>
+          </div>
+
+          <h2 class="detail-h2">Why two concepts</h2>
+          <p>We proposed a different approach from the outset: two fully realized brand directions, each built to a standard of completion that made them genuinely comparable. Not a hero and a foil. Not a safe pick and a risky one. Two real strategies, each with its own logic, each capable of being built.</p>
+          <p>This required more work upfront — but it changed the nature of the client&rsquo;s decision. Instead of approving something, they were choosing between two genuinely different positions in their market. That&rsquo;s a much higher-quality decision to make, and it produces a much more durable outcome.</p>
+
+          <div class="detail-img">
+            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="di2b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1C2830"/><stop offset="50%" stop-color="#26201A"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <rect width="900" height="280" fill="url(#di2b)"/>
+              <circle cx="150" cy="100" r="160" fill="#7BADB8" fill-opacity="0.1"/>
+              <circle cx="750" cy="180" r="120" fill="#C4B096" fill-opacity="0.12"/>
+            </svg>
+          </div>
+
+          <h2 class="detail-h2">What each concept contained</h2>
+          <p>Each direction included a positioning thesis, full messaging architecture, information architecture for the web, representative copywriting across five page types, and a visual direction brief sufficient to brief a design team. Both were production-ready — the difference between them was strategic, not executional.</p>
+          <p>We presented them without a recommendation. Our job was to make both options as clear and honest as possible, then get out of the way.</p>
+
+          <h2 class="detail-h2">The decision</h2>
+          <p>The client selected a direction with full confidence — not compromise. They understood exactly what they were choosing and why. They moved into build without the lingering second-guessing that typically follows a single-recommendation process, and without reopening the brief once the design team was engaged.</p>
+          <p>The lesson isn&rsquo;t that two concepts are always better than one. It&rsquo;s that the quality of a client&rsquo;s decision depends entirely on the quality of what you give them to decide between. When the options are real, the choice is too.</p>
+        `
       }
     ];
 
-    // ── View elements ────────────────────────────────────────────────
     const listView   = document.getElementById('work-list-view');
     const detailView = document.getElementById('case-detail-view');
     const cards      = document.querySelectorAll('.work-card');
     const DURATION   = 340;
     let activeId     = null;
 
-    // ── Populate detail ──────────────────────────────────────────────
     function populateDetail(id) {
       const c = cases[id];
       document.getElementById('detail-cat').textContent      = c.cat;
@@ -608,62 +747,46 @@
       activeId = id;
     }
 
-    // ── Open detail ──────────────────────────────────────────────────
     function openDetail(id) {
       populateDetail(id);
-
-      // 1. Fade list out upward
       listView.classList.add('view-out');
-
       setTimeout(() => {
-        // 2. Hide list, reveal detail at offset
         listView.style.display = 'none';
         detailView.style.display = 'block';
         window.scrollTo(0, 0);
-
-        // 3. Trigger enter transition next frame
         requestAnimationFrame(() => requestAnimationFrame(() => {
           detailView.classList.add('view-in');
         }));
       }, DURATION);
     }
 
-    // ── Close detail ─────────────────────────────────────────────────
     function closeDetail() {
-      // 1. Fade detail out downward
       detailView.classList.remove('view-in');
-
       setTimeout(() => {
-        // 2. Hide detail, restore list with view-out state still applied
         detailView.style.display = 'none';
         listView.style.display = '';
         window.scrollTo(0, 0);
-
-        // 3. Animate list back in from its view-out position (slides down from above)
         requestAnimationFrame(() => requestAnimationFrame(() => {
           listView.classList.remove('view-out');
         }));
       }, DURATION);
     }
 
-    // ── Step between cases in detail view ────────────────────────────
     function detailStep(dir) {
       const visible = [...cards].filter(c => !c.classList.contains('hidden'));
       const ids = visible.map(c => parseInt(c.dataset.id));
       const cur = ids.indexOf(activeId);
       const next = ids[(cur + dir + ids.length) % ids.length];
-
-      // Quick fade within the detail body
       const body = detailView.querySelector('.detail-sec');
-      body.style.transition = `opacity 0.2s ease`;
+      body.style.transition = 'opacity 0.18s ease';
       body.style.opacity = '0';
       setTimeout(() => {
         populateDetail(next);
+        window.scrollTo(0, 0);
         body.style.opacity = '1';
       }, 200);
     }
 
-    // ── Filter ────────────────────────────────────────────────────────
     document.querySelectorAll('.filter-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         const filter = pill.dataset.filter;
@@ -676,7 +799,6 @@
       });
     });
 
-    // ── Nav scroll ────────────────────────────────────────────────────
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
