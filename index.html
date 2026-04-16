@@ -324,9 +324,11 @@
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .work-card { border: 1px solid var(--border-dk); background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease; }
     .work-card:hover { transform: translateY(-5px) scale(1.025); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15); }
-    .work-card-img-wrap { overflow: hidden; }
+    .work-card-img-wrap { overflow: hidden; position: relative; }
     .work-card-img { width: 100%; height: 200px; display: block; transition: transform 0.5s ease; }
     .work-card:hover .work-card-img { transform: scale(1.04); }
+    .work-card-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .work-card-logo img { max-width: 160px; max-height: 72px; object-fit: contain; opacity: 0.9; }
     .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
     .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
     .work-card h3 { font-size: 24px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
@@ -717,6 +719,7 @@
               <circle cx="480" cy="60" r="120" fill="#C4B096" fill-opacity="0.14"/>
               <circle cx="80" cy="150" r="70" fill="#7A4428" fill-opacity="0.18"/>
             </svg>
+            <div class="work-card-logo"><img src="logo-peak.png" alt="Peak Construction"></div>
           </div>
           <div class="work-card-body">
             <div class="work-cat">Peak Construction Corporation</div>
@@ -738,6 +741,7 @@
               <rect width="600" height="200" fill="url(#wg3a)"/>
               <circle cx="300" cy="60" r="90" fill="#C4B096" fill-opacity="0.14"/>
             </svg>
+            <div class="work-card-logo"><img src="logo-titanpricer.svg" alt="TitanPricer"></div>
           </div>
           <div class="work-card-body">
             <div class="work-cat">TitanPricer</div>
