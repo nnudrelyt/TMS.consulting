@@ -751,27 +751,6 @@
             <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
-        <div class="work-card" data-id="3" onclick="openDetail(3)">
-          <div class="work-card-img-wrap">
-            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="wg4a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1A0E2E"/><stop offset="55%" stop-color="#2E1020"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
-              <rect width="600" height="200" fill="url(#wg4a)"/>
-              <circle cx="480" cy="50" r="140" fill="#8B3A6E" fill-opacity="0.22"/>
-              <circle cx="120" cy="160" r="100" fill="#C8A0D8" fill-opacity="0.1"/>
-            </svg>
-          </div>
-          <div class="work-card-body">
-            <div class="work-cat">Chicago Sinfonietta</div>
-            <h3 style="font-style:italic;">A brand as daring as the orchestra behind it</h3>
-            <p>Full creative direction for one of America&rsquo;s most innovative symphonies &mdash; brand identity, digital ecosystem, and season creative for IGNITE 2025&ndash;26.</p>
-            <div class="tags">
-              <span class="tag">Brand Identity</span>
-              <span class="tag">Season Creative</span>
-              <span class="tag">Digital Strategy</span>
-            </div>
-            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1077,7 +1056,7 @@
     }
 
     function detailStep(dir) {
-      const ids = [0, 1, 2, 3];
+      const ids = [0, 1, 2];
       const cur = ids.indexOf(activeId);
       const next = ids[(cur + dir + ids.length) % ids.length];
       const body = detailView.querySelector('.detail-sec');
