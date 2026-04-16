@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Main Sequence &mdash; Consulting</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -182,11 +183,13 @@
 
     /* PILLARS */
     .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .pillar { background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.12); padding: 2.8rem; border-radius: 12px; }
-    .pillar-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
-    .pillar-num { font-size: 13px; color: #7BADB9; letter-spacing: 0.08em; font-weight: 700; flex-shrink: 0; }
+    .pillar { background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.12); padding: 2.8rem; border-radius: 12px; display: flex; flex-direction: column; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.28s ease, box-shadow 0.28s ease; cursor: default; }
+    .pillar:hover { transform: translateY(-5px) scale(1.025); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15); }
+    .pillar-header { margin-bottom: 10px; }
     .pillar h3 { font-size: 24px; font-weight: 700; color: var(--cream); margin-bottom: 0; }
-    .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
+    .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .pillar-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 1.5rem; font-size: 17px; color: var(--blue); text-decoration: none; transition: gap 0.22s ease, color 0.22s ease; }
+    .pillar:hover .pillar-cta { gap: 11px; color: #a0cad4; }
 
     /* VALUES LIST */
     .values-list { display: flex; flex-direction: column; }
@@ -308,8 +311,8 @@
 
     /* WORK */
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .work-card { border: 1px solid var(--border-dk); background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color 0.25s, transform 0.25s; }
-    .work-card:hover { border-color: rgba(255,255,255,0.22); transform: translateY(-3px); }
+    .work-card { border: 1px solid var(--border-dk); background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease; }
+    .work-card:hover { transform: translateY(-5px) scale(1.025); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15); }
     .work-card-img-wrap { overflow: hidden; }
     .work-card-img { width: 100%; height: 200px; display: block; transition: transform 0.5s ease; }
     .work-card:hover .work-card-img { transform: scale(1.04); }
@@ -352,6 +355,24 @@
     .detail-cta-card p { font-size: 18px; color: var(--cream-dim); line-height: 1.65; margin-bottom: 1.8rem; max-width: 460px; }
     @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; gap: 0; max-width: 100%; } .detail-sidebar { position: static; flex-direction: row; flex-wrap: wrap; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-dk); } }
     @media (max-width: 640px) { .detail-sec { padding: 2.5rem 1.25rem 4rem !important; } .detail-h1 { font-size: clamp(36px, 8vw, 60px); } .detail-sidebar { flex-direction: column; } .detail-img { height: 200px; } }
+
+    /* CASE STUDY — Snapshot highlight row */
+    .cs-snapshot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2.5rem 0; }
+    .cs-snapshot-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border-dk); border-radius: 8px; padding: 2rem 1.75rem; }
+    .cs-stat-num { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--cream); line-height: 1; margin-bottom: 0.75rem; }
+    .cs-stat-label { font-size: 17px; line-height: 1.45; color: var(--cream-dim); }
+
+    /* CASE STUDY — Results primary list */
+    .cs-results-primary { list-style: none; margin: 1.5rem 0 1.25rem; border: 1px solid var(--border-dk); border-radius: 8px; overflow: hidden; }
+    .cs-results-primary li { display: flex; align-items: baseline; gap: 1.25rem; padding: 1.1rem 1.75rem; border-bottom: 1px solid var(--border-dk); }
+    .cs-results-primary li:last-child { border-bottom: none; }
+    .cs-li-num { font-family: 'calvino', Georgia, serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 700; color: var(--cream); line-height: 1; flex-shrink: 0; min-width: 5rem; }
+    .cs-li-label { font-size: 17px; color: var(--cream-dim); line-height: 1.4; }
+    .cs-results-secondary { list-style: none; font-size: 17px; color: rgba(255,255,255,0.45); margin: 0.75rem 0 0 0; }
+    .cs-results-secondary li { margin-bottom: 0.5rem; padding-left: 1.4rem; position: relative; }
+    .cs-results-secondary li::before { content: '◆'; position: absolute; left: 0; font-size: 8px; line-height: 2.4; color: var(--blue); }
+
+    @media (max-width: 640px) { .cs-snapshot { grid-template-columns: 1fr; } }
 
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
@@ -526,20 +547,24 @@
       <div class="eyebrow" style="margin-bottom: 1.5rem;">Our Services</div>
       <div class="pillars-grid">
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">01</span><h3>Brand &amp; Digital Strategy</h3></div>
+          <div class="pillar-header"><h3>Brand &amp; Digital Strategy</h3></div>
           <p>Clarity on who you are, who you&rsquo;re for, and how to communicate that &mdash; from brand positioning to digital channel planning.</p>
+          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
         </div>
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">02</span><h3>Paid Media &amp; Analytics</h3></div>
+          <div class="pillar-header"><h3>Paid Media &amp; Analytics</h3></div>
           <p>Paid programs built to be measured and improved, with the analytics infrastructure to make accountability possible.</p>
+          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
         </div>
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">03</span><h3>Project Execution</h3></div>
+          <div class="pillar-header"><h3>Project Execution</h3></div>
           <p>Full lifecycle management for large-scale programs &mdash; conferences, campaigns, and multi-stakeholder rollouts with zero margin for error.</p>
+          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
         </div>
         <div class="pillar">
-          <div class="pillar-header"><span class="pillar-num">04</span><h3>Workflow Automation</h3></div>
+          <div class="pillar-header"><h3>Workflow Automation</h3></div>
           <p>Lightweight software, automations, and workflow systems that eliminate manual work and give your team their time back.</p>
+          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
         </div>
       </div>
     </div>
@@ -675,19 +700,21 @@
         <div class="work-card" data-id="1" onclick="openDetail(1)">
           <div class="work-card-img-wrap">
             <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="wg2a" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <defs><linearGradient id="wg2a" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#141210"/><stop offset="50%" stop-color="#1E2A1A"/><stop offset="100%" stop-color="#2A3018"/></linearGradient></defs>
               <rect width="600" height="200" fill="url(#wg2a)"/>
-              <circle cx="180" cy="120" r="100" fill="#7BADB8" fill-opacity="0.18"/>
+              <circle cx="480" cy="60" r="120" fill="#C4B096" fill-opacity="0.14"/>
+              <circle cx="80" cy="150" r="70" fill="#7A4428" fill-opacity="0.18"/>
             </svg>
           </div>
           <div class="work-card-body">
-            <div class="work-cat">Nonprofit &amp; Education</div>
-            <h3>SEO &amp; content strategy for a K&ndash;12 education foundation</h3>
-            <p>GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation. Included SOW refinement and page-level strategy for high-traffic content.</p>
+            <div class="work-cat">Brand &amp; Digital Strategy</div>
+            <h3>Building a digital foundation that drives measurable growth</h3>
+            <p>A full-stack digital strategy engagement for a regional construction firm — social, content, SEO, and video aligned around one principle: every piece of content should have a measurable outcome.</p>
             <div class="tags">
-              <span class="tag">SEO / GEO</span>
+              <span class="tag">Social Strategy</span>
               <span class="tag">Content Strategy</span>
-              <span class="tag">Analytics &amp; Reporting</span>
+              <span class="tag">SEO / GEO</span>
+              <span class="tag">Video</span>
             </div>
             <div class="work-card-cta">Read case study &rarr;</div>
           </div>
@@ -736,7 +763,6 @@
       <div class="detail-grid">
         <div class="detail-main">
           <h1 class="detail-h1" id="detail-title"></h1>
-          <div class="detail-sector" id="detail-sector"></div>
           <div class="detail-body" id="detail-body"></div>
           <div class="detail-cta-card">
             <div class="eyebrow">Ready to work together?</div>
@@ -747,7 +773,7 @@
         </div>
         <div class="detail-sidebar">
           <div>
-            <div class="detail-meta-label">Engagement type</div>
+            <div class="detail-meta-label">Client</div>
             <div class="detail-meta-value" id="detail-type"></div>
           </div>
           <div>
@@ -915,18 +941,23 @@
                <p>The post-event close-out included a full attendee data reconciliation delivered within 48 hours — clean, formatted, and immediately actionable for the client's internal reporting team.</p>`
       },
       {
-        id: 1, cat: 'Nonprofit & Education',
-        title: 'SEO &amp; content strategy for a K&ndash;12 education foundation',
-        sector: 'Nonprofit / Education', type: 'Brand &amp; Digital Strategy',
-        outcomes: 'Identified 34 high-priority content gaps. Delivered a 12-month editorial calendar with page-level optimization briefs. Client reported 40% increase in organic sessions within two quarters.',
-        tags: ['SEO / GEO', 'Content Strategy', 'Analytics &amp; Reporting', 'Communications Planning'],
-        body: `<p>A Chicago-area K–12 education foundation had strong program outcomes but wasn't reaching the audiences most likely to support or partner with them. Their website ranked well on branded terms but had almost no organic presence for the searches that mattered most.</p>
-               <h2 class="detail-h2">Starting from the data</h2>
-               <p>We conducted a comprehensive GEO/SEO audit across the full site, mapping their existing content against search intent across three primary audience segments: prospective partner organizations, individual donors, and families exploring enrollment options.</p>
-               <div class="detail-img"><svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hdi1" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs><rect width="900" height="280" fill="url(#hdi1)"/><circle cx="220" cy="140" r="200" fill="#7BADB8" fill-opacity="0.14"/><circle cx="700" cy="50" r="100" fill="#C4B096" fill-opacity="0.1"/></svg></div>
-               <h2 class="detail-h2">What we built</h2>
-               <p>The deliverable was a 12-month editorial calendar with page-level optimization briefs — specific enough that their existing communications team could implement without outside resources. Each brief included target keyword clusters, recommended page structure, and a plain-language summary of the audience intent it was designed to serve.</p>
-               <p>Within two quarters of implementation, the client reported a 40% increase in organic sessions and meaningful improvement in time-on-page across the newly optimized sections.</p>`
+        id: 1, cat: 'Brand & Digital Strategy',
+        title: 'Building a digital foundation that drives measurable growth',
+        sector: 'Construction / AEC', type: 'Peak Construction Corporation',
+        outcomes: '10%+ increase in click-through<br>47% increase in conversion<br>50% video engagement on top posts<br>2K+ monthly views on Instagram Stories',
+        tags: ['Social Strategy', 'Content Strategy', 'SEO / GEO', 'Video &amp; Creative', 'Analytics &amp; Reporting'],
+        body: `<p>Peak Construction Corporation had a strong reputation in tilt-up and precast construction. Their digital presence wasn't keeping pace. Over the course of a full-stack content and social strategy engagement, we changed that.</p>
+               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">47%+</div><div class="cs-stat-label">Conversions, year over year</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">10%+</div><div class="cs-stat-label">Increase in click-through rate</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">50%+</div><div class="cs-stat-label">Video engagement on top posts</div></div></div>
+               <h2 class="detail-h2">Where things stood</h2>
+               <p>Peak had built a solid reputation in tilt-up and precast construction — a niche with real search demand and limited competition for content-driven visibility. But their digital presence wasn't capturing that opportunity. Social was inconsistent. The website had content but wasn't structured to rank. Video was underutilized despite being one of their strongest assets for demonstrating scale and craft.</p>
+               <p>What they had was good raw material. What they needed was a strategy to turn it into a compounding digital asset.</p>
+               <h2 class="detail-h2">Our approach</h2>
+               <p>We built an integrated content and social strategy grounded in their existing strengths — developing a consistent editorial cadence, identifying high-intent keywords their competitors weren't targeting, and creating a content system that could be produced and published without adding headcount.</p>
+               <p>Video became a central format for both social reach and on-site engagement. Short-form content drove click-throughs; longer project features held attention and signaled expertise to both search engines and prospective clients. Analytics were built in from the start, so we could double down on what worked and cut what didn't.</p>
+               <h2 class="detail-h2">Results</h2>
+               <ul class="cs-results-primary"><li><span class="cs-li-num">47%+</span><span class="cs-li-label">Conversions, year over year</span></li><li><span class="cs-li-num">10%+</span><span class="cs-li-label">Click-through rate increase</span></li><li><span class="cs-li-num">50%+</span><span class="cs-li-label">Video engagement on top posts</span></li><li><span class="cs-li-num">2,000+</span><span class="cs-li-label">Monthly Instagram Story views, nearly half from non-followers</span></li></ul>
+               <ul class="cs-results-secondary"><li>Total users grew by nearly 10%</li><li>Strong time-on-page across content-rich articles</li><li>Increased organic visibility across high-intent keywords including tilt-up and precast construction</li></ul>
+               <p style="margin-top: 2.5rem;">For companies with strong reputations and thin digital presence, the opportunity isn't to do more — it's to make what already exists work harder. A content strategy built around what you actually know tends to compound in ways that paid reach doesn't.</p>`
       },
       {
         id: 2, cat: 'AEC / Legal · Brand & Strategy',
@@ -954,9 +985,8 @@
       document.getElementById('detail-cat').textContent      = c.cat;
       document.getElementById('detail-title').innerHTML      = c.title;
       document.getElementById('detail-body').innerHTML       = c.body;
-      document.getElementById('detail-sector').textContent   = c.sector;
       document.getElementById('detail-type').innerHTML       = c.type;
-      document.getElementById('detail-outcomes').textContent = c.outcomes;
+      document.getElementById('detail-outcomes').innerHTML = c.outcomes;
       document.getElementById('detail-tags').innerHTML       = c.tags.map(t => `<span class="tag" style="font-size:14px;padding:3px 9px;border:1px solid rgba(123,173,184,0.3);color:#7BADB8;border-radius:2px;">${t}</span>`).join('');
       activeId = id;
     }

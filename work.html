@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Main Sequence &mdash; Work</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -216,6 +217,8 @@
       margin-bottom: 1.6rem;
     }
     .detail-body p:last-child { margin-bottom: 0; }
+    .detail-body ul { font-size: 18px; line-height: 1.7; color: var(--cream-dim); margin-bottom: 1.6rem; padding-left: 1.3rem; }
+    .detail-body li { margin-bottom: 0.4rem; }
 
     .detail-h2 {
       font-family: 'calvino', Georgia, serif;
@@ -236,6 +239,75 @@
       border: 1px solid var(--border-dk);
     }
     .detail-img svg { width: 100%; height: 100%; display: block; }
+
+    /* CASE STUDY — Snapshot stat row */
+    .cs-snapshot {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .cs-snapshot-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-dk);
+      border-radius: 8px;
+      padding: 2rem 1.75rem;
+    }
+    .cs-stat-num {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .cs-stat-label {
+      font-size: 17px;
+      line-height: 1.45;
+      color: var(--cream-dim);
+    }
+
+    /* CASE STUDY — Results primary list */
+    .cs-results-primary {
+      list-style: none;
+      margin: 1.5rem 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border-dk);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .cs-results-primary li {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      padding: 1.1rem 1.75rem;
+      border-bottom: 1px solid var(--border-dk);
+    }
+    .cs-results-primary li:last-child { border-bottom: none; }
+    .cs-li-num {
+      font-family: 'calvino', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 5rem;
+    }
+    .cs-li-label {
+      font-size: 17px;
+      color: var(--cream-dim);
+      line-height: 1.4;
+    }
+    .cs-results-secondary { list-style: none; font-size: 17px; color: rgba(255,255,255,0.45); margin: 0.75rem 0 0 0; }
+    .cs-results-secondary li { margin-bottom: 0.5rem; padding-left: 1.4rem; position: relative; }
+    .cs-results-secondary li::before { content: '◆'; position: absolute; left: 0; font-size: 8px; line-height: 2.4; color: var(--blue); }
+
+    @media (max-width: 640px) {
+      .cs-snapshot { grid-template-columns: 1fr; }
+      .cs-results-grid { grid-template-columns: 1fr; }
+    }
 
     /* RIGHT COLUMN — sticky sidebar */
     .detail-sidebar {
@@ -434,7 +506,6 @@
     <div class="filter-bar">
       <button class="filter-pill active" data-filter="all">All</button>
       <button class="filter-pill" data-filter="enterprise-events">Enterprise Events</button>
-      <button class="filter-pill" data-filter="nonprofit">Nonprofit &amp; Education</button>
       <button class="filter-pill" data-filter="brand-strategy">Brand &amp; Strategy</button>
       <button class="filter-pill" data-filter="aec">AEC / Legal</button>
     </div>
@@ -464,23 +535,24 @@
           </div>
         </div>
 
-        <div class="work-card" data-cat="nonprofit" data-id="1" onclick="openDetail(1)">
+        <div class="work-card" data-cat="brand-strategy aec" data-id="1" onclick="openDetail(1)">
           <div class="work-card-img-wrap">
             <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="wg2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
+              <defs><linearGradient id="wg2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#141210"/><stop offset="50%" stop-color="#1E2A1A"/><stop offset="100%" stop-color="#2A3018"/></linearGradient></defs>
               <rect width="600" height="200" fill="url(#wg2)"/>
-              <circle cx="180" cy="120" r="110" fill="#7BADB8" fill-opacity="0.16"/>
-              <circle cx="500" cy="40" r="50" fill="#C4B096" fill-opacity="0.1"/>
+              <circle cx="480" cy="60" r="120" fill="#C4B096" fill-opacity="0.14"/>
+              <circle cx="80" cy="150" r="70" fill="#7A4428" fill-opacity="0.18"/>
             </svg>
           </div>
           <div class="work-card-body">
-            <div class="work-cat">Nonprofit &amp; Education</div>
-            <h3>SEO &amp; content strategy for a K&ndash;12 education foundation</h3>
-            <p class="work-card-desc">GEO/SEO audit, content restructuring, and communications calendar development for a Chicago-area foundation.</p>
+            <div class="work-cat">Brand &amp; Digital Strategy</div>
+            <h3>Building a digital foundation that drives measurable growth</h3>
+            <p class="work-card-desc">A full-stack digital strategy engagement for a regional construction firm — social, content, SEO, and video aligned around one principle: every piece of content should have a measurable outcome.</p>
             <div class="tags">
-              <span class="tag">SEO / GEO</span>
+              <span class="tag">Social Strategy</span>
               <span class="tag">Content Strategy</span>
-              <span class="tag">Analytics</span>
+              <span class="tag">SEO / GEO</span>
+              <span class="tag">Video</span>
             </div>
             <div class="work-card-cta">Read case study &rarr;</div>
           </div>
@@ -568,7 +640,6 @@
         <!-- LEFT: headline + body -->
         <div class="detail-main">
           <h1 class="detail-h1" id="detail-title"></h1>
-          <div class="detail-sector" id="detail-sector"></div>
           <div class="detail-body" id="detail-body"></div>
           <div class="detail-cta-card">
             <div class="eyebrow">Ready to work together?</div>
@@ -581,7 +652,7 @@
         <!-- RIGHT: sticky meta sidebar -->
         <div class="detail-sidebar">
           <div class="detail-meta-block">
-            <div class="detail-meta-label">Engagement type</div>
+            <div class="detail-meta-label">Client</div>
             <div class="detail-meta-value" id="detail-type"></div>
           </div>
           <div class="detail-meta-block">
@@ -722,44 +793,52 @@
       },
       {
         id: 1,
-        cat: 'Nonprofit & Education',
-        title: 'SEO &amp; content strategy for a K&ndash;12 education foundation',
-        sector: 'Nonprofit / Education',
-        type: 'Brand &amp; Digital Strategy',
-        outcomes: 'Identified 34 high-priority content gaps. Delivered a 12-month editorial calendar with page-level optimization briefs. Client reported 40% increase in organic sessions within two quarters of implementation.',
-        tags: ['SEO / GEO', 'Content Strategy', 'Analytics &amp; Reporting', 'Communications Planning'],
+        cat: 'Brand & Digital Strategy',
+        title: 'Building a digital foundation that drives measurable growth',
+        sector: 'Construction / AEC',
+        type: 'Peak Construction Corporation',
+        outcomes: '10%+ increase in click-through<br>47% increase in conversion<br>50% video engagement on top posts<br>2K+ monthly views on Instagram Stories',
+        tags: ['Social Strategy', 'Content Strategy', 'SEO / GEO', 'Video &amp; Creative', 'Analytics &amp; Reporting'],
         body: `
-          <p>A Chicago-area K&ndash;12 education foundation had strong program outcomes but wasn&rsquo;t reaching the audiences most likely to support or partner with them. Their website ranked well on branded terms but had almost no organic presence for the searches that mattered most to their mission.</p>
-          <p>The team had invested in content over the years — program descriptions, impact reports, staff bios — but it had accumulated without a strategy behind it. What existed was thorough. It just wasn&rsquo;t findable by anyone who didn&rsquo;t already know to look.</p>
+          <p>Peak Construction Corporation had a strong reputation in tilt-up and precast construction. Their digital presence wasn&rsquo;t keeping pace. Over the course of a full-stack content and social strategy engagement, we changed that.</p>
 
-          <div class="detail-img">
-            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="di1a" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E2A20"/><stop offset="55%" stop-color="#2A3830"/><stop offset="100%" stop-color="#141210"/></linearGradient></defs>
-              <rect width="900" height="280" fill="url(#di1a)"/>
-              <circle cx="220" cy="140" r="200" fill="#7BADB8" fill-opacity="0.14"/>
-              <circle cx="700" cy="50" r="100" fill="#C4B096" fill-opacity="0.1"/>
-            </svg>
+          <div class="cs-snapshot">
+            <div class="cs-snapshot-item">
+              <div class="cs-stat-num">47%+</div>
+              <div class="cs-stat-label">Conversions, year over year</div>
+            </div>
+            <div class="cs-snapshot-item">
+              <div class="cs-stat-num">10%+</div>
+              <div class="cs-stat-label">Increase in click-through rate</div>
+            </div>
+            <div class="cs-snapshot-item">
+              <div class="cs-stat-num">50%+</div>
+              <div class="cs-stat-label">Video engagement on top posts</div>
+            </div>
           </div>
 
-          <h2 class="detail-h2">Starting from the data</h2>
-          <p>We conducted a comprehensive GEO/SEO audit across the full site — evaluating page structure, metadata, internal linking, keyword targeting, and content depth. We mapped their existing content against search intent across three primary audience segments: prospective partner organizations, individual donors, and families exploring enrollment options for their children.</p>
-          <p>What we found was a consistent pattern: the foundation was creating content for audiences who were already invested, and largely ignoring the searches that could bring new ones in. High-intent queries were going unanswered. Pages that should have been landing destinations were buried three clicks deep.</p>
+          <h2 class="detail-h2">Where things stood</h2>
+          <p>Peak had built a solid reputation in tilt-up and precast construction &mdash; a niche with real search demand and limited competition for content-driven visibility. But their digital presence wasn&rsquo;t capturing that opportunity. Social was inconsistent. The website had content but wasn&rsquo;t structured to rank. Video was underutilized despite being one of their strongest assets for demonstrating scale and craft.</p>
+          <p>What they had was good raw material. What they needed was a strategy to turn it into a compounding digital asset.</p>
 
-          <div class="detail-img">
-            <svg viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="di1b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#141210"/><stop offset="50%" stop-color="#1A2820"/><stop offset="100%" stop-color="#1C2B2F"/></linearGradient></defs>
-              <rect width="900" height="280" fill="url(#di1b)"/>
-              <circle cx="550" cy="180" r="160" fill="#7BADB8" fill-opacity="0.12"/>
-              <circle cx="150" cy="80" r="90" fill="#C4B096" fill-opacity="0.09"/>
-            </svg>
-          </div>
-
-          <h2 class="detail-h2">What we built</h2>
-          <p>The deliverable was a 12-month editorial calendar with page-level optimization briefs — specific enough that their existing communications team could implement without outside resources. Each brief included target keyword clusters, recommended page structure, internal linking suggestions, and a plain-language summary of the audience intent it was designed to serve.</p>
-          <p>We also restructured their site&rsquo;s navigation taxonomy and updated metadata across 40+ existing pages, capturing quick-win gains that didn&rsquo;t require new content at all.</p>
+          <h2 class="detail-h2">Our approach</h2>
+          <p>We built an integrated content and social strategy grounded in their existing strengths &mdash; developing a consistent editorial cadence, identifying high-intent keywords their competitors weren&rsquo;t targeting, and creating a content system that could be produced and published without adding headcount.</p>
+          <p>Video became a central format for both social reach and on-site engagement. Short-form content drove click-throughs; longer project features held attention and signaled expertise to both search engines and prospective clients. Analytics were built in from the start, so we could double down on what worked and cut what didn&rsquo;t.</p>
 
           <h2 class="detail-h2">Results</h2>
-          <p>Within two quarters of beginning implementation, the client reported a 40% increase in organic sessions and meaningful improvement in time-on-page across the newly optimized sections. More importantly, they had a process — a way of thinking about content as a findability asset, not just a communication tool. That shift outlasts any individual deliverable.</p>
+          <ul class="cs-results-primary">
+            <li><span class="cs-li-num">47%+</span><span class="cs-li-label">Conversions, year over year</span></li>
+            <li><span class="cs-li-num">10%+</span><span class="cs-li-label">Click-through rate increase</span></li>
+            <li><span class="cs-li-num">50%+</span><span class="cs-li-label">Video engagement on top posts</span></li>
+            <li><span class="cs-li-num">2,000+</span><span class="cs-li-label">Monthly Instagram Story views, nearly half from non-followers</span></li>
+          </ul>
+          <ul class="cs-results-secondary">
+            <li>Total users grew by nearly 10%</li>
+            <li>Strong time-on-page across content-rich articles</li>
+            <li>Increased organic visibility across high-intent keywords including tilt-up and precast construction</li>
+          </ul>
+
+          <p style="margin-top: 2.5rem;">For companies with strong reputations and thin digital presence, the opportunity isn&rsquo;t to do more &mdash; it&rsquo;s to make what already exists work harder. A content strategy built around what you actually know tends to compound in ways that paid reach doesn&rsquo;t.</p>
         `
       },
       {
@@ -818,9 +897,8 @@
       document.getElementById('detail-cat').textContent      = c.cat;
       document.getElementById('detail-title').innerHTML      = c.title;
       document.getElementById('detail-body').innerHTML       = c.body;
-      document.getElementById('detail-sector').textContent   = c.sector;
       document.getElementById('detail-type').innerHTML       = c.type;
-      document.getElementById('detail-outcomes').textContent = c.outcomes;
+      document.getElementById('detail-outcomes').innerHTML = c.outcomes;
       document.getElementById('detail-tags').innerHTML       = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
       activeId = id;
     }
