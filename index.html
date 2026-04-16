@@ -59,7 +59,9 @@
       width: 38px;
       height: 38px;
       flex-shrink: 0;
+      transition: filter 0.28s ease;
     }
+    .nav-logo:hover .nav-logo-mark { filter: none !important; }
     .nav-logo-text {
       font-size: 13px;
       font-weight: 700;
@@ -161,7 +163,9 @@
       margin-bottom: 28px;
     }
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 13px 29px;
       font-size: 15px;
       font-weight: 600;
@@ -172,8 +176,12 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       border-radius: var(--radius);
+      overflow: hidden;
     }
-    .btn:hover { opacity: 0.88; }
+    .btn { transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), filter 0.28s ease, opacity 0.28s ease; }
+    .btn .btn-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .btn:hover .btn-arrow { transform: translateX(1px); }
+    .btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); opacity: 1; }
 
     /* SECTION HEADINGS */
     .sec-h { margin-bottom: 2rem; }
@@ -183,13 +191,16 @@
 
     /* PILLARS */
     .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .pillar { background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.12); padding: 2.8rem; border-radius: 12px; display: flex; flex-direction: column; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.28s ease, box-shadow 0.28s ease; cursor: default; }
+    .pillar { background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.12); padding: 2.27rem 2.8rem; border-radius: 12px; display: flex; flex-direction: column; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.28s ease, box-shadow 0.28s ease; cursor: pointer; text-decoration: none; color: inherit; }
     .pillar:hover { transform: translateY(-5px) scale(1.025); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15); }
     .pillar-header { margin-bottom: 10px; }
     .pillar h3 { font-size: 24px; font-weight: 700; color: var(--cream); margin-bottom: 0; }
     .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .pillar-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 1.5rem; font-size: 17px; color: var(--blue); text-decoration: none; transition: gap 0.22s ease, color 0.22s ease; }
-    .pillar:hover .pillar-cta { gap: 11px; color: #a0cad4; }
+    .pillar-cta { display: inline-flex; align-items: center; gap: 3px; margin-top: 1.5rem; font-size: 17px; color: var(--blue); text-decoration: none; overflow: hidden; }
+    .pillar-cta-text { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .pillar-cta-arrow { display: inline-block; line-height: 1; vertical-align: middle; position: relative; top: 2px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .pillar:hover .pillar-cta-text { transform: translateX(1px); }
+    .pillar:hover .pillar-cta-arrow { transform: translateX(3px); }
 
     /* VALUES LIST */
     .values-list { display: flex; flex-direction: column; }
@@ -321,8 +332,9 @@
     .work-card h3 { font-size: 22px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
     .work-card p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
     .work-card .tags { margin-top: 4px; }
-    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; transition: gap 0.2s; }
-    .work-card:hover .work-card-cta { gap: 10px; }
+    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; }
+    .work-card-cta-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .work-card:hover .work-card-cta-arrow { transform: translateX(1px); }
 
     /* VIEW TRANSITIONS */
     #home-list-view { transition: opacity 0.36s ease, transform 0.36s ease; }
@@ -515,7 +527,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -537,7 +549,7 @@
       <div class="eyebrow">Chicago Tech Consultants</div>
       <h1>Helping you close the gap<br><span style="font-weight:300;">between purpose and performance.</span></h1>
       <p>Whether the challenge is brand clarity, digital performance, or operational complexity &mdash; we help you diagnose the problem clearly, align your team around what matters, and build the strategy, systems, and execution capacity to get where you&rsquo;re trying to go.</p>
-      <a href="contact.html" class="btn">Tell us about your challenge &rarr;</a>
+      <a href="contact.html" class="btn">Tell us about your challenge <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
 
@@ -546,26 +558,26 @@
     <div class="sec">
       <div class="eyebrow" style="margin-bottom: 1.5rem;">Our Services</div>
       <div class="pillars-grid">
-        <div class="pillar">
+        <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Brand &amp; Digital Strategy</h3></div>
           <p>Clarity on who you are, who you&rsquo;re for, and how to communicate that &mdash; from brand positioning to digital channel planning.</p>
-          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
-        </div>
-        <div class="pillar">
+          <span class="pillar-cta"><span class="pillar-cta-text">Build brands</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
+        </a>
+        <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Paid Media &amp; Analytics</h3></div>
           <p>Paid programs built to be measured and improved, with the analytics infrastructure to make accountability possible.</p>
-          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
-        </div>
-        <div class="pillar">
+          <span class="pillar-cta"><span class="pillar-cta-text">Drive performance</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
+        </a>
+        <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Project Execution</h3></div>
           <p>Full lifecycle management for large-scale programs &mdash; conferences, campaigns, and multi-stakeholder rollouts with zero margin for error.</p>
-          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
-        </div>
-        <div class="pillar">
+          <span class="pillar-cta"><span class="pillar-cta-text">Run programs</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
+        </a>
+        <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Workflow Automation</h3></div>
           <p>Lightweight software, automations, and workflow systems that eliminate manual work and give your team their time back.</p>
-          <a href="services.html" class="pillar-cta">Learn more &rarr;</a>
-        </div>
+          <span class="pillar-cta"><span class="pillar-cta-text">Remove friction</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
+        </a>
       </div>
     </div>
   </div>
@@ -694,7 +706,7 @@
               <span class="tag">Vendor Coordination</span>
               <span class="tag">Data Reconciliation</span>
             </div>
-            <div class="work-card-cta">Read case study &rarr;</div>
+            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
         <div class="work-card" data-id="1" onclick="openDetail(1)">
@@ -716,7 +728,7 @@
               <span class="tag">SEO / GEO</span>
               <span class="tag">Video</span>
             </div>
-            <div class="work-card-cta">Read case study &rarr;</div>
+            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
         <div class="work-card" data-id="2" onclick="openDetail(2)">
@@ -736,7 +748,7 @@
               <span class="tag">Messaging Architecture</span>
               <span class="tag">Digital Strategy</span>
             </div>
-            <div class="work-card-cta">Read case study &rarr;</div>
+            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
       </div>
@@ -749,7 +761,7 @@
       <div class="eyebrow" style="color:rgba(26,23,16,0.5);">Ready to work together?</div>
       <h2>Every engagement starts with a conversation.</h2>
       <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
-      <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+      <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
 
@@ -768,7 +780,7 @@
             <div class="eyebrow">Ready to work together?</div>
             <h3>Every engagement starts with a conversation.</h3>
             <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
-            <a href="contact.html" class="btn">Let&rsquo;s talk &rarr;</a>
+            <a href="contact.html" class="btn">Let&rsquo;s talk <span class="btn-arrow">&rarr;</span></a>
           </div>
         </div>
         <div class="detail-sidebar">
@@ -799,7 +811,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>

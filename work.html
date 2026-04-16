@@ -47,7 +47,8 @@
       border-bottom-color: var(--border-dk);
     }
     .nav-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; transition: filter 0.28s ease; }
+    .nav-logo:hover .nav-logo-mark { filter: none !important; }
     .nav-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
     .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { text-decoration: none; font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.55); transition: color 0.2s; }
@@ -138,8 +139,9 @@
     .work-card-desc { font-size: 18px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
     .tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
-    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; transition: gap 0.2s; }
-    .work-card:hover .work-card-cta { gap: 10px; }
+    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; }
+    .work-card-cta-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .work-card:hover .work-card-cta-arrow { transform: translateX(1px); }
 
     /* ── VIEW TRANSITIONS ─────────────────────────────────────────── */
     #work-list-view {
@@ -403,8 +405,10 @@
     .cta-band h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 58px); font-weight: 700; color: #1A1710; margin-bottom: 12px; line-height: 1.1; }
     .cta-band p { font-size: 22px; color: rgba(26,23,16,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
     .cta-band .eyebrow { color: rgba(26,23,16,0.5); }
-    .btn { display: inline-block; padding: 13px 29px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; background: #C8D47A; color: #1A1710; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); }
-    .btn:hover { opacity: 0.88; }
+    .btn { display: inline-flex; align-items: center; gap: 5px; padding: 13px 29px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; background: #C8D47A; color: #1A1710; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); overflow: hidden; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), filter 0.28s ease; }
+    .btn .btn-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .btn:hover .btn-arrow { transform: translateX(1px); }
+    .btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); }
 
     /* FOOTER */
     .site-footer { position: relative; z-index: 2; border-top: 1px solid var(--border-dk); background: rgba(18,16,14,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
@@ -478,7 +482,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -531,7 +535,7 @@
               <span class="tag">Vendor Coordination</span>
               <span class="tag">Data Reconciliation</span>
             </div>
-            <div class="work-card-cta">Read case study &rarr;</div>
+            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -554,7 +558,7 @@
               <span class="tag">SEO / GEO</span>
               <span class="tag">Video</span>
             </div>
-            <div class="work-card-cta">Read case study &rarr;</div>
+            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -576,7 +580,7 @@
               <span class="tag">Messaging Architecture</span>
               <span class="tag">Digital Strategy</span>
             </div>
-            <div class="work-card-cta">Read case study &rarr;</div>
+            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -621,7 +625,7 @@
         <div class="eyebrow">Ready to work together?</div>
         <h2>Every engagement starts with a conversation.</h2>
         <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
-        <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+        <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk <span class="btn-arrow">&rarr;</span></a>
       </div>
     </div>
 
@@ -645,7 +649,7 @@
             <div class="eyebrow">Ready to work together?</div>
             <h3>Every engagement starts with a conversation.</h3>
             <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
-            <a href="contact.html" class="btn">Let&rsquo;s talk &rarr;</a>
+            <a href="contact.html" class="btn">Let&rsquo;s talk <span class="btn-arrow">&rarr;</span></a>
           </div>
         </div>
 
@@ -679,7 +683,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>

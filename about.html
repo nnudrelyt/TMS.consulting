@@ -55,7 +55,8 @@
       gap: 15px;
       text-decoration: none;
     }
-    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-mark { width: 38px; height: 38px; flex-shrink: 0; transition: filter 0.28s ease; }
+    .nav-logo:hover .nav-logo-mark { filter: none !important; }
     .nav-logo-text {
       font-size: 13px;
       font-weight: 700;
@@ -186,28 +187,74 @@
     .value-row:last-child { border-bottom: 1px solid var(--border-dk); }
     .value-num { font-size: 13px; color: var(--pink); letter-spacing: 0.1em; font-weight: 700; padding-top: 6px; }
     .value-title { font-family: 'calvino', Georgia, serif; font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; color: var(--cream); line-height: 1.15; }
-    .value-body { font-size: 18px; line-height: 1.65; color: var(--cream-dim); padding-top: 6px; }
+    .value-body { font-size: 22px; line-height: 1.65; color: var(--cream-dim); padding-top: 6px; }
 
     /* TEAM */
-    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .team-card {
-      background: rgba(22,28,25,0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      position: relative;
       border: 1px solid var(--border-dk);
       border-radius: 12px;
       overflow: hidden;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: border-color 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
     }
-    .team-img {
+    .team-card:hover { transform: translateY(-4px); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .team-card-bg {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: 240px;
-      display: block;
-      background: rgba(22,28,25,0.8);
+      height: 100%;
     }
-    .team-body { padding: 1.8rem 2rem 2.2rem; }
-    .team-name { font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
-    .team-role { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 12px; font-weight: 700; }
-    .team-bio { font-size: 17px; line-height: 1.65; color: var(--cream-dim); }
+    .team-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 25%, rgba(10,9,8,0.92) 100%);
+    }
+    .team-body { position: relative; z-index: 1; padding: 1.6rem 1.75rem 1.8rem; }
+    .team-name { font-size: 20px; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
+    .team-role { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 10px; font-weight: 700; }
+    .team-bio { font-size: 15px; line-height: 1.6; color: var(--cream-dim); }
+    .team-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .team-linkedin:hover { color: var(--cream); }
+    .team-card-cta {
+      background: rgba(20,18,16,0.54);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.6rem 1.75rem 1.8rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
+    }
+    .team-card-cta:hover { transform: translateY(-4px); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .team-cta-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+    .team-cta-title { font-family: 'calvino', Georgia, serif; font-size: clamp(20px, 2.2vw, 28px); font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 10px; }
+    .team-cta-body { font-size: 15px; line-height: 1.6; color: var(--cream-dim); margin-bottom: 16px; }
+    .team-cta-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: color 0.2s; }
+    .team-card-cta:hover .team-cta-link { color: var(--cream); }
+    .team-cta-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .team-card-cta:hover .team-cta-arrow { transform: translateX(3px); }
 
     /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
@@ -215,7 +262,9 @@
     .cta-band h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 58px); font-weight: 700; color: #1A1710; margin-bottom: 12px; line-height: 1.07; }
     .cta-band p { font-size: 22px; color: rgba(26,23,16,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 13px 29px;
       font-size: 15px;
       font-weight: 600;
@@ -226,8 +275,12 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       border-radius: var(--radius);
+      overflow: hidden;
     }
-    .btn:hover { opacity: 0.88; }
+    .btn .btn-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .btn:hover .btn-arrow { transform: translateX(1px); }
+    .btn { transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), filter 0.28s ease; }
+    .btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); }
 
     /* FOOTER */
     .site-footer {
@@ -305,11 +358,12 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
     }
+    @media (max-width: 1100px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 900px) {
-      .split { grid-template-columns: 1fr; gap: 2rem; }
       .value-row { grid-template-columns: 48px 1fr; }
       .value-body { grid-column: 2; }
-      .team-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { flex-direction: column; gap: 32px; }
       .footer-brand { min-width: unset; max-width: unset; }
       .footer-links { flex-wrap: wrap; gap: 32px; }
@@ -319,6 +373,7 @@
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
       .team-grid { grid-template-columns: 1fr; }
+      .team-card, .team-card-cta { height: 360px; }
       .value-row { grid-template-columns: 1fr; gap: 0.75rem; }
       .value-body { grid-column: 1; }
       .cta-band { padding: 2.5rem 1.25rem; }
@@ -343,7 +398,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <img class="nav-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -366,20 +421,6 @@
     </div>
   </div>
 
-  <!-- WHO WE ARE -->
-  <div style="border-top: 1px solid var(--border-dk);">
-    <div class="sec">
-      <div class="split">
-        <div class="split-label">&ldquo;Less but better.&rdquo;</div>
-        <div class="split-body">
-          <p>Most consulting firms sell you a team. We sell you outcomes. There are no junior associates learning on your project, no bloated decks designed to justify retainers, and no advice that disappears when the engagement ends.</p>
-          <p>The Main Sequence was founded to do fewer things, better — with the kind of senior attention that most firms reserve for their biggest clients. Whether you&rsquo;re a growing organization trying to get your story straight or an established one trying to close the gap between where you are and where you need to be, we&rsquo;re built for that work.</p>
-          <p>We&rsquo;re based in Chicago. We work with clients nationally.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- TEAM -->
   <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec">
@@ -389,60 +430,95 @@
         <p>Small by design. Every person you work with is senior, accountable, and invested in your outcome.</p>
       </div>
       <div class="team-grid">
+
+        <!-- Card 1 -->
         <div class="team-card">
-          <svg class="team-img" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1C2B2F"/>
-                <stop offset="100%" stop-color="#1A1512"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="240" fill="url(#tg1)"/>
-            <circle cx="200" cy="95" r="48" fill="rgba(123,173,184,0.15)" stroke="rgba(123,173,184,0.2)" stroke-width="1"/>
-            <rect x="152" y="175" width="96" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+          <svg class="team-card-bg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1C2B2F"/><stop offset="100%" stop-color="#1A1512"/></linearGradient></defs>
+            <rect width="400" height="400" fill="url(#tg1)"/>
+            <circle cx="200" cy="155" r="68" fill="rgba(123,173,184,0.12)" stroke="rgba(123,173,184,0.18)" stroke-width="1"/>
           </svg>
+          <div class="team-card-overlay"></div>
           <div class="team-body">
             <div class="team-name">Placeholder Name</div>
             <div class="team-role">Founder &amp; Principal</div>
             <div class="team-bio">Background in brand strategy, digital communications, and complex project management across enterprise, nonprofit, and AEC sectors.</div>
+            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
           </div>
         </div>
+
+        <!-- Card 2 -->
         <div class="team-card">
-          <svg class="team-img" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="tg2" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#26201A"/>
-                <stop offset="100%" stop-color="#1A2C33"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="240" fill="url(#tg2)"/>
-            <circle cx="200" cy="95" r="48" fill="rgba(158,90,53,0.15)" stroke="rgba(158,90,53,0.2)" stroke-width="1"/>
-            <rect x="152" y="175" width="96" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+          <svg class="team-card-bg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="tg2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#26201A"/><stop offset="100%" stop-color="#1A2C33"/></linearGradient></defs>
+            <rect width="400" height="400" fill="url(#tg2)"/>
+            <circle cx="200" cy="155" r="68" fill="rgba(158,90,53,0.12)" stroke="rgba(158,90,53,0.18)" stroke-width="1"/>
           </svg>
+          <div class="team-card-overlay"></div>
           <div class="team-body">
             <div class="team-name">Placeholder Name</div>
             <div class="team-role">Strategy Lead</div>
             <div class="team-bio">Specializes in paid media architecture, analytics infrastructure, and performance measurement for mission-driven organizations.</div>
+            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
           </div>
         </div>
+
+        <!-- Card 3 -->
         <div class="team-card">
-          <svg class="team-img" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="tg3" x1="50%" y1="0%" x2="50%" y2="100%">
-                <stop offset="0%" stop-color="#1E2420"/>
-                <stop offset="100%" stop-color="#1A1512"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="240" fill="url(#tg3)"/>
-            <circle cx="200" cy="95" r="48" fill="rgba(196,176,150,0.12)" stroke="rgba(196,176,150,0.18)" stroke-width="1"/>
-            <rect x="152" y="175" width="96" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+          <svg class="team-card-bg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="tg3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#1E2420"/><stop offset="100%" stop-color="#1A1512"/></linearGradient></defs>
+            <rect width="400" height="400" fill="url(#tg3)"/>
+            <circle cx="200" cy="155" r="68" fill="rgba(196,176,150,0.1)" stroke="rgba(196,176,150,0.16)" stroke-width="1"/>
           </svg>
+          <div class="team-card-overlay"></div>
           <div class="team-body">
             <div class="team-name">Placeholder Name</div>
             <div class="team-role">Technology Lead</div>
             <div class="team-bio">Leads workflow design and software engagements, with deep expertise in automation, systems architecture, and operational efficiency.</div>
+            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
           </div>
         </div>
+
+        <!-- Card 4 -->
+        <div class="team-card">
+          <svg class="team-card-bg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="tg4" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1F1A2E"/><stop offset="100%" stop-color="#1A1512"/></linearGradient></defs>
+            <rect width="400" height="400" fill="url(#tg4)"/>
+            <circle cx="200" cy="155" r="68" fill="rgba(180,160,200,0.1)" stroke="rgba(180,160,200,0.15)" stroke-width="1"/>
+          </svg>
+          <div class="team-card-overlay"></div>
+          <div class="team-body">
+            <div class="team-name">Placeholder Name</div>
+            <div class="team-role">Client Lead</div>
+            <div class="team-bio">Manages client relationships and engagement delivery across nonprofit, education, and healthcare verticals.</div>
+            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="team-card">
+          <svg class="team-card-bg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="tg5" x1="100%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#1A2420"/><stop offset="100%" stop-color="#261A14"/></linearGradient></defs>
+            <rect width="400" height="400" fill="url(#tg5)"/>
+            <circle cx="200" cy="155" r="68" fill="rgba(200,212,122,0.08)" stroke="rgba(200,212,122,0.13)" stroke-width="1"/>
+          </svg>
+          <div class="team-card-overlay"></div>
+          <div class="team-body">
+            <div class="team-name">Placeholder Name</div>
+            <div class="team-role">Creative Director</div>
+            <div class="team-bio">Leads visual identity and content systems, with a background in brand design, editorial, and digital campaigns.</div>
+            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Card 6 — Join the team CTA -->
+        <a href="contact.html" class="team-card-cta">
+          <div class="team-cta-label">We&rsquo;re hiring</div>
+          <div class="team-cta-title">Join the team.</div>
+          <div class="team-cta-body">We&rsquo;re always looking for sharp, senior people who do great work and care about outcomes.</div>
+          <span class="team-cta-link">Get in touch <span class="team-cta-arrow">&rarr;</span></span>
+        </a>
+
       </div>
     </div>
   </div>
@@ -486,7 +562,7 @@
       <div class="eyebrow" style="color:rgba(26,23,16,0.5);">Ready to work together?</div>
       <h2>Every engagement starts with a conversation.</h2>
       <p>Tell us where you are. We&rsquo;ll help you figure out where to go and build the plan to get there.</p>
-      <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk &rarr;</a>
+      <a href="contact.html" class="btn" style="background:#1A1710;color:#C8D47A;">Let&rsquo;s talk <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
 
@@ -496,7 +572,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="https://www.dropbox.com/scl/fi/up09xryvb9dkbxr3ilb65/TMS_Mark-02.png?rlkey=8a4l0rq9x59sjdb3hzhdgi8oy&raw=1" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
