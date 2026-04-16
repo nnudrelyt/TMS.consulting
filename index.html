@@ -327,8 +327,8 @@
     .work-card-img-wrap { overflow: hidden; position: relative; }
     .work-card-img { width: 100%; height: 200px; display: block; transition: transform 0.5s ease; }
     .work-card:hover .work-card-img { transform: scale(1.04); }
-    .work-card-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-    .work-card-logo img { max-width: 160px; max-height: 72px; object-fit: contain; opacity: 0.9; }
+    .work-card-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; background: rgba(0,0,0,0.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .work-card-logo img { max-width: 160px; max-height: 72px; object-fit: contain; }
     .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
     .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
     .work-card h3 { font-size: 24px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
@@ -716,7 +716,7 @@
             <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <rect width="600" height="200" fill="#ffdb00"/>
             </svg>
-            <div class="work-card-logo"><img src="logo-peak-blk.png" alt="Peak Construction"></div>
+            <div class="work-card-logo"><img src="logo-peak.png" alt="Peak Construction"></div>
           </div>
           <div class="work-card-body">
             <div class="work-cat">Peak Construction Corporation</div>
