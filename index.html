@@ -324,10 +324,8 @@
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .work-card { border: 1px solid var(--border-dk); background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease; }
     .work-card:hover { transform: translateY(-5px) scale(1.025); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15); }
-    .work-card-img-wrap { overflow: hidden; position: relative; }
-    .work-card-img { width: 100%; height: 200px; display: block; transition: transform 0.5s ease; }
-    .work-card:hover .work-card-img { transform: scale(1.04); }
-    .work-card-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; background: rgba(0,0,0,0.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .work-card-img-wrap { position: relative; height: 200px; border-bottom: 1px solid var(--border-dk); }
+    .work-card-logo { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
     .work-card-logo img { max-width: 160px; max-height: 72px; object-fit: contain; }
     .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
     .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
@@ -693,11 +691,6 @@
       <div class="work-grid">
         <div class="work-card" data-id="0" onclick="openDetail(0)">
           <div class="work-card-img-wrap">
-            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="wg1a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1A2C33"/><stop offset="60%" stop-color="#3D2215"/><stop offset="100%" stop-color="#1A1210"/></linearGradient></defs>
-              <rect width="600" height="200" fill="url(#wg1a)"/>
-              <circle cx="420" cy="80" r="120" fill="#7A4428" fill-opacity="0.25"/>
-            </svg>
           </div>
           <div class="work-card-body">
             <div class="work-cat">Major U.S. Airline</div>
@@ -713,9 +706,6 @@
         </div>
         <div class="work-card" data-id="1" onclick="openDetail(1)">
           <div class="work-card-img-wrap">
-            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <rect width="600" height="200" fill="#ffdb00"/>
-            </svg>
             <div class="work-card-logo"><img src="logo-peak.png" alt="Peak Construction"></div>
           </div>
           <div class="work-card-body">
@@ -733,9 +723,6 @@
         </div>
         <div class="work-card" data-id="2" onclick="openDetail(2)">
           <div class="work-card-img-wrap">
-            <svg class="work-card-img" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <rect width="600" height="200" fill="#0e55e5"/>
-            </svg>
             <div class="work-card-logo"><img src="logo-titanpricer.svg" alt="TitanPricer"></div>
           </div>
           <div class="work-card-body">
