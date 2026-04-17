@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Main Sequence &mdash; Work</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
   <link rel="stylesheet" href="https://use.typekit.net/ixj4arx.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -130,16 +131,19 @@
     }
     .work-card:hover { border-color: rgba(255,255,255,0.22); transform: translateY(-3px); }
     .work-card.hidden { display: none; }
-    .work-card-img-wrap { height: 200px; border-bottom: 1px solid var(--border-dk); }
+    .work-card-img-wrap { height: 200px; border-bottom: 1px solid var(--border-dk); overflow: hidden; }
+    .work-card-img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; filter: grayscale(1) brightness(0.75); transition: filter 0.55s cubic-bezier(0.22,1,0.36,1); }
+    .work-card:hover .work-card-img { filter: grayscale(0) brightness(1); }
     .work-card-body { padding: 2.2rem 2.2rem 2.4rem; }
     .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
-    .work-card h3 { font-size: 24px; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
+    .work-card h3 { font-family: 'calvino', Georgia, serif; font-size: 26px; font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
     .work-card-desc { font-size: 19px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
     .tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(123,173,184,0.3); color: var(--blue); border-radius: var(--radius); }
-    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C8D47A; margin-top: 1.4rem; }
-    .work-card-cta-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
-    .work-card:hover .work-card-cta-arrow { transform: translateX(1px); }
+    .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(200,212,122,0.28); color: #fff; border-radius: var(--radius); transition: border-color 0.2s ease; }
+    .tag:hover { border-color: rgba(200,212,122,0.55); }
+    .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 400; letter-spacing: 0; color: var(--blue); margin-top: 1.4rem; }
+    .work-card-cta-arrow { display: inline-block; line-height: 1; vertical-align: middle; position: relative; top: 2px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .work-card:hover .work-card-cta-arrow { transform: translateX(3px); }
 
     /* ── VIEW TRANSITIONS ─────────────────────────────────────────── */
     #work-list-view {
@@ -480,7 +484,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <img class="nav-logo-mark" src="tms-mark.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -517,6 +521,7 @@
 
         <div class="work-card" data-cat="enterprise-events" data-id="0" onclick="openDetail(0)">
           <div class="work-card-img-wrap">
+            <img class="work-card-img" src="https://www.dropbox.com/scl/fi/wcgdmos5um9wxn0lbjywo/7c789ef17c5f34f44f0f4eccce4e99e9-cover-large.jpg?rlkey=e0tdu112wx3xfo5qkododybk8&raw=1" alt="United Airlines Digital Technology Supplier Conference">
           </div>
           <div class="work-card-body">
             <div class="work-cat">United Airlines</div>
@@ -527,7 +532,7 @@
               <span class="tag">Registration Systems</span>
               <span class="tag">Content Strategy</span>
             </div>
-            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
+            <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -543,7 +548,7 @@
               <span class="tag">SEO / GEO</span>
               <span class="tag">Video</span>
             </div>
-            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
+            <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -558,7 +563,7 @@
               <span class="tag">Web Design</span>
               <span class="tag">Email Nurture</span>
             </div>
-            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
+            <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -567,14 +572,14 @@
           <div class="work-card-img-wrap"></div>
           <div class="work-card-body">
             <div class="work-cat">Chicago Sinfonietta</div>
-            <h3 style="font-style:italic;">A brand as daring as the orchestra behind it</h3>
+            <h3>A brand as daring as the orchestra behind it</h3>
             <p class="work-card-desc">Full creative direction for one of America&rsquo;s most innovative symphonies &mdash; brand identity, digital ecosystem, and season creative for IGNITE 2025&ndash;26.</p>
             <div class="tags">
               <span class="tag">Brand Identity</span>
               <span class="tag">Season Creative</span>
               <span class="tag">Digital Strategy</span>
             </div>
-            <div class="work-card-cta">Read case study <span class="work-card-cta-arrow">&rarr;</span></div>
+            <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
 
@@ -677,7 +682,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="tms-mark.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
