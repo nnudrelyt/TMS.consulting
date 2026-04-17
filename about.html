@@ -56,8 +56,12 @@
       gap: 15px;
       text-decoration: none;
     }
-    .nav-logo-mark { width: 34px; height: 34px; flex-shrink: 0; transition: filter 0.28s ease; }
-    .nav-logo:hover .nav-logo-mark { content: url("tms-mark-rollover.png"); filter: none !important; }
+    .nav-logo-mark-wrap { position: relative; width: 34px; height: 34px; flex-shrink: 0; }
+    .nav-logo-mark, .nav-logo-mark-hover { position: absolute; inset: 0; width: 34px; height: 34px; object-fit: contain; transition: opacity 0.28s ease; }
+    .nav-logo-mark { filter: brightness(0) invert(1); }
+    .nav-logo-mark-hover { opacity: 0; }
+    .nav-logo:hover .nav-logo-mark { opacity: 0; }
+    .nav-logo:hover .nav-logo-mark-hover { opacity: 1; }
     .nav-logo-text {
       font-size: 13px;
       font-weight: 700;
@@ -411,7 +415,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
