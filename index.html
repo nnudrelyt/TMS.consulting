@@ -56,13 +56,12 @@
       gap: 15px;
       text-decoration: none;
     }
-    .nav-logo-mark {
-      width: 34px;
-      height: 34px;
-      flex-shrink: 0;
-      transition: filter 0.28s ease;
-    }
-    .nav-logo:hover .nav-logo-mark { content: url("tms-mark-rollover.png"); filter: none !important; }
+    .nav-logo-mark-wrap { position: relative; display: inline-flex; width: 34px; height: 34px; flex-shrink: 0; }
+    .nav-logo-mark, .nav-logo-mark-hover { position: absolute; inset: 0; width: 34px; height: 34px; object-fit: contain; transition: opacity 0.28s ease; }
+    .nav-logo-mark { filter: brightness(0) invert(1); }
+    .nav-logo-mark-hover { opacity: 0; }
+    .nav-logo:hover .nav-logo-mark { opacity: 0; }
+    .nav-logo:hover .nav-logo-mark-hover { opacity: 1; }
     .nav-logo-text {
       font-size: 13px;
       font-weight: 700;
