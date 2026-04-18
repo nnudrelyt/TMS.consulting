@@ -240,17 +240,9 @@
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .logo-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      opacity: 0.4;
-      transition: opacity 0.2s;
-      flex-shrink: 0;
-    }
+    .logo-item { display: flex; align-items: center; opacity: 0.4; transition: opacity 0.2s; flex-shrink: 0; }
     .logo-item:hover { opacity: 0.7; }
-    .logo-svg { width: 28px; height: 28px; flex-shrink: 0; }
-    .logo-name { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); font-weight: 700; white-space: nowrap; }
+    .logo-img { height: 26px; width: auto; max-width: 140px; object-fit: contain; filter: brightness(0) invert(1); }
 
     /* TESTIMONIALS */
     .testimonial-sec { max-width: 920px; }
@@ -590,23 +582,23 @@
       <div style="overflow:hidden;">
         <div class="logo-marquee-track">
           <!-- Set 1 -->
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="24" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Acme Corp</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="11" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Brightline</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,2 26,24 2,24" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Northfield</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="24" height="24" rx="6" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Meridian</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="16" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Halcyon Group</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5"/><circle cx="14" cy="14" r="3" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Verdant</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="12" width="24" height="4" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="10" y="4" width="8" height="20" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Lumen</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,3 25,9 25,20 14,26 3,20 3,9" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Hexfield</span></div>
+          <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/jmo.svg" alt="JMO"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/lsav.png" alt="LSAV Powerhouse"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/foundry.png" alt="Foundry Art"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion"></div>
           <!-- Set 2 — duplicate for seamless loop -->
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="24" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Acme Corp</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="11" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Brightline</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,2 26,24 2,24" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Northfield</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="24" height="24" rx="6" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Meridian</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="16" y="8" width="10" height="12" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Halcyon Group</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5"/><circle cx="14" cy="14" r="3" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Verdant</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="12" width="24" height="4" rx="2" fill="rgba(255,255,255,0.5)"/><rect x="10" y="4" width="8" height="20" rx="2" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Lumen</span></div>
-          <div class="logo-item"><svg viewBox="0 0 28 28" class="logo-svg" xmlns="http://www.w3.org/2000/svg"><polygon points="14,3 25,9 25,20 14,26 3,20 3,9" fill="rgba(255,255,255,0.5)"/></svg><span class="logo-name">Hexfield</span></div>
+          <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/jmo.svg" alt="JMO"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/lsav.png" alt="LSAV Powerhouse"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/foundry.png" alt="Foundry Art"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion"></div>
         </div>
       </div>
     </div>
