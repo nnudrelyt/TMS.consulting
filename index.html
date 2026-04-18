@@ -89,7 +89,7 @@
     .nav-hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
       cursor: pointer;
       padding: 4px;
       background: none;
@@ -97,15 +97,15 @@
     }
     .nav-hamburger span {
       display: block;
-      width: 24px;
+      width: 19px;
       height: 2px;
       background: var(--cream);
       border-radius: 2px;
       transition: transform 0.3s, opacity 0.3s;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     .nav-mobile {
       display: none;
       position: fixed;
@@ -461,7 +461,7 @@
       border-top: 1px solid var(--border-dk);
       margin-top: 90px;
       padding-top: 20px;
-      font-size: 18px;
+      font-size: 16px;
       color: rgba(255,255,255,0.25);
     }
     @keyframes fadeUp {
@@ -494,6 +494,7 @@
       .site-footer-content { padding: 3rem 2rem 2rem; }
     }
     @media (max-width: 640px) {
+      br.desktop-br { display: none; }
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
       .pillars-grid, .work-grid, .services-grid { grid-template-columns: 1fr; }
@@ -540,7 +541,7 @@
   <div class="hero">
     <div class="sec">
       <div class="eyebrow">Chicago Tech Consultants</div>
-      <h1>Helping you close the gap<br><span style="font-weight:300;">between purpose and performance.</span></h1>
+      <h1>Helping you close the gap<br class="desktop-br"> <span style="font-weight:300;">between purpose and performance.</span></h1>
       <p>Whether the challenge is brand clarity, digital performance, or operational complexity &mdash; we help you diagnose the problem clearly, align your team around what matters, and build the strategy, systems, and execution capacity to get where you&rsquo;re trying to go.</p>
       <a href="contact.html" class="btn">Tell us about your challenge <span class="btn-arrow">&rarr;</span></a>
     </div>
@@ -823,14 +824,14 @@
               <ul>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="#">mainsequence.studio</a></li>
+                <li><a href="https://mainsequence.studio">mainsequence.studio</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
           <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
-          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+          <span><a href="https://mainsequence.consulting" style="color:inherit;text-decoration:none;">mainsequence.consulting</a> &middot; <a href="https://mainsequence.studio" style="color:inherit;text-decoration:none;">mainsequence.studio</a></span>
         </div>
       </div>
     </div>
