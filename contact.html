@@ -90,18 +90,19 @@
     /* EYEBROW */
     .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin-bottom: 14px; font-weight: 700; }
 
-    /* PAGE HERO */
-    .page-hero { padding: 5rem 3rem 4rem; }
-    .page-hero h1 {
+    /* HERO */
+    .hero { background: transparent; }
+    .hero .sec { padding-bottom: 4rem; }
+    .hero h1 {
       font-family: 'calvino', Georgia, serif;
       font-size: clamp(44px, 4.4vw, 70px);
       font-weight: 700;
       line-height: 1.07;
       color: var(--cream);
       max-width: none;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
-    .page-hero p {
+    .hero p {
       font-size: 22px;
       line-height: 1.7;
       color: var(--cream-dim);
@@ -341,11 +342,13 @@
     </button>
   </nav>
 
-  <!-- PAGE HERO -->
-  <div class="page-hero">
-    <div class="eyebrow">Start a Conversation</div>
-    <h1>Tell us about <span style="font-weight:300;">your challenge.</span></h1>
-    <p>We respond to every inquiry within one business day. No sales process, no pitch deck &mdash; just an honest conversation about whether we&rsquo;re the right fit.</p>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="sec">
+      <div class="eyebrow">Start a Conversation</div>
+      <h1>Tell us about <span style="font-weight:300;">your challenge.</span></h1>
+      <p>We respond to every inquiry within one business day. No sales process, no pitch deck &mdash; just an honest conversation about whether we&rsquo;re the right fit.</p>
+    </div>
   </div>
 
   <!-- CONTACT LAYOUT -->
