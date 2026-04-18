@@ -63,11 +63,11 @@
     .btn-nav:hover { background: #C8D47A !important; color: #000 !important; }
 
     /* MOBILE MENU */
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 19px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     .nav-mobile { display: none; position: fixed; inset: 0; background: rgba(18,16,14,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
     .nav-mobile.open { display: flex; }
     .nav-mobile a { font-size: 32px; font-weight: 700; color: var(--cream); text-decoration: none; }
@@ -142,7 +142,7 @@
     .work-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 10px; font-weight: 700; }
     .work-card h3 { font-family: 'calvino', Georgia, serif; font-size: 26px; font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
     .work-card-desc { font-size: 19px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 16px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
     .tag { font-size: 14px; padding: 3px 9px; border: 1px solid rgba(200,212,122,0.28); color: #fff; border-radius: var(--radius); transition: border-color 0.2s ease; }
     .tag:hover { border-color: rgba(200,212,122,0.55); }
     .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 400; letter-spacing: 0; color: var(--blue); margin-top: 1.4rem; }
@@ -341,7 +341,7 @@
       color: var(--cream-dim);
       line-height: 1.65;
     }
-    .detail-meta-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .detail-meta-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 
     /* PREV / NEXT — lives in sidebar */
     .detail-nav {
@@ -411,7 +411,7 @@
     .cta-band h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 58px); font-weight: 700; color: #1A1710; margin-bottom: 12px; line-height: 1.1; }
     .cta-band p { font-size: 22px; color: rgba(26,23,16,0.7); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
     .cta-band .eyebrow { color: rgba(26,23,16,0.5); }
-    .btn { display: inline-flex; align-items: center; gap: 5px; padding: 13px 29px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; background: #C8D47A; color: #1A1710; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); overflow: hidden; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), filter 0.28s ease; }
+    .btn { display: inline-flex; align-items: center; gap: 4px; padding: 13px 29px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; background: #C8D47A; color: #1A1710; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); overflow: hidden; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), filter 0.28s ease; }
     .btn .btn-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
     .btn:hover .btn-arrow { transform: translateX(1px); }
     .btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); }
