@@ -231,18 +231,18 @@
     .logo-strip-sec { padding-top: 2.5rem; padding-bottom: 2.5rem; overflow: hidden; }
     .logo-marquee-track {
       display: flex;
-      gap: 5rem;
+      gap: 6.5rem;
       width: max-content;
-      animation: marquee 28s linear infinite;
+      animation: marquee 40s linear infinite;
     }
     .logo-marquee-track:hover { animation-play-state: paused; }
     @keyframes marquee {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .logo-item { display: flex; align-items: center; opacity: 0.4; transition: opacity 0.2s; flex-shrink: 0; }
+    .logo-item { display: flex; align-items: center; flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s; }
     .logo-item:hover { opacity: 0.7; }
-    .logo-img { height: 26px; width: auto; max-width: 140px; object-fit: contain; filter: brightness(0) invert(1); }
+    .logo-img { height: 30px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
 
     /* TESTIMONIALS */
     .testimonial-sec { max-width: 920px; }
@@ -582,23 +582,23 @@
       <div style="overflow:hidden;">
         <div class="logo-marquee-track">
           <!-- Set 1 -->
-          <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines" style="height:24px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction" style="height:42px; margin-bottom: 10px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer" style="height:24px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta" style="height:42px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/jmo.svg" alt="JMO"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/lsav.png" alt="LSAV Powerhouse"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/foundry.png" alt="Foundry Art"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/lsav.png" alt="LSAV Powerhouse" style="height:27px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/foundry.png" alt="Foundry Art" style="height:23px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion" style="height:28px;"></div>
           <!-- Set 2 — duplicate for seamless loop -->
-          <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines" style="height:24px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction" style="height:42px; margin-bottom: 10px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer" style="height:24px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta" style="height:42px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/jmo.svg" alt="JMO"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/lsav.png" alt="LSAV Powerhouse"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/foundry.png" alt="Foundry Art"></div>
-          <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/lsav.png" alt="LSAV Powerhouse" style="height:27px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/foundry.png" alt="Foundry Art" style="height:23px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion" style="height:28px;"></div>
         </div>
       </div>
     </div>
@@ -699,7 +699,9 @@
           </div>
         </div>
         <div class="work-card" data-id="1" onclick="openDetail(1)">
-          <div class="work-card-img-wrap"></div>
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="PeakC.jpg" alt="Peak Construction Corporation">
+          </div>
           <div class="work-card-body">
             <div class="work-cat">Peak Construction Corporation</div>
             <h3>Building a digital foundation that drives measurable growth</h3>
@@ -714,7 +716,9 @@
           </div>
         </div>
         <div class="work-card" data-id="2" onclick="openDetail(2)">
-          <div class="work-card-img-wrap"></div>
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="Titanium.jpg" alt="TitanPricer">
+          </div>
           <div class="work-card-body">
             <div class="work-cat">TitanPricer</div>
             <h3>Building a brand that performs as well as the product</h3>
