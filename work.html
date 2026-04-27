@@ -1246,6 +1246,18 @@
       document.getElementById('hamburger').classList.remove('open');
     }
   
+    // Deep link to a specific case study via #case-N
+    (function openFromHash() {
+      const m = location.hash.match(/^#case-(\d+)$/);
+      if (!m) return;
+      const id = parseInt(m[1], 10);
+      if (isNaN(id) || id < 0 || id >= cases.length) return;
+      populateDetail(id);
+      listView.style.display = 'none';
+      detailView.style.display = 'block';
+      detailView.classList.add('view-in');
+    })();
+
     // Page fade — reveal on load
     const veil = document.getElementById('page-veil');
     requestAnimationFrame(() => requestAnimationFrame(() => { veil.style.opacity = '0'; }));
