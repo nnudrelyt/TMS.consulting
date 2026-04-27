@@ -195,7 +195,7 @@
     .pillar:hover { transform: translateY(-5px) scale(1.025); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15); }
     .pillar-header { margin-bottom: 10px; }
     .pillar h3 { font-size: 24px; font-weight: 700; color: var(--cream); margin-bottom: 0; }
-    .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .pillar p { font-size: 18px; line-height: 1.65; color: var(--cream-dim); flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-decoration: none; }
     .pillar-cta { display: inline-flex; align-items: center; gap: 3px; margin-top: 1.5rem; font-size: 17px; color: var(--blue); text-decoration: none; overflow: hidden; }
     .pillar-cta-text { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
     .pillar-cta-arrow { display: inline-block; line-height: 1; vertical-align: middle; position: relative; top: 2px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
@@ -245,7 +245,7 @@
     .logo-img { height: 30px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
 
     /* TESTIMONIALS */
-    .testimonial-sec { max-width: 920px; }
+    .testimonial-sec { max-width: 1280px; }
     .testimonial-stage { }
     .testimonial-slides { position: relative; min-height: 240px; }
     .testimonial-slide {
@@ -263,6 +263,10 @@
       margin-bottom: 2.5rem;
       quotes: none;
     }
+    .testimonial-attr { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .testimonial-name { font-size: 16px; font-weight: 500; color: var(--cream); }
+    .testimonial-role { font-size: 16px; color: var(--cream-dim); }
+    .testimonial-sep { color: var(--cream-dim); font-size: 16px; }
     .testimonial-controls {
       display: flex;
       align-items: center;
@@ -484,8 +488,8 @@
     }
     @media (max-width: 900px) {
       .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-      .value-row { grid-template-columns: 48px 1fr; }
-      .value-body { grid-column: 2; }
+      .value-row { grid-template-columns: 64px 1fr; row-gap: 0.75rem; }
+      .value-body { grid-column: 1 / -1; }
       .services-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { flex-direction: column; gap: 32px; }
@@ -498,15 +502,30 @@
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
       .pillars-grid, .work-grid, .services-grid { grid-template-columns: 1fr; }
-      .value-row { grid-template-columns: 1fr; gap: 0.75rem; }
+      .pillar p { display: block; -webkit-line-clamp: unset; overflow: visible; }
+      .testimonial-attr { gap: 0.4rem; }
+      .value-row { grid-template-columns: 1fr; gap: 0.5rem; }
       .value-body { grid-column: 1; }
       .cta-band { padding: 2.5rem 1.25rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     }
+
+    /* PAGE FADE VEIL */
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      background: #141210;
+      z-index: 500;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
   </style>
 </head>
 <body>
+  <div id="page-veil"></div>
+
 
   <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
   <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
@@ -521,7 +540,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
+      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="tms-logo.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -541,8 +560,8 @@
   <div class="hero">
     <div class="sec">
       <div class="eyebrow">Chicago Tech Consultants</div>
-      <h1>Helping you close the gap<br class="desktop-br"> <span style="font-weight:300;">between purpose and performance.</span></h1>
-      <p>Whether the challenge is brand clarity, digital performance, or operational complexity &mdash; we help you diagnose the problem clearly, align your team around what matters, and build the strategy, systems, and execution capacity to get where you&rsquo;re trying to go.</p>
+      <h1>Helping you close the gap<br class="desktop-br"> <span>between purpose and performance.</span></h1>
+      <p>Whether the challenge is brand clarity, digital performance, or operational complexity, we help you diagnose the real problem, align your team around what matters, and build the strategy, systems, and execution needed to move you forward with confidence.</p>
       <a href="contact.html" class="btn">Tell us about your challenge <span class="btn-arrow">&rarr;</span></a>
     </div>
   </div>
@@ -554,12 +573,12 @@
       <div class="pillars-grid">
         <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Brand &amp; Digital Strategy</h3></div>
-          <p>Clarity on who you are, who you&rsquo;re for, and how to communicate that &mdash; from brand positioning to digital channel planning.</p>
+          <p>Define who you are, who you&rsquo;re for, and how to communicate it clearly &mdash; from positioning to channel strategy.</p>
           <span class="pillar-cta"><span class="pillar-cta-text">Build brands</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
         </a>
         <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Paid Media &amp; Analytics</h3></div>
-          <p>Paid programs built to be measured and improved, with the analytics infrastructure to make accountability possible.</p>
+          <p>Paid programs built to perform &mdash; with the analytics infrastructure to measure, optimize, and scale what works.</p>
           <span class="pillar-cta"><span class="pillar-cta-text">Drive performance</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
         </a>
         <a href="services.html" class="pillar">
@@ -569,7 +588,7 @@
         </a>
         <a href="services.html" class="pillar">
           <div class="pillar-header"><h3>Workflow Automation</h3></div>
-          <p>Lightweight software, automations, and workflow systems that eliminate manual work and give your team their time back.</p>
+          <p>Automation and workflow systems that eliminate manual work, reduce friction, and give your team time back.</p>
           <span class="pillar-cta"><span class="pillar-cta-text">Reduce friction</span><span class="pillar-cta-arrow">&nbsp;&rarr;</span></span>
         </a>
       </div>
@@ -584,6 +603,8 @@
         <div class="logo-marquee-track">
           <!-- Set 1 -->
           <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines" style="height:24px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/uscellular.svg" alt="UScellular" style="height:22px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/weathertech.png" alt="WeatherTech" style="height:24px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction" style="height:42px; margin-bottom: 10px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer" style="height:24px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta" style="height:42px;"></div>
@@ -593,6 +614,8 @@
           <div class="logo-item"><img class="logo-img" src="logos/scion.svg" alt="Scion" style="height:28px;"></div>
           <!-- Set 2 — duplicate for seamless loop -->
           <div class="logo-item"><img class="logo-img" src="logos/united.png" alt="United Airlines" style="height:24px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/uscellular.svg" alt="UScellular" style="height:22px;"></div>
+          <div class="logo-item"><img class="logo-img" src="logos/weathertech.png" alt="WeatherTech" style="height:24px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/peak.svg" alt="Peak Construction" style="height:42px; margin-bottom: 10px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/titanium.svg" alt="Titanium by TitanPricer" style="height:24px;"></div>
           <div class="logo-item"><img class="logo-img" src="logos/sinfonietta.png" alt="Chicago Sinfonietta" style="height:42px;"></div>
@@ -611,28 +634,28 @@
       <div class="sec-h">
         <div class="eyebrow">How We Work</div>
         <h2>What you can count on.</h2>
-        <p>Every engagement is shaped by four principles that govern how we show up and what we deliver.</p>
+        <p>How we work matters just as much as what we deliver. These principles shape every engagement, from how we think to how we execute.</p>
       </div>
       <div class="values-list">
         <div class="value-row">
           <div class="value-num">01</div>
           <div class="value-title">Purpose</div>
-          <div class="value-body">Every engagement starts with your goals, not ours. We ground the work in a clear understanding of your mission, your audience, and what success actually looks like for your organization &mdash; before we recommend anything.</div>
+          <div class="value-body">We start with your goals, not assumptions. Before recommending anything, we work to understand your business, your audience, and what success actually looks like &mdash; so we can focus on the problem that truly matters.</div>
         </div>
         <div class="value-row">
           <div class="value-num">02</div>
           <div class="value-title">Partnership</div>
-          <div class="value-body">We work alongside your team, not above it. You get shared ownership and honest collaboration throughout &mdash; not a deliverable dropped on your desk at the end of an engagement you weren&rsquo;t part of.</div>
+          <div class="value-body">We work alongside your team, not above it. You get shared ownership, open communication, and real collaboration throughout the process &mdash; not a handoff at the end.</div>
         </div>
         <div class="value-row">
           <div class="value-num">03</div>
           <div class="value-title">Performance</div>
-          <div class="value-body">We measure what matters. Strategy that can&rsquo;t be evaluated isn&rsquo;t strategy &mdash; it&rsquo;s conjecture. Everything we build is designed to perform and be held accountable to real outcomes.</div>
+          <div class="value-body">Everything we do is built to drive results. If it can&rsquo;t be measured, improved, or tied to impact, it doesn&rsquo;t belong. We focus on work that performs and holds up over time.</div>
         </div>
         <div class="value-row">
           <div class="value-num">04</div>
           <div class="value-title">Perspective</div>
-          <div class="value-body">Years of cross-sector experience means we see patterns your team might miss. We bring an outside view &mdash; and we&rsquo;re not afraid to say what we see, even when it&rsquo;s not what you expected to hear.</div>
+          <div class="value-body">We bring experience from across industries, which helps us see patterns and opportunities others might miss. We&rsquo;re honest about what we see and clear about what it means for you.</div>
         </div>
       </div>
     </div>
@@ -646,16 +669,16 @@
 
         <div class="testimonial-slides">
           <div class="testimonial-slide active">
-            <blockquote class="testimonial-quote">&ldquo;They diagnosed in two weeks what we&rsquo;d been unable to articulate for two years. The strategic clarity alone was worth the engagement &mdash; the execution that followed was exceptional.&rdquo;</blockquote>
-            <div class="testimonial-attr"><span class="testimonial-name">Placeholder Name</span><span class="testimonial-role">VP of Marketing, Enterprise Client</span></div>
+            <blockquote class="testimonial-quote">&ldquo;After nearly eighteen years leading a large school of engineering, I found myself with the amazing opportunity &mdash; and the freedom &mdash; to finally deploy ideas accumulated over decades. The Main Sequence was instrumental in making that transition seamless, building the platform and presence that now captures my full range of activities as a writer, speaker, and public intellectual. I cannot think of better partners.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Julio Mario Ottino</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Dean Emeritus, McCormick School of Engineering, Northwestern University</span></div>
           </div>
           <div class="testimonial-slide">
-            <blockquote class="testimonial-quote">&ldquo;Working with The Main Sequence felt genuinely different. No fluff, no over-engineered deck. Just clear thinking and people who were as invested in the outcome as we were.&rdquo;</blockquote>
-            <div class="testimonial-attr"><span class="testimonial-name">Placeholder Name</span><span class="testimonial-role">Executive Director, Nonprofit</span></div>
+            <blockquote class="testimonial-quote">&ldquo;The Main Sequence has been essential to expanding our social media presence, capitalizing on analytics and positioning us for continued growth.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Jessica Bruno</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Marketing Manager, Peak Construction</span></div>
           </div>
           <div class="testimonial-slide">
-            <blockquote class="testimonial-quote">&ldquo;Our annual conference ran flawlessly for the first time in years. They handled complexity we couldn&rsquo;t see coming and kept the whole team aligned through every moving part.&rdquo;</blockquote>
-            <div class="testimonial-attr"><span class="testimonial-name">Placeholder Name</span><span class="testimonial-role">Director of Events, National Association</span></div>
+            <blockquote class="testimonial-quote">&ldquo;They built me a complete marketing solution. The new site is sharp, professional, and finally tells our story. We&rsquo;ve already booked multiple subscriptions directly through the site, and my company has grown substantially. They&rsquo;re consistent, reliable, professional, and an absolute pleasure to work with.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Andy Wyatt</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Founder, TitanPricer</span></div>
           </div>
         </div>
         <div class="testimonial-controls">
@@ -705,7 +728,7 @@
           </div>
           <div class="work-card-body">
             <div class="work-cat">Peak Construction Corporation</div>
-            <h3>Building a digital foundation that drives measurable growth</h3>
+            <h3>47% conversion growth and 2K+ monthly views for a regional construction leader</h3>
             <p>A full-stack digital strategy engagement for a regional construction firm — social, content, SEO, and video aligned around one principle: every piece of content should have a measurable outcome.</p>
             <div class="tags">
               <span class="tag">Social Strategy</span>
@@ -722,7 +745,7 @@
           </div>
           <div class="work-card-body">
             <div class="work-cat">TitanPricer</div>
-            <h3>Building a brand that performs as well as the product</h3>
+            <h3>73 organic leads and 1,529 new prospects for a leading trades software brand</h3>
             <p>A full-funnel brand build for a trades software company &mdash; from identity and website through lead-nurture email &mdash; designed as a single, connected system.</p>
             <div class="tags">
               <span class="tag">Brand Identity</span>
@@ -792,7 +815,7 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="tms-logo.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
@@ -856,7 +879,7 @@
       React.createElement(GrainGradient, {
         ...grainGradientPresets[0],
         colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
-        scale: 2.4,
+        scale: 2.4 + (Math.random() * 0.5 - 0.25),
         style: { width: '100%', height: '100%' }
       })
     );
@@ -870,9 +893,9 @@
 
     // Testimonials
     const tData = [
-      { name: 'Placeholder Name', role: 'VP of Marketing, Enterprise Client' },
-      { name: 'Placeholder Name', role: 'Executive Director, Nonprofit' },
-      { name: 'Placeholder Name', role: 'Director of Events, National Association' },
+      { name: 'Julio Mario Ottino', role: 'Dean Emeritus, McCormick School of Engineering, Northwestern University' },
+      { name: 'Jessica Bruno', role: 'Marketing Manager, Peak Construction' },
+      { name: 'Andy Wyatt', role: 'Founder, TitanPricer' },
     ];
     let tCurrent = 0;
     let tTimer = null;
@@ -921,10 +944,10 @@
         id: 0, cat: 'Enterprise Events',
         title: '46% registration growth and $200K+ in revenue for United\u2019s premier technology conference',
         sector: 'Aviation / Enterprise', type: 'United Airlines',
-        outcomes: '46%+ registration growth<br>$200K ticket revenue<br>78% rated excellent or good',
+        outcomes: '46% registration growth<br>$200K+ ticket revenue<br>78% rated excellent or good',
         tags: ['Event Communications', 'Registration Systems', 'Content Strategy', 'Vendor Coordination', 'Stakeholder Reporting'],
         body: `<p>United Airlines needed more than an event production partner for their annual Digital Technology Supplier Conference. They needed someone who could manage a complex, multi-stakeholder communications operation from strategy through execution &mdash; and deliver results against hard numbers. That&rsquo;s what we did.</p>
-               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">46%+</div><div class="cs-stat-label">Registration growth</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">$200K</div><div class="cs-stat-label">Ticket revenue</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">78%</div><div class="cs-stat-label">Rated excellent or good</div></div></div>
+               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">46%</div><div class="cs-stat-label">Registration growth</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">$200K+</div><div class="cs-stat-label">Ticket revenue</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">78%</div><div class="cs-stat-label">Rated excellent or good</div></div></div>
                <h2 class="detail-h2">Where things stood</h2>
                <p>The Digital Technology Supplier Conference is United&rsquo;s primary forum for engaging technology vendors and strategic partners &mdash; a high-stakes event with real business consequences if execution falters. The 2026 edition required a multi-tier registration system, strategic messaging across a six-month campaign window, coordination across United&rsquo;s internal teams, LSAV event production, and multiple third-party vendors, and customer service for complex international registration scenarios.</p>
                <p>The infrastructure for all of this needed to be built, not inherited. And it needed to run without becoming a management burden for the client.</p>
@@ -933,13 +956,13 @@
                <p>The line that moved registrations: &ldquo;While your competitors wait for public announcements and industry reports, you&rsquo;ll understand United&rsquo;s direction from the source.&rdquo; That reframe &mdash; from networking to competitive intelligence &mdash; changed the urgency calculus for prospective attendees.</p>
                <p>On the operational side, we built the infrastructure from scratch: a secure multi-layered registration system within Tripleseat (without SSO capabilities), a conference app deployed via EventMobi, group registration functionality supporting up to 10 tickets per transaction, and comprehensive workflow frameworks governing attendee data, status tracking, substitutions, and international outreach. Weekly milestone reporting kept United informed without pulling them into day-to-day execution.</p>
                <h2 class="detail-h2">Results</h2>
-               <ul class="cs-results-primary"><li><span class="cs-li-num">46%+</span><span class="cs-li-label">Registration growth</span></li><li><span class="cs-li-num">$200K</span><span class="cs-li-label">Ticket revenue</span></li><li><span class="cs-li-num">78%</span><span class="cs-li-label">Rated excellent or good</span></li></ul>
+               <ul class="cs-results-primary"><li><span class="cs-li-num">46%</span><span class="cs-li-label">Registration growth</span></li><li><span class="cs-li-num">$200K+</span><span class="cs-li-label">Ticket revenue</span></li><li><span class="cs-li-num">78%</span><span class="cs-li-label">Rated excellent or good</span></li></ul>
                <ul class="cs-results-secondary"><li>Zero major technical issues during registration or day-of execution</li><li>Measurable registration upticks tracked within 48 hours of each email deployment, used to refine timing and messaging throughout the campaign</li><li>Complex international registration scenarios resolved without escalation</li><li>Group registration functionality implemented mid-stream without compromising timeline or quality</li></ul>
-               <div style="margin-top:2.5rem;padding:2rem 2.25rem;background:rgba(255,255,255,0.04);border-left:3px solid rgba(123,173,184,0.4);border-radius:0 8px 8px 0;"><p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.65);font-style:italic;">The most underrated skill in event communications is knowing when to stop describing what an event is and start describing what attending means. For a technology conference, that meant reframing attendance from a calendar commitment into a competitive advantage. When the value proposition is that clear, the logistics almost sell themselves.</p></div>`
+               <p style="margin-top:2.5rem;">The most underrated skill in event communications is knowing when to stop describing what an event is and start describing what attending means. For a technology conference, that meant reframing attendance from a calendar commitment into a competitive advantage. When the value proposition is that clear, the logistics almost sell themselves.</p>`
       },
       {
         id: 1, cat: 'Brand & Digital Strategy',
-        title: 'Building a digital foundation that drives measurable growth',
+        title: '47% conversion growth and 2K+ monthly views for a regional construction leader',
         sector: 'Construction / AEC', type: 'Peak Construction Corporation',
         outcomes: '10%+ increase in click-through<br>47% increase in conversion<br>50% video engagement on top posts<br>2K+ monthly views on Instagram Stories',
         tags: ['Social Strategy', 'Content Strategy', 'SEO / GEO', 'Video &amp; Creative', 'Analytics &amp; Reporting'],
@@ -958,12 +981,12 @@
       },
       {
         id: 2, cat: 'Brand & Digital Strategy',
-        title: 'Building a brand that performs as well as the product',
+        title: '73 organic leads and 1,529 new prospects for a leading trades software brand',
         sector: 'B2B Software / Trades', type: 'TitanPricer',
-        outcomes: 'Full-funnel brand build from identity through lead nurture<br>Trades-native identity resonating with field professionals<br>Organic search impressions climbing post-launch<br>Structured lead journey from first touch to long-term connection',
+        outcomes: 'Full-funnel brand build from identity through lead nurture<br>1,529 new potential customers driven to the website through enhanced SEO<br>73 organic leads converted from new SEO traffic<br>Trades-native identity resonating with field professionals',
         tags: ['Brand Identity', 'Web Design &amp; SEO', 'Email Nurture', 'Messaging Architecture', 'Brand Guidelines'],
         body: `<p>TitanPricer had built something genuinely useful — pricing software purpose-built for the trades. What they needed was a brand and digital presence that communicated that value clearly, consistently, and to the right people.</p>
-               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(20px,2.2vw,28px);">Brand &rarr; Web &rarr; Email</div><div class="cs-stat-label">Full-funnel engagement from identity through lead nurture</div></div><div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(20px,2.2vw,28px);">Trades-first</div><div class="cs-stat-label">Identity and messaging built specifically for the field services market</div></div><div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(20px,2.2vw,28px);">One journey</div><div class="cs-stat-label">First impression to long-term connection, designed as a single system</div></div></div>
+               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">1,529</div><div class="cs-stat-label">New potential customers driven to the website via enhanced SEO</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">73 leads</div><div class="cs-stat-label">Organic leads converted from new SEO traffic</div></div><div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(20px,2.2vw,28px);">Brand &rarr; Web &rarr; Email</div><div class="cs-stat-label">Full-funnel engagement from identity through lead nurture</div></div></div>
                <h2 class="detail-h2">Where things stood</h2>
                <p>TitanPricer's product — Titanium, their flagship pricing platform — was already delivering results for trades businesses. But their brand hadn't kept pace. The identity lacked the visual credibility to match the sophistication of the software. The website was functional but not built for discoverability or conversion. And there was no structured path from initial awareness to sustained engagement.</p>
                <p>The raw material was strong. The gap was in how it was packaged and presented.</p>
@@ -972,9 +995,9 @@
                <p>The brand identity work established a visual system built for the trades: tech-forward and modern, but grounded in the real-world context of the people using the product. Logo, palette, typography, and brand guidelines were designed to scale from web to print to event materials without losing coherence.</p>
                <p>The website redesign rebuilt their digital presence around performance and discovery — improved UX, SEO structure, and storytelling calibrated to speak directly to field professionals. And the lead-nurture email stream created a structured path from first contact to ongoing engagement, connecting new subscribers with value-driven content that built authority over time.</p>
                <h2 class="detail-h2">Results</h2>
-               <ul class="cs-results-primary"><li><span class="cs-li-num" style="font-size:clamp(18px,2vw,26px);min-width:9rem;">Full system</span><span class="cs-li-label">Brand identity, website, and email nurture built as an integrated whole</span></li><li><span class="cs-li-num" style="font-size:clamp(18px,2vw,26px);min-width:9rem;">Trades-native</span><span class="cs-li-label">Identity and messaging resonating with field professionals, not just tech buyers</span></li><li><span class="cs-li-num" style="font-size:clamp(18px,2vw,26px);min-width:9rem;">Search</span><span class="cs-li-label">Organic impressions up and climbing post-launch</span></li><li><span class="cs-li-num" style="font-size:clamp(18px,2vw,26px);min-width:9rem;">Nurture</span><span class="cs-li-label">Structured lead journey from first touch to long-term connection</span></li></ul>
+               <ul class="cs-results-primary"><li><span class="cs-li-num">1,529</span><span class="cs-li-label">New potential customers driven to the website through enhanced SEO</span></li><li><span class="cs-li-num">73 leads</span><span class="cs-li-label">Organic leads converted from new SEO traffic</span></li><li><span class="cs-li-num" style="font-size:clamp(18px,2vw,26px);min-width:9rem;">Full system</span><span class="cs-li-label">Brand identity, website, and email nurture built as an integrated whole</span></li><li><span class="cs-li-num" style="font-size:clamp(18px,2vw,26px);min-width:9rem;">Trades-native</span><span class="cs-li-label">Identity and messaging resonating with field professionals, not just tech buyers</span></li></ul>
                <ul class="cs-results-secondary"><li>Brand guidelines scaling from digital and web to merch and event materials</li><li>Website rebuilt for UX performance, faster load times, and improved navigation</li><li>Social presence built to grow authority and awareness in the trades market</li></ul>
-               <div style="margin-top:2.5rem;padding:2rem 2.25rem;background:rgba(255,255,255,0.04);border-left:3px solid rgba(123,173,184,0.4);border-radius:0 8px 8px 0;"><p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.65);font-style:italic;">For B2B software companies selling into specialized industries, the brand work isn&rsquo;t decoration &mdash; it&rsquo;s table stakes. Buyers in the trades evaluate credibility quickly and on instinct. When the identity, the website, and the follow-up all feel like they were built for them specifically, the trust gap closes faster than any feature comparison can.</p></div>`
+               <p style="margin-top:2.5rem;">For B2B software companies selling into specialized industries, the brand work isn&rsquo;t decoration &mdash; it&rsquo;s table stakes. Buyers in the trades evaluate credibility quickly and on instinct. When the identity, the website, and the follow-up all feel like they were built for them specifically, the trust gap closes faster than any feature comparison can.</p>`
       },
       {
         id: 3, cat: 'Arts & Culture · Brand & Digital Strategy',
@@ -995,6 +1018,44 @@
                <ul class="cs-results-primary"><li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:8rem;">Cohesive</span><span class="cs-li-label">Unified brand expression across digital, print, and performance channels</span></li><li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:8rem;">Dynamic</span><span class="cs-li-label">Visual system built to flex across season themes without losing identity</span></li><li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:8rem;">Inclusive</span><span class="cs-li-label">Messaging designed to welcome new audiences while honoring existing ones</span></li><li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:8rem;">Live</span><span class="cs-li-label">IGNITE 2025&ndash;26 season fully realized across creative, digital, and event touchpoints</span></li></ul>
                <ul class="cs-results-secondary"><li>Bold visual identity: logo, palette, and typography designed for cultural depth and digital performance</li><li>Digital ecosystem engaging audiences, supporters, and artists</li><li>Season creative direction for IGNITE translating live performance energy across all channels</li></ul>
                <div style="margin-top:2.5rem;padding:2rem 2.25rem;background:rgba(255,255,255,0.04);border-left:3px solid rgba(139,58,110,0.5);border-radius:0 8px 8px 0;"><p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.65);font-style:italic;">Arts organizations often undersell themselves &mdash; defaulting to safe, institutional language when their actual work is anything but. The brands that break through are the ones willing to let their communications match the conviction of what happens on stage. For Chicago Sinfonietta, that meant leaning all the way into &ldquo;Daringly Different&rdquo; &mdash; not as a descriptor, but as a design principle.</p></div>`
+      },
+      {
+        id: 4, cat: 'Brand & Digital Strategy',
+        title: '121% growth in views and 373% in active users for a global thought leader',
+        sector: 'Thought Leadership', type: 'Julio Mario Ottino',
+        outcomes: '121% YoY increase in site views (1,282 &rarr; 2,836)<br>373% YoY increase in active users (458 &rarr; 2,166)<br>84% YoY increase in average time on site (10s &rarr; 1m 02s)<br>7,231% YoY increase in LinkedIn engagement (32 &rarr; 2,346)',
+        tags: ['Brand Narrative', 'Web Design', 'Information Architecture', 'SEO', 'Content Strategy'],
+        body: `<p>Every brand tells a story &mdash; some tell many at once. For Julio Mario Ottino &mdash; author, educator, and thought leader &mdash; the goal was a digital home where art, science, and innovation converge.</p>
+               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">+121%</div><div class="cs-stat-label">YoY increase in site views</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">+373%</div><div class="cs-stat-label">YoY increase in active users</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">+7,231%</div><div class="cs-stat-label">YoY increase in LinkedIn engagement</div></div></div>
+               <h2 class="detail-h2">Where things stood</h2>
+               <p>Julio Mario Ottino had built a substantial body of work as an author, educator, and public intellectual &mdash; known for connecting art, science, and innovation in ways most thinkers don't attempt. <em>The Nexus</em>, his framework for whole-brain thinking, was reaching audiences through books, talks, and essays.</p>
+               <p>His digital presence had grown organically alongside the work. With his audience expanding across academia, media, and industry, there was an opportunity to bring the site forward with the same intentionality &mdash; making it easier for readers to find an entry point, scholars to find depth, and media to find what they need on demand.</p>
+               <h2 class="detail-h2">Our approach</h2>
+               <p>We treated this as a digital home for an evolving body of work &mdash; a structured surface designed to grow with him.</p>
+               <p>The visual design language drew directly from <em>The Nexus</em>: elegant structure paired with creative energy, built to feel like the thinking it represents. Information architecture was reorganized around three core audiences &mdash; readers looking for accessible entry points, scholars seeking citation-quality depth, and media teams in need of bios, talks, and visuals on demand.</p>
+               <p>SEO and content infrastructure were built to extend reach without compromising voice. Video and media integration were redesigned to highlight talks and conversations as primary surfaces, not afterthoughts.</p>
+               <h2 class="detail-h2">Results</h2>
+               <ul class="cs-results-primary"><li><span class="cs-li-num">+121%</span><span class="cs-li-label">YoY increase in site views (1,282 &rarr; 2,836)</span></li><li><span class="cs-li-num">+373%</span><span class="cs-li-label">YoY increase in active users (458 &rarr; 2,166)</span></li><li><span class="cs-li-num">+84%</span><span class="cs-li-label">YoY increase in average time on site (10s &rarr; 1m 02s)</span></li><li><span class="cs-li-num">+7,231%</span><span class="cs-li-label">YoY increase in LinkedIn engagement (32 &rarr; 2,346)</span></li></ul>
+               <ul class="cs-results-secondary"><li>Information architecture organized around reader, scholar, and media audiences</li><li>Visual identity inspired by <em>The Nexus</em> and built to scale with future content</li><li>Video and media layouts that elevate talks and essays as primary surfaces</li><li>SEO infrastructure that compounds reach over time without diluting voice</li></ul>
+               <p style="margin-top:2.5rem;">For thought leaders, the digital presence isn't a brochure &mdash; it's the surface where ideas meet new audiences for the first time. When the structure rewards exploration and the design respects the work, the audience does the rest.</p>`
+      },
+      {
+        id: 5, cat: 'Performance Marketing',
+        title: '+17% lead growth and 10% lower cost per lead for a national wireless carrier',
+        sector: 'Telecommunications', type: 'UScellular',
+        outcomes: '17% YoY increase in lead volume<br>12% YoY increase in marketing qualified leads<br>10% reduction in cost per lead<br>Full-funnel strategy unifying search, social, display, and ABM',
+        tags: ['Performance Marketing', 'Paid Search', 'Paid Social', 'Display', 'ABM'],
+        body: `<p>UScellular needed to improve lead generation performance while increasing efficiency across channels. Growth was a priority, but not at the expense of rising acquisition costs. The goal was to build a more balanced, full-funnel strategy that could drive higher-quality leads at a lower cost. That's what we did.</p>
+               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">+17%</div><div class="cs-stat-label">YoY lead growth</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">+12%</div><div class="cs-stat-label">Marketing qualified lead growth</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">&minus;10%</div><div class="cs-stat-label">Cost per lead</div></div></div>
+               <h2 class="detail-h2">Where things stood</h2>
+               <p>Lead generation efforts were active and contributing across channels &mdash; with an opportunity to better align targeting, messaging, and budget allocation to improve both volume and efficiency. Without a unified approach, performance gains in one area often came at the expense of another. The opportunity was to drive more leads while improving overall cost efficiency.</p>
+               <h2 class="detail-h2">Our approach</h2>
+               <p>We developed a full-funnel strategy that connected search, social, display, and account-based marketing into a coordinated system.</p>
+               <p>Each channel was aligned around its role in the funnel &mdash; from awareness through conversion. Messaging and targeting were refined to better match user intent at each stage, improving both engagement and lead quality.</p>
+               <p>We continuously monitored performance and reallocated budget based on what was driving the strongest results &mdash; scaling high-performing segments while reducing spend on lower-performing areas. The focus wasn't just on increasing lead volume, but on improving the efficiency and quality of those leads over time.</p>
+               <h2 class="detail-h2">Results</h2>
+               <ul class="cs-results-primary"><li><span class="cs-li-num">+17%</span><span class="cs-li-label">Increase in overall lead volume</span></li><li><span class="cs-li-num">+12%</span><span class="cs-li-label">Increase in marketing qualified leads</span></li><li><span class="cs-li-num">&minus;10%</span><span class="cs-li-label">Reduction in cost per lead</span></li></ul>
+               <ul class="cs-results-secondary"><li>More balanced performance across channels, improving both volume and efficiency</li><li>Stronger alignment across the funnel, leading to higher-quality lead generation</li></ul>`
       }
     ];
 
@@ -1049,6 +1110,22 @@
       body.style.opacity = '0';
       setTimeout(() => { populateDetail(next); window.scrollTo(0, 0); body.style.opacity = '1'; }, 200);
     }
+  
+    // Page fade — reveal on load
+    const veil = document.getElementById('page-veil');
+    requestAnimationFrame(() => requestAnimationFrame(() => { veil.style.opacity = '0'; }));
+
+    // Fade out then navigate on internal link clicks
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#') || href.startsWith('//')) return;
+      e.preventDefault();
+      veil.style.opacity = '1';
+      veil.style.pointerEvents = 'all';
+      setTimeout(() => { window.location.href = href; }, 480);
+    });
   </script>
 
 </body>

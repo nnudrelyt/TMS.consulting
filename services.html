@@ -134,12 +134,13 @@
     /* SERVICE DETAIL ROWS */
     .service-detail {
       border-top: 1px solid var(--border-dk);
+      padding: 3.5rem 0;
     }
     .service-detail:first-child {
       border-top: none;
-      padding: 4rem 0;
+      padding-top: 0;
     }
-    .service-detail:last-child { border-bottom: 1px solid var(--border-dk); }
+    .service-detail:last-child { border-bottom: none; }
     .service-detail-inner {
       display: grid;
       grid-template-columns: 64px 340px 1fr;
@@ -234,12 +235,65 @@
     .footer-col:nth-child(2)  { animation-delay: 0.22s; }
     .footer-col:nth-child(3)  { animation-delay: 0.29s; }
 
+
+    /* OUTCOME STATS */
+    .sd-stat { display: flex; align-items: baseline; gap: 1.2rem; padding: 1.4rem 0; border-top: 1px solid var(--border-dk); margin-top: 1.5rem; margin-bottom: 1.5rem; }
+    .sd-stat-num { font-family: 'calvino', Georgia, serif; font-size: clamp(28px, 2.8vw, 42px); font-weight: 700; color: #C8D47A; line-height: 1; flex-shrink: 0; }
+    .sd-stat-label { font-size: 17px; color: var(--cream-dim); line-height: 1.5; }
+
+    /* QUALIFY */
+    .qualify-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 2rem; }
+    .qualify-item { background: rgba(255,255,255,0.04); border: 1px solid var(--border-dk); border-radius: 12px; padding: 2.2rem 2.4rem; display: flex; flex-direction: column; transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.28s ease, box-shadow 0.28s ease; cursor: default; }
+    .qualify-item:hover { transform: translateY(-4px); border-color: rgba(200,212,122,0.25); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .qualify-head { font-size: 24px; font-weight: 500; color: var(--cream); line-height: 1.25; margin-bottom: 10px; }
+    .qualify-body { font-size: 18px; line-height: 1.65; color: var(--cream-dim); flex: 1; }
+    .qualify-cta { display: inline-flex; align-items: center; gap: 5px; margin-top: 1.4rem; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-decoration: none; }
+    .qualify-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .qualify-item:hover .qualify-arrow { transform: translateX(3px); }
+    
+    .qualify-cta { transition: color 0.2s; }
+
+    /* ENGAGE FORMATS */
+    .engage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 2rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-dk); border-radius: 12px; overflow: hidden; }
+    .engage-card { padding: 2.4rem 2.8rem; border-left: 1px solid var(--border-dk); }
+    .engage-card:first-child { border-left: none; }
+    .engage-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 14px; }
+    .engage-title { font-family: 'calvino', Georgia, serif; font-size: 26px; font-weight: 700; color: var(--cream); line-height: 1.25; margin-bottom: 10px; }
+    .engage-body { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
+
+
+    /* ENGAGE PRICING */
+    .engage-price { font-size: 13px; letter-spacing: 0.04em; color: rgba(200,212,122,0.85); margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--border-dk); font-weight: 600; }
+
+    /* TESTIMONIALS */
+    .testimonial-sec { max-width: 1280px; }
+    .testimonial-slides { position: relative; min-height: 240px; }
+    .testimonial-slide { display: none; animation: tFadeIn 0.45s ease; }
+    .testimonial-slide.active { display: block; }
+    @keyframes tFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .testimonial-quote { font-family: 'calvino', Georgia, serif; font-size: clamp(26px, 2.8vw, 40px); font-weight: 400; line-height: 1.45; color: var(--cream); margin-bottom: 2.5rem; quotes: none; }
+    .testimonial-attr { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .testimonial-name { font-size: 16px; font-weight: 500; color: var(--cream); }
+    .testimonial-role { font-size: 16px; color: var(--cream-dim); }
+    .testimonial-sep { color: var(--cream-dim); font-size: 16px; }
+    .testimonial-controls { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; }
+    .t-prev, .t-next { background: none; border: 1px solid var(--border-dk); color: var(--cream-dim); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .t-prev:hover, .t-next:hover { border-color: var(--cream); color: var(--cream); }
+    .t-dots { display: flex; gap: 8px; align-items: center; }
+    .t-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-dk); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+    .t-dot.active { background: var(--cream-dim); }
+    .t-progress { height: 2px; background: var(--border-dk); margin-top: 2rem; border-radius: 2px; overflow: hidden; }
+    .t-progress-bar { height: 100%; width: 0; background: var(--cream-dim); }
+    .t-progress-bar.running { animation: tProgress 6.25s linear forwards; }
+    @keyframes tProgress { from { width: 0; } to { width: 100%; } }
+
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
     }
     @media (max-width: 900px) {
+      .qualify-grid { grid-template-columns: repeat(2, 1fr); }
       .service-detail-inner { grid-template-columns: 48px 1fr; }
       .sd-body { grid-column: 2; }
       .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -258,12 +312,30 @@
       .sd-body { grid-column: 1; }
       .process-grid, .pillars-grid { grid-template-columns: 1fr; }
       .cta-band { padding: 2.5rem 1.25rem; }
+      .qualify-grid { grid-template-columns: 1fr; }
+      .engage-grid { grid-template-columns: 1fr; }
+      .engage-card { border-left: none; border-top: 1px solid var(--border-dk); padding: 2rem 2.4rem; }
+      .engage-card:first-child { border-top: none; }
+      .testimonial-attr { gap: 0.4rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* PAGE FADE VEIL */
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      background: #141210;
+      z-index: 500;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
   </style>
 </head>
 <body>
+  <div id="page-veil"></div>
+
 
   <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
   <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
@@ -279,7 +351,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
+      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="tms-logo.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -297,8 +369,8 @@
   <div class="hero">
     <div class="sec">
       <div class="eyebrow">Our Services</div>
-      <h1>All killer. <span style="font-weight:300;">No filler.</span></h1>
-      <p>We don&rsquo;t take on work we can&rsquo;t do well. These are the areas where we have the depth, the track record, and the conviction to make a real difference.</p>
+      <h1>Built for outcomes.</h1>
+      <p>From brand and strategy to execution and automation &mdash; the capabilities that close the gap between where you are and where you need to be.</p>
     </div>
   </div>
 
@@ -312,14 +384,6 @@
           <div class="sd-body">
             <p>You get clarity on who you are, who you&rsquo;re for, and how to communicate that across every channel. From brand positioning to digital channel planning, we help purpose become a roadmap that your team can actually execute.</p>
             <p>This is where most organizations are weakest and where the impact of getting it right is largest. We do this work at the positioning level, the messaging level, and the channel level &mdash; and we make sure the three are aligned before we hand anything over.</p>
-            <div class="sd-tags">
-              <span class="tag">Brand Positioning</span>
-              <span class="tag">Messaging Architecture</span>
-              <span class="tag">Digital Strategy</span>
-              <span class="tag">Audience Research</span>
-              <span class="tag">Channel Planning</span>
-              <span class="tag">Competitive Analysis</span>
-            </div>
           </div>
         </div>
       </div>
@@ -330,14 +394,6 @@
           <div class="sd-body">
             <p>Performance without accountability is noise. You get paid media programs built to be measured, reported on, and improved &mdash; along with the analytics infrastructure to make that possible.</p>
             <p>We design campaigns around outcomes, not outputs. Every program we build includes clear KPIs, honest reporting, and a feedback loop that makes the next cycle smarter than the last.</p>
-            <div class="sd-tags">
-              <span class="tag">Paid Search &amp; Social</span>
-              <span class="tag">SEO / GEO</span>
-              <span class="tag">Analytics &amp; Reporting</span>
-              <span class="tag">Campaign Management</span>
-              <span class="tag">Attribution Modeling</span>
-              <span class="tag">Dashboard Design</span>
-            </div>
           </div>
         </div>
       </div>
@@ -348,14 +404,6 @@
           <div class="sd-body">
             <p>Large-scale programs &mdash; conferences, campaigns, multi-stakeholder rollouts &mdash; require a different kind of partner. We&rsquo;ve managed the full communications lifecycle for enterprise events with dozens of vendors, thousands of attendees, and zero margin for error.</p>
             <p>We bring the same operational rigor to campaigns, product launches, and cross-functional initiatives. If it&rsquo;s complex, high-stakes, and needs to run on time, this is what we do.</p>
-            <div class="sd-tags">
-              <span class="tag">Event Communications</span>
-              <span class="tag">Vendor Coordination</span>
-              <span class="tag">Operations Management</span>
-              <span class="tag">Data Reconciliation</span>
-              <span class="tag">Stakeholder Reporting</span>
-              <span class="tag">Risk Management</span>
-            </div>
           </div>
         </div>
       </div>
@@ -366,49 +414,103 @@
           <div class="sd-body">
             <p>The most expensive thing in most organizations is manual work that doesn&rsquo;t need to be manual. You get lightweight software solutions, automations, and workflow systems that give your team their time back.</p>
             <p>We&rsquo;re not a development shop. We&rsquo;re pragmatic problem-solvers who know how to find the right tool for the job, build the thing that fits your reality, and document it well enough that your team can own it after we&rsquo;re gone.</p>
-            <div class="sd-tags">
-              <span class="tag">Workflow Mapping</span>
-              <span class="tag">Custom Automations</span>
-              <span class="tag">Process Documentation</span>
-              <span class="tag">Efficiency Analysis</span>
-              <span class="tag">Systems Integration</span>
-              <span class="tag">Tool Selection</span>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- HOW AN ENGAGEMENT WORKS -->
+
+  <!-- RIGHT FOR YOU IF -->
   <div style="border-top: 1px solid var(--border-dk);">
     <div class="sec">
       <div class="sec-h">
-        <div class="eyebrow">Our Process</div>
-        <h2>How an engagement works.</h2>
-        <p>Every engagement is different. But the shape of how we work is consistent &mdash; because good process isn&rsquo;t bureaucracy, it&rsquo;s how you make sure nothing important gets skipped.</p>
+        <div class="eyebrow">Is this the right fit?</div>
+        <h2>We&rsquo;re right for you if&hellip;</h2>
+        <p>We&rsquo;re thoughtful about the work we take on because we want every engagement to be successful. Here is where we tend to do our best work.</p>
       </div>
-      <div class="process-grid">
-        <div class="process-step">
-          <div class="process-step-num">01</div>
-          <h3>Discovery</h3>
-          <p>We start by listening. Before we recommend anything, we need to understand your situation &mdash; your goals, your constraints, your team, and what you&rsquo;ve already tried.</p>
+      <div class="qualify-grid">
+        <div class="qualify-item">
+          <div class="qualify-head">You have a clear challenge you want to solve.</div>
+          <p class="qualify-body">You sense where things aren&rsquo;t working, even if the path forward isn&rsquo;t fully defined. The more focused the challenge, the more impact we can create.</p>
+          <a href="contact.html" class="qualify-cta">Tell us your problem <span class="qualify-arrow">&rarr;</span></a>
         </div>
-        <div class="process-step">
-          <div class="process-step-num">02</div>
-          <h3>Definition</h3>
-          <p>We align on scope, success criteria, and deliverables. You know exactly what we&rsquo;re building together and how we&rsquo;ll know it worked.</p>
+        <div class="qualify-item">
+          <div class="qualify-head">You value partnership, not just delivery.</div>
+          <p class="qualify-body">You are looking for a team that works alongside you, brings experience to the table, and stays engaged from start to finish.</p>
+          <a href="contact.html" class="qualify-cta">Start a partnership <span class="qualify-arrow">&rarr;</span></a>
         </div>
-        <div class="process-step">
-          <div class="process-step-num">03</div>
-          <h3>Execution</h3>
-          <p>We do the work &mdash; collaboratively, transparently, and with regular check-ins. No surprises at delivery. No deliverables that land without context.</p>
+        <div class="qualify-item">
+          <div class="qualify-head">You are ready to move forward, not just explore.</div>
+          <p class="qualify-body">You are open to direction, aligned on making progress, and ready to turn ideas into action once a path is clear.</p>
+          <a href="contact.html" class="qualify-cta">Let&rsquo;s get to work <span class="qualify-arrow">&rarr;</span></a>
         </div>
-        <div class="process-step">
-          <div class="process-step-num">04</div>
-          <h3>Handoff</h3>
-          <p>We build for your ownership from day one. When the engagement ends, you have the work, the documentation, and the knowledge to run with it independently.</p>
+        <div class="qualify-item">
+          <div class="qualify-head">You want something that lasts beyond delivery.</div>
+          <p class="qualify-body">You want work that your team can build on over time. We focus on creating solutions that are sustainable and set you up for continued success.</p>
+          <a href="contact.html" class="qualify-cta">Build something lasting <span class="qualify-arrow">&rarr;</span></a>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW WE ENGAGE -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec">
+      <div class="sec-h">
+        <div class="eyebrow">How We Engage</div>
+        <h2>Structured to work for you.</h2>
+        <p>We work in three formats depending on what your organization needs. Every engagement starts with a discovery conversation to determine which structure fits.</p>
+      </div>
+      <div class="engage-grid">
+        <div class="engage-card">
+          <div class="engage-label">Fixed Scope</div>
+          <div class="engage-title">A defined project with a defined outcome.</div>
+          <p class="engage-body">Clear deliverable, clear timeline, clear cost &mdash; agreed before work begins. Right for organizations with a specific problem to solve and a preference for predictability.</p>
+        </div>
+        <div class="engage-card">
+          <div class="engage-label">Retainer</div>
+          <div class="engage-title">Ongoing partnership with consistent access.</div>
+          <p class="engage-body">Sustained senior support without the overhead of a full-time hire. Right for organizations that need strategic thinking on a regular cadence &mdash; not just when a project fires up.</p>
+        </div>
+        <div class="engage-card">
+          <div class="engage-label">Advisory</div>
+          <div class="engage-title">Senior perspective without full overhead.</div>
+          <p class="engage-body">Structured access to outside experience for teams with internal capacity that need direction, a sounding board, or a second opinion before committing to a path.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec testimonial-sec">
+      <div class="eyebrow" style="margin-bottom: 2.5rem;">What clients say</div>
+      <div class="testimonial-stage">
+        <div class="testimonial-slides">
+          <div class="testimonial-slide active">
+            <blockquote class="testimonial-quote">&ldquo;After nearly eighteen years leading a large school of engineering, I found myself with the amazing opportunity &mdash; and the freedom &mdash; to finally deploy ideas accumulated over decades. The Main Sequence was instrumental in making that transition seamless, building the platform and presence that now captures my full range of activities as a writer, speaker, and public intellectual. I cannot think of better partners.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Julio Mario Ottino</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Dean Emeritus, McCormick School of Engineering, Northwestern University</span></div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;The Main Sequence has been essential to expanding our social media presence, capitalizing on analytics and positioning us for continued growth.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Jessica Bruno</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Marketing Manager, Peak Construction</span></div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;They built me a complete marketing solution. The new site is sharp, professional, and finally tells our story. We&rsquo;ve already booked multiple subscriptions directly through the site, and my company has grown substantially. They&rsquo;re consistent, reliable, professional, and an absolute pleasure to work with.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Andy Wyatt</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Founder, TitanPricer</span></div>
+          </div>
+        </div>
+        <div class="testimonial-controls">
+          <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
+          <div class="t-dots">
+            <button class="t-dot active" onclick="clearAutoplay();testimonialGo(0);startAutoplay()"></button>
+            <button class="t-dot" onclick="clearAutoplay();testimonialGo(1);startAutoplay()"></button>
+            <button class="t-dot" onclick="clearAutoplay();testimonialGo(2);startAutoplay()"></button>
+          </div>
+          <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
+        </div>
+        <div class="t-progress"><div class="t-progress-bar" id="t-progress-bar"></div></div>
       </div>
     </div>
   </div>
@@ -429,13 +531,12 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="tms-logo.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
             <div class="footer-social">
               <a href="#" title="LinkedIn">in</a>
-              <a href="#" title="Twitter / X">&#x58;</a>
             </div>
           </div>
           <div class="footer-links">
@@ -461,14 +562,14 @@
               <ul>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="#">mainsequence.studio</a></li>
+                <li><a href="https://mainsequence.studio" target="_blank" rel="noopener">mainsequence.studio</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
           <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
-          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+          <span><a href="https://mainsequence.consulting" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.consulting</a> &middot; <a href="https://mainsequence.studio" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.studio</a></span>
         </div>
       </div>
     </div>
@@ -492,7 +593,7 @@
     root.render(React.createElement(GrainGradient, {
       ...grainGradientPresets[0],
       colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
-        scale: 2.4,
+        scale: 2.4 + (Math.random() * 0.5 - 0.25),
       style: { width: '100%', height: '100%' }
     }));
   </script>
@@ -513,6 +614,39 @@
       document.getElementById('hamburger').classList.remove('open');
       document.body.style.overflow = '';
     }
+  
+    // Testimonials
+    let tCurrent = 0, tTimer = null;
+    const tSlides = document.querySelectorAll('.testimonial-slide');
+    const tDots   = document.querySelectorAll('.t-dot');
+    const tBar    = document.getElementById('t-progress-bar');
+    function testimonialGo(n) {
+      tSlides[tCurrent].classList.remove('active'); tDots[tCurrent].classList.remove('active');
+      tCurrent = (n + tSlides.length) % tSlides.length;
+      tSlides[tCurrent].classList.add('active'); tDots[tCurrent].classList.add('active');
+      resetProgress();
+    }
+    function testimonialStep(dir) { clearAutoplay(); testimonialGo(tCurrent + dir); startAutoplay(); }
+    function resetProgress() { tBar.classList.remove('running'); void tBar.offsetWidth; tBar.classList.add('running'); }
+    function startAutoplay() { tTimer = setInterval(() => testimonialGo(tCurrent + 1), 6250); }
+    function clearAutoplay() { clearInterval(tTimer); }
+    resetProgress(); startAutoplay();
+
+    // Page fade — reveal on load
+    const veil = document.getElementById('page-veil');
+    requestAnimationFrame(() => requestAnimationFrame(() => { veil.style.opacity = '0'; }));
+
+    // Fade out then navigate on internal link clicks
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#') || href.startsWith('//')) return;
+      e.preventDefault();
+      veil.style.opacity = '1';
+      veil.style.pointerEvents = 'all';
+      setTimeout(() => { window.location.href = href; }, 480);
+    });
   </script>
 
 </body>

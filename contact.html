@@ -311,9 +311,22 @@
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     }
+
+    /* PAGE FADE VEIL */
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      background: #141210;
+      z-index: 500;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
   </style>
 </head>
 <body>
+  <div id="page-veil"></div>
+
 
   <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
   <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
@@ -328,7 +341,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
+      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="tms-logo.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -346,7 +359,7 @@
   <div class="hero">
     <div class="sec">
       <div class="eyebrow">Start a Conversation</div>
-      <h1>Tell us about <span style="font-weight:300;">your challenge.</span></h1>
+      <h1>Tell us about <span>your challenge.</span></h1>
       <p>We respond to every inquiry within one business day. No sales process, no pitch deck &mdash; just an honest conversation about whether we&rsquo;re the right fit.</p>
     </div>
   </div>
@@ -440,13 +453,12 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="tms-logo.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
             <div class="footer-social">
               <a href="#" title="LinkedIn">in</a>
-              <a href="#" title="Twitter / X">&#x58;</a>
             </div>
           </div>
           <div class="footer-links">
@@ -455,8 +467,8 @@
               <ul>
                 <li><a href="services.html">Brand &amp; Digital Strategy</a></li>
                 <li><a href="services.html">Paid Media &amp; Analytics</a></li>
-                <li><a href="services.html">Complex Project Execution</a></li>
-                <li><a href="services.html">Software &amp; Workflow Design</a></li>
+                <li><a href="services.html">Project Execution</a></li>
+                <li><a href="services.html">Workflow Automation</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -472,14 +484,14 @@
               <ul>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="#">mainsequence.studio</a></li>
+                <li><a href="https://mainsequence.studio" target="_blank" rel="noopener">mainsequence.studio</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
           <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
-          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+          <span><a href="https://mainsequence.consulting" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.consulting</a> &middot; <a href="https://mainsequence.studio" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.studio</a></span>
         </div>
       </div>
     </div>
@@ -503,7 +515,7 @@
     root.render(React.createElement(GrainGradient, {
       ...grainGradientPresets[0],
       colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
-        scale: 2.4,
+        scale: 2.4 + (Math.random() * 0.5 - 0.25),
       style: { width: '100%', height: '100%' }
     }));
   </script>
@@ -531,6 +543,22 @@
       document.getElementById('contact-form').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     }
+  
+    // Page fade — reveal on load
+    const veil = document.getElementById('page-veil');
+    requestAnimationFrame(() => requestAnimationFrame(() => { veil.style.opacity = '0'; }));
+
+    // Fade out then navigate on internal link clicks
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#') || href.startsWith('//')) return;
+      e.preventDefault();
+      veil.style.opacity = '1';
+      veil.style.pointerEvents = 'all';
+      setTimeout(() => { window.location.href = href; }, 480);
+    });
   </script>
 
 </body>

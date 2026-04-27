@@ -189,7 +189,7 @@
       border-top: 1px solid var(--border-dk);
       padding: 2.6rem 0;
     }
-    .value-row:last-child { border-bottom: 1px solid var(--border-dk); }
+    .value-row:last-child { border-bottom: none; }
     .value-num { font-size: 13px; color: var(--pink); letter-spacing: 0.1em; font-weight: 700; padding-top: 6px; }
     .value-title { font-family: 'calvino', Georgia, serif; font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; color: var(--cream); line-height: 1.15; }
     .value-body { font-size: 22px; line-height: 1.65; color: var(--cream-dim); padding-top: 6px; }
@@ -198,6 +198,7 @@
     .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .team-card {
       position: relative;
+      text-decoration: none;
       border: 1px solid var(--border-dk);
       border-radius: 12px;
       overflow: hidden;
@@ -214,8 +215,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(1);
+      object-position: 50% 35%;
+      filter: grayscale(1) brightness(0.85);
+      transition: filter 0.5s ease;
     }
+    .team-card:hover .team-card-bg { filter: grayscale(0) brightness(1); }
+    /* Per-photo framing — Sabrina is the reference. */
+    .team-card-bg.pose-sabrina { object-position: 50% 35%; }
+    .team-card-bg.pose-tyler   { object-position: 50% 18%; transform: scale(1.4); transform-origin: 5% 10%; }
+    .team-card-bg.pose-junaid  { object-position: 82% 38%; transform: scale(1.15); transform-origin: 50% 38%; }
+    .team-card-bg.pose-khadija { object-position: 50% 30%; }
+    .team-card-bg.pose-jordan  { object-position: 50% 18%; transform: scale(1.6); transform-origin: 50% 15%; }
     .team-card-overlay {
       position: absolute;
       inset: 0;
@@ -223,17 +233,12 @@
       transition: background 0.4s ease;
     }
     .team-card:hover .team-card-overlay {
-      background: linear-gradient(to bottom, rgba(10,9,8,0.05) 0%, rgba(10,9,8,0.72) 100%);
+      background: linear-gradient(to bottom, rgba(10,9,8,0) 0%, rgba(10,9,8,0.18) 38%, rgba(10,9,8,0.88) 100%);
     }
     .team-body { position: relative; z-index: 1; padding: 1.6rem 1.75rem 1.8rem; }
     .team-name { font-size: 20px; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
     .team-role { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0; font-weight: 700; }
-    .team-bio {
-      font-size: 15px; line-height: 1.6; color: var(--cream-dim);
-      max-height: 0; overflow: hidden; opacity: 0; margin-top: 0;
-      transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.35s ease;
-    }
-    .team-card:hover .team-bio { max-height: 180px; opacity: 1; margin-top: 8px; }
+    .team-bio { display: none; }
     .team-linkedin {
       display: inline-flex;
       align-items: center;
@@ -249,26 +254,28 @@
     }
     .team-card:hover .team-linkedin { max-height: 40px; opacity: 1; margin-top: 10px; }
     .team-linkedin:hover { color: var(--cream); }
+    .team-li-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .team-card:hover .team-li-arrow { transform: translateX(3px); }
     .team-card-cta {
-      background: rgba(20,18,16,0.54);
+      background: rgba(200,212,122,0.05);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(200,212,122,0.28);
       border-radius: 12px;
-      height: 400px;
+      height: 420px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 1.6rem 1.75rem 1.8rem;
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
+      transition: border-color 0.28s ease, background 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
     }
-    .team-card-cta:hover { transform: translateY(-4px); border-color: rgba(180,190,130,0.18); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
-    .team-cta-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+    .team-card-cta:hover { transform: translateY(-4px); border-color: rgba(200,212,122,0.55); background: rgba(200,212,122,0.09); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .team-cta-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C8D47A; margin-bottom: 10px; }
     .team-cta-title { font-family: 'calvino', Georgia, serif; font-size: clamp(20px, 2.2vw, 28px); font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 10px; }
     .team-cta-body { font-size: 15px; line-height: 1.6; color: var(--cream-dim); margin-bottom: 16px; }
-    .team-cta-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); transition: color 0.2s; }
+    .team-cta-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C8D47A; transition: color 0.2s; }
     .team-card-cta:hover .team-cta-link { color: var(--cream); }
     .team-cta-arrow { display: inline-block; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
     .team-card-cta:hover .team-cta-arrow { transform: translateX(3px); }
@@ -377,10 +384,8 @@
     }
     @media (max-width: 900px) {
       .team-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 900px) {
-      .value-row { grid-template-columns: 48px 1fr; }
-      .value-body { grid-column: 2; }
+      .value-row { grid-template-columns: 64px 1fr; row-gap: 0.75rem; }
+      .value-body { grid-column: 1 / -1; }
       .footer-top { flex-direction: column; gap: 32px; }
       .footer-brand { min-width: unset; max-width: unset; }
       .footer-links { flex-wrap: wrap; gap: 32px; }
@@ -389,17 +394,85 @@
     @media (max-width: 640px) {
       nav { padding: 14px 1.25rem; }
       .sec { padding: 2.5rem 1.25rem; }
+      .not-grid { grid-template-columns: 1fr; }
+      .not-item { border-left: none; padding: 1.5rem 0; border-top: 1px solid var(--border-dk); }
+      .not-item:first-child { border-top: none; }
+      .engage-grid { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
-      .team-card, .team-card-cta { height: 360px; }
-      .value-row { grid-template-columns: 1fr; gap: 0.75rem; }
+      .not-grid { grid-template-columns: 1fr; }
+      .not-item { border-left: none; padding: 1.5rem 0; border-top: 1px solid var(--border-dk); }
+      .not-item:first-child { border-top: none; }
+      .value-row { grid-template-columns: 1fr; gap: 0.5rem; }
       .value-body { grid-column: 1; }
+      .team-card, .team-card-cta { height: 360px; }
+      .testimonial-attr { gap: 0.4rem; }
       .cta-band { padding: 2.5rem 1.25rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     }
+
+    /* PAGE FADE VEIL */
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      background: #141210;
+      z-index: 500;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    /* WHAT WE'RE NOT */
+    .not-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 2.5rem; }
+    .not-item { border-left: 1px solid var(--border-dk); padding: 0 2.5rem; }
+    .not-item:first-child { border-left: none; padding-left: 0; }
+    .not-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.22); font-weight: 700; margin-bottom: 16px; }
+    .not-headline { font-family: 'calvino', Georgia, serif; font-size: clamp(20px, 2vw, 26px); font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 12px; }
+    .not-body { font-size: 18px; line-height: 1.65; color: var(--cream-dim); }
+    @media (max-width: 900px) { .not-grid { grid-template-columns: 1fr 1fr; } .not-item:nth-child(odd) { border-left: none; padding-left: 0; } .not-item:nth-child(n+3) { border-top: 1px solid var(--border-dk); padding-top: 1.5rem; } }
+    @media (max-width: 640px) { .not-grid { grid-template-columns: 1fr; } .not-item { border-left: none; padding: 1.5rem 0; border-top: 1px solid var(--border-dk); } .not-item:first-child { border-top: none; } }
+
+    /* TESTIMONIALS (about) */
+    .testimonial-sec { max-width: 1280px; }
+    .testimonial-slides { position: relative; min-height: 240px; }
+    .testimonial-slide { display: none; animation: tFadeIn 0.45s ease; }
+    .testimonial-slide.active { display: block; }
+    @keyframes tFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .testimonial-quote { font-family: 'calvino', Georgia, serif; font-size: clamp(26px, 2.8vw, 40px); font-weight: 400; line-height: 1.45; color: var(--cream); margin-bottom: 2.5rem; quotes: none; }
+    .testimonial-attr { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .testimonial-name { font-size: 16px; font-weight: 500; color: var(--cream); }
+    .testimonial-role { font-size: 16px; color: var(--cream-dim); }
+    .testimonial-sep { color: var(--cream-dim); font-size: 16px; }
+    .testimonial-controls { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; }
+    .t-prev, .t-next { background: none; border: 1px solid var(--border-dk); color: var(--cream-dim); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .t-prev:hover, .t-next:hover { border-color: var(--cream); color: var(--cream); }
+    .t-dots { display: flex; gap: 8px; align-items: center; }
+    .t-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-dk); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; padding: 0; transition: background 0.2s; }
+    .t-dot.active { background: #C8D47A; border-color: #C8D47A; }
+    .t-progress { height: 1px; background: var(--border-dk); margin-top: 2.5rem; position: relative; overflow: hidden; }
+    .t-progress-bar { position: absolute; inset: 0 100% 0 0; background: #C8D47A; transition: none; }
+    .t-progress-bar.running { right: 0; transition: right 6.25s linear; }
+
+    /* PROCESS (about) */
+    .process-grid-inline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .pgi-step { padding: 2rem; border-left: 1px solid var(--border-dk); }
+    .pgi-num { font-size: 13px; color: var(--pink); letter-spacing: 0.1em; font-weight: 700; margin-bottom: 14px; }
+    .pgi-h { font-family: 'calvino', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 10px; line-height: 1.2; }
+    .pgi-p { font-size: 17px; line-height: 1.65; color: var(--cream-dim); }
+    @media (max-width: 900px) { .process-grid-inline { grid-template-columns: 1fr 1fr; } .pgi-step:nth-child(odd) { border-left: none; } }
+    @media (max-width: 640px) { .process-grid-inline { grid-template-columns: 1fr; } .pgi-step { border-left: none; border-top: 1px solid var(--border-dk); } .pgi-step:first-child { border-top: none; } }
+
+    /* HOW WE ENGAGE */
+    .engage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 2rem; }
+    .engage-card { border: 1px solid var(--border-dk); border-radius: 12px; padding: 2.2rem; background: rgba(20,18,16,0.54); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .engage-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; margin-bottom: 14px; }
+    .engage-title { font-family: 'calvino', Georgia, serif; font-size: clamp(19px, 1.8vw, 24px); font-weight: 700; color: var(--cream); line-height: 1.2; margin-bottom: 12px; }
+    .engage-body { font-size: 17px; line-height: 1.65; color: var(--cream-dim); }
   </style>
 </head>
 <body>
+  <div id="page-veil"></div>
+
 
   <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
   <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
@@ -415,7 +488,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
+      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="tms-logo.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -433,10 +506,11 @@
   <div class="hero">
     <div class="sec">
       <div class="eyebrow">About The Main Sequence</div>
-      <h1>A different kind of <span style="font-weight:300;">consulting firm.</span></h1>
+      <h1>A different kind of <span>consultant.</span></h1>
       <p>We are a boutique consulting practice built on the belief that the best work comes from clarity of purpose, depth of experience, and a genuine commitment to client outcomes.</p>
     </div>
   </div>
+
 
   <!-- HOW WE WORK -->
   <div style="border-top: 1px solid var(--border-dk);">
@@ -444,29 +518,88 @@
       <div class="sec-h">
         <div class="eyebrow">How We Work</div>
         <h2>What you can count on.</h2>
-        <p>Every engagement is shaped by four principles that govern how we show up and what we deliver.</p>
+        <p>How we work matters just as much as what we deliver. These principles shape every engagement, from how we think to how we execute.</p>
       </div>
       <div class="values-list">
         <div class="value-row">
           <div class="value-num">01</div>
           <div class="value-title">Purpose</div>
-          <div class="value-body">Every engagement starts with your goals, not ours. We ground the work in a clear understanding of your mission, your audience, and what success actually looks like for your organization &mdash; before we recommend anything.</div>
+          <div class="value-body">We start with your goals, not assumptions. Before recommending anything, we work to understand your business, your audience, and what success actually looks like &mdash; so we can focus on the problem that truly matters.</div>
         </div>
         <div class="value-row">
           <div class="value-num">02</div>
           <div class="value-title">Partnership</div>
-          <div class="value-body">We work alongside your team, not above it. You get shared ownership and honest collaboration throughout &mdash; not a deliverable dropped on your desk at the end of an engagement you weren&rsquo;t part of.</div>
+          <div class="value-body">We work alongside your team, not above it. You get shared ownership, open communication, and real collaboration throughout the process &mdash; not a handoff at the end.</div>
         </div>
         <div class="value-row">
           <div class="value-num">03</div>
           <div class="value-title">Performance</div>
-          <div class="value-body">We measure what matters. Strategy that can&rsquo;t be evaluated isn&rsquo;t strategy &mdash; it&rsquo;s conjecture. Everything we build is designed to perform and be held accountable to real outcomes.</div>
+          <div class="value-body">Everything we do is built to drive results. If it can&rsquo;t be measured, improved, or tied to impact, it doesn&rsquo;t belong. We focus on work that performs and holds up over time.</div>
         </div>
         <div class="value-row">
           <div class="value-num">04</div>
           <div class="value-title">Perspective</div>
-          <div class="value-body">Years of cross-sector experience means we see patterns your team might miss. We bring an outside view &mdash; and we&rsquo;re not afraid to say what we see, even when it&rsquo;s not what you expected to hear.</div>
+          <div class="value-body">We bring experience from across industries, which helps us see patterns and opportunities others might miss. We&rsquo;re honest about what we see and clear about what it means for you.</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- WHAT WE'RE NOT -->
+  <div style="border-top: 1px solid var(--border-dk); border-bottom: 1px solid var(--border-dk);">
+    <div class="sec">
+      <div class="eyebrow">What makes us different</div>
+      <div class="not-grid">
+        <div class="not-item">
+
+          <div class="not-headline">Not a black box.</div>
+          <p class="not-body">You see the work as it happens, you understand the decisions behind it, and you can take it in-house the day we&rsquo;re done.</p>
+        </div>
+        <div class="not-item">
+
+          <div class="not-headline">Not a meeting machine.</div>
+          <p class="not-body">We focus on decisions and outcomes, not unnecessary calls. Your time is part of the budget too.</p>
+        </div>
+        <div class="not-item">
+
+          <div class="not-headline">Not a stranger by month two.</div>
+          <p class="not-body">The team you start with is the team you finish with. No rotating account leads, no bait-and-switch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TESTIMONIALS -->
+  <div>
+    <div class="sec testimonial-sec">
+      <div class="eyebrow" style="margin-bottom: 2.5rem;">What clients say</div>
+      <div class="testimonial-stage">
+        <div class="testimonial-slides">
+          <div class="testimonial-slide active">
+            <blockquote class="testimonial-quote">&ldquo;After nearly eighteen years leading a large school of engineering, I found myself with the amazing opportunity &mdash; and the freedom &mdash; to finally deploy ideas accumulated over decades. The Main Sequence was instrumental in making that transition seamless, building the platform and presence that now captures my full range of activities as a writer, speaker, and public intellectual. I cannot think of better partners.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Julio Mario Ottino</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Dean Emeritus, McCormick School of Engineering, Northwestern University</span></div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;The Main Sequence has been essential to expanding our social media presence, capitalizing on analytics and positioning us for continued growth.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Jessica Bruno</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Marketing Manager, Peak Construction</span></div>
+          </div>
+          <div class="testimonial-slide">
+            <blockquote class="testimonial-quote">&ldquo;They built me a complete marketing solution. The new site is sharp, professional, and finally tells our story. We&rsquo;ve already booked multiple subscriptions directly through the site, and my company has grown substantially. They&rsquo;re consistent, reliable, professional, and an absolute pleasure to work with.&rdquo;</blockquote>
+            <div class="testimonial-attr"><span class="testimonial-name">Andy Wyatt</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Founder, TitanPricer</span></div>
+          </div>
+        </div>
+        <div class="testimonial-controls">
+          <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
+          <div class="t-dots">
+            <button class="t-dot active" onclick="clearAutoplay();testimonialGo(0);startAutoplay()"></button>
+            <button class="t-dot" onclick="clearAutoplay();testimonialGo(1);startAutoplay()"></button>
+            <button class="t-dot" onclick="clearAutoplay();testimonialGo(2);startAutoplay()"></button>
+          </div>
+          <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
+        </div>
+        <div class="t-progress"><div class="t-progress-bar" id="t-progress-bar"></div></div>
       </div>
     </div>
   </div>
@@ -483,63 +616,63 @@
 
         <!-- Card 1 -->
         <div class="team-card">
-          <img class="team-card-bg" src="https://picsum.photos/seed/team1/400/500" alt="">
+          <img class="team-card-bg pose-tyler" src="TylerDunn.png" alt="Tyler Dunn">
           <div class="team-card-overlay"></div>
           <div class="team-body">
-            <div class="team-name">Placeholder Name</div>
-            <div class="team-role">Founder &amp; Principal</div>
-            <div class="team-bio">Background in brand strategy, digital communications, and complex project management across enterprise, nonprofit, and AEC sectors.</div>
-            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+            <div class="team-name">Tyler Dunn</div>
+            <div class="team-role">Principal &amp; Creative Director</div>
+            <div class="team-bio">Founder and creative lead at The Main Sequence. Background spanning brand strategy, digital communications, and creative direction across enterprise, nonprofit, AEC, and software sectors.</div>
+            <span class="team-linkedin">LinkedIn <span class="team-li-arrow">&rarr;</span></span>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="team-card">
-          <img class="team-card-bg" src="https://picsum.photos/seed/team2/400/500" alt="">
+        <a class="team-card" href="https://www.linkedin.com/in/sabrinapotirala/" target="_blank" rel="noopener">
+          <img class="team-card-bg pose-sabrina" src="SabrinaPotirala.jpg" alt="Sabrina Potirala">
           <div class="team-card-overlay"></div>
           <div class="team-body">
-            <div class="team-name">Placeholder Name</div>
-            <div class="team-role">Strategy Lead</div>
-            <div class="team-bio">Specializes in paid media architecture, analytics infrastructure, and performance measurement for mission-driven organizations.</div>
-            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+            <div class="team-name">Sabrina Potirala</div>
+            <div class="team-role">Performance Marketing &amp; Growth</div>
+            <div class="team-bio">Leads growth strategy and paid media programs across client engagements. Deep expertise in campaign architecture, attribution modeling, and turning performance data into actionable direction.</div>
+            <span class="team-linkedin">LinkedIn <span class="team-li-arrow">&rarr;</span></span>
           </div>
-        </div>
+        </a>
 
         <!-- Card 3 -->
-        <div class="team-card">
-          <img class="team-card-bg" src="https://picsum.photos/seed/team3/400/500" alt="">
+        <a class="team-card" href="https://www.linkedin.com/in/junaidesign/" target="_blank" rel="noopener">
+          <img class="team-card-bg pose-junaid" src="JunaidChaudhary.jpg" alt="Junaid Chaudhary">
           <div class="team-card-overlay"></div>
           <div class="team-body">
-            <div class="team-name">Placeholder Name</div>
-            <div class="team-role">Technology Lead</div>
-            <div class="team-bio">Leads workflow design and software engagements, with deep expertise in automation, systems architecture, and operational efficiency.</div>
-            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+            <div class="team-name">Junaid Chaudhary</div>
+            <div class="team-role">Technology</div>
+            <div class="team-bio">Leads technical engagements including workflow design, systems architecture, and custom tooling. Brings a rigorous analytical approach to building solutions that fit how teams actually work.</div>
+            <span class="team-linkedin">LinkedIn <span class="team-li-arrow">&rarr;</span></span>
           </div>
-        </div>
+        </a>
 
         <!-- Card 4 -->
-        <div class="team-card">
-          <img class="team-card-bg" src="https://picsum.photos/seed/team4/400/500" alt="">
+        <a class="team-card" href="https://www.linkedin.com/in/khadijaziz/" target="_blank" rel="noopener">
+          <img class="team-card-bg pose-khadija" src="KhadijaAziz.jpg" alt="Khadija Aziz">
           <div class="team-card-overlay"></div>
           <div class="team-body">
-            <div class="team-name">Placeholder Name</div>
-            <div class="team-role">Client Lead</div>
-            <div class="team-bio">Manages client relationships and engagement delivery across nonprofit, education, and healthcare verticals.</div>
-            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+            <div class="team-name">Khadija Aziz</div>
+            <div class="team-role">Creative</div>
+            <div class="team-bio">Leads visual identity and brand systems for client engagements. Background spanning digital campaigns, editorial design, and building brand languages that hold up at every scale.</div>
+            <span class="team-linkedin">LinkedIn <span class="team-li-arrow">&rarr;</span></span>
           </div>
-        </div>
+        </a>
 
         <!-- Card 5 -->
-        <div class="team-card">
-          <img class="team-card-bg" src="https://picsum.photos/seed/team5/400/500" alt="">
+        <a class="team-card" href="https://www.linkedin.com/in/jordanthoward/" target="_blank" rel="noopener">
+          <img class="team-card-bg pose-jordan" src="JordanHoward.jpg" alt="Jordan Howard">
           <div class="team-card-overlay"></div>
           <div class="team-body">
-            <div class="team-name">Placeholder Name</div>
-            <div class="team-role">Creative Director</div>
-            <div class="team-bio">Leads visual identity and content systems, with a background in brand design, editorial, and digital campaigns.</div>
-            <a href="#" class="team-linkedin">LinkedIn &rarr;</a>
+            <div class="team-name">Jordan Howard</div>
+            <div class="team-role">Creative</div>
+            <div class="team-bio">Contributes creative direction and production across brand, digital, and campaign engagements. Sharp visual instincts and a collaborative approach to work that needs to look as good as it performs.</div>
+            <span class="team-linkedin">LinkedIn <span class="team-li-arrow">&rarr;</span></span>
           </div>
-        </div>
+        </a>
 
         <!-- Card 6 — Join the team CTA -->
         <a href="contact.html" class="team-card-cta">
@@ -549,6 +682,41 @@
           <span class="team-cta-link">Get in touch <span class="team-cta-arrow">&rarr;</span></span>
         </a>
 
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- OUR PROCESS -->
+  <div style="border-top: 1px solid var(--border-dk);">
+    <div class="sec">
+      <div class="sec-h">
+        <div class="eyebrow">Our Process</div>
+        <h2>How an engagement works.</h2>
+        <p>Every engagement is different. But the shape of how we work is consistent &mdash; because good process isn&rsquo;t bureaucracy, it&rsquo;s how you make sure nothing important gets skipped.</p>
+      </div>
+      <div class="process-grid-inline">
+        <div class="pgi-step">
+          <div class="pgi-num">01</div>
+          <h3 class="pgi-h">Discovery</h3>
+          <p class="pgi-p">We start by listening. Before we recommend anything, we need to understand your situation &mdash; your goals, your constraints, your team, and what you&rsquo;ve already tried.</p>
+        </div>
+        <div class="pgi-step">
+          <div class="pgi-num">02</div>
+          <h3 class="pgi-h">Definition</h3>
+          <p class="pgi-p">We align on scope, success criteria, and deliverables. You know exactly what we&rsquo;re building together and how we&rsquo;ll know it worked.</p>
+        </div>
+        <div class="pgi-step">
+          <div class="pgi-num">03</div>
+          <h3 class="pgi-h">Execution</h3>
+          <p class="pgi-p">We do the work &mdash; collaboratively, transparently, and with regular check-ins. No surprises at delivery. No deliverables that land without context.</p>
+        </div>
+        <div class="pgi-step">
+          <div class="pgi-num">04</div>
+          <h3 class="pgi-h">Handoff</h3>
+          <p class="pgi-p">We build for your ownership from day one. When the engagement ends, you have the work, the documentation, and the knowledge to run with it independently.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -569,13 +737,12 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="tms-logo.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
             <div class="footer-social">
               <a href="#" title="LinkedIn">in</a>
-              <a href="#" title="Twitter / X">&#x58;</a>
             </div>
           </div>
           <div class="footer-links">
@@ -601,14 +768,14 @@
               <ul>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="#">mainsequence.studio</a></li>
+                <li><a href="https://mainsequence.studio" target="_blank" rel="noopener">mainsequence.studio</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
           <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
-          <span>mainsequence.consulting &middot; mainsequence.studio</span>
+          <span><a href="https://mainsequence.consulting" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.consulting</a> &middot; <a href="https://mainsequence.studio" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.studio</a></span>
         </div>
       </div>
     </div>
@@ -632,7 +799,7 @@
     root.render(React.createElement(GrainGradient, {
       ...grainGradientPresets[0],
       colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
-        scale: 2.4,
+        scale: 2.4 + (Math.random() * 0.5 - 0.25),
       style: { width: '100%', height: '100%' }
     }));
   </script>
@@ -653,6 +820,39 @@
       document.getElementById('hamburger').classList.remove('open');
       document.body.style.overflow = '';
     }
+  
+    // Testimonials
+    let tCurrent = 0, tTimer = null;
+    const tSlides = document.querySelectorAll('.testimonial-slide');
+    const tDots   = document.querySelectorAll('.t-dot');
+    const tBar    = document.getElementById('t-progress-bar');
+    function testimonialGo(n) {
+      tSlides[tCurrent].classList.remove('active'); tDots[tCurrent].classList.remove('active');
+      tCurrent = (n + tSlides.length) % tSlides.length;
+      tSlides[tCurrent].classList.add('active'); tDots[tCurrent].classList.add('active');
+      resetProgress();
+    }
+    function testimonialStep(dir) { clearAutoplay(); testimonialGo(tCurrent + dir); startAutoplay(); }
+    function resetProgress() { tBar.classList.remove('running'); void tBar.offsetWidth; tBar.classList.add('running'); }
+    function startAutoplay() { tTimer = setInterval(() => testimonialGo(tCurrent + 1), 6250); }
+    function clearAutoplay() { clearInterval(tTimer); }
+    resetProgress(); startAutoplay();
+
+    // Page fade — reveal on load
+    const veil = document.getElementById('page-veil');
+    requestAnimationFrame(() => requestAnimationFrame(() => { veil.style.opacity = '0'; }));
+
+    // Fade out then navigate on internal link clicks
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#') || href.startsWith('//')) return;
+      e.preventDefault();
+      veil.style.opacity = '1';
+      veil.style.pointerEvents = 'all';
+      setTimeout(() => { window.location.href = href; }, 480);
+    });
   </script>
 
 </body>

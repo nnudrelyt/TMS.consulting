@@ -116,6 +116,14 @@
     .filter-pill:hover { border-color: rgba(255,255,255,0.4); color: var(--cream); }
     .filter-pill.active { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.35); color: var(--cream); }
 
+
+    /* STAT STRIP */
+    .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border-dk); border-bottom: 1px solid var(--border-dk); }
+    .stat-strip-item { padding: 2.2rem 3rem; border-right: 1px solid var(--border-dk); }
+    .stat-strip-item:last-child { border-right: none; }
+    .stat-strip-num { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 3.5vw, 52px); font-weight: 700; color: #fff; line-height: 1; margin-bottom: 8px; }
+    .stat-strip-label { font-size: 15px; color: var(--cream-dim); line-height: 1.5; }
+
     /* WORK GRID */
     .work-section { padding: 0 3rem 5rem; }
     .work-grid {
@@ -148,6 +156,28 @@
     .work-card-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 400; letter-spacing: 0; color: var(--blue); margin-top: 1.4rem; }
     .work-card-cta-arrow { display: inline-block; line-height: 1; vertical-align: middle; position: relative; top: 2px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
     .work-card:hover .work-card-cta-arrow { transform: translateX(3px); }
+
+    /* WORK CTA CARD */
+    .work-cta-card {
+      background: rgba(200,212,122,0.05);
+      border: 1px solid rgba(200,212,122,0.28);
+      border-radius: 12px;
+      padding: 2.2rem 2.2rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.28s ease, background 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease;
+    }
+    .work-cta-card:hover { transform: translateY(-3px); border-color: rgba(200,212,122,0.55); background: rgba(200,212,122,0.09); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .work-cta-label { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C8D47A; margin-bottom: 10px; }
+    .work-cta-title { font-family: 'calvino', Georgia, serif; font-size: clamp(22px, 2.2vw, 28px); font-weight: 300; color: var(--cream); line-height: 1.25; margin-bottom: 14px; }
+    .work-cta-body { font-size: 17px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 1.6rem; flex: 1; }
+    .work-cta-link { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 400; color: #C8D47A; transition: color 0.2s; }
+    .work-cta-arrow { display: inline-block; line-height: 1; vertical-align: middle; position: relative; top: 2px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
+    .work-cta-card:hover .work-cta-arrow { transform: translateX(3px); }
+    .work-cta-card:hover .work-cta-link { color: var(--cream); }
 
     /* ── VIEW TRANSITIONS ─────────────────────────────────────────── */
     #work-list-view {
@@ -405,7 +435,28 @@
     @media (max-width: 900px) { .process-grid-inline { grid-template-columns: 1fr 1fr; } .pgi-step:nth-child(odd) { border-left: none; } }
     @media (max-width: 640px) { .process-grid-inline { grid-template-columns: 1fr; } .pgi-step { border-left: none; border-top: 1px solid var(--border-dk); } .pgi-step:first-child { border-top: none; } }
 
-    /* CTA BAND */
+    /* TESTIMONIALS */
+    .testimonial-sec { max-width: 1280px; }
+    .testimonial-slides { position: relative; min-height: 240px; }
+    .testimonial-slide { display: none; animation: tFadeIn 0.45s ease; }
+    .testimonial-slide.active { display: block; }
+    @keyframes tFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .testimonial-quote { font-family: 'calvino', Georgia, serif; font-size: clamp(26px, 2.8vw, 40px); font-weight: 400; line-height: 1.45; color: var(--cream); margin-bottom: 2.5rem; quotes: none; }
+    .testimonial-attr { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .testimonial-name { font-size: 16px; font-weight: 500; color: var(--cream); }
+    .testimonial-role { font-size: 16px; color: var(--cream-dim); }
+    .testimonial-sep { color: var(--cream-dim); font-size: 16px; }
+    .testimonial-controls { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; }
+    .t-prev, .t-next { background: none; border: 1px solid var(--border-dk); color: var(--cream-dim); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .t-prev:hover, .t-next:hover { border-color: var(--cream); color: var(--cream); }
+    .t-dots { display: flex; gap: 8px; align-items: center; }
+    .t-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-dk); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; padding: 0; transition: background 0.2s; }
+    .t-dot.active { background: #C8D47A; border-color: #C8D47A; }
+    .t-progress { height: 1px; background: var(--border-dk); margin-top: 2.5rem; position: relative; overflow: hidden; }
+    .t-progress-bar { position: absolute; inset: 0 100% 0 0; background: #C8D47A; transition: none; }
+    .t-progress-bar.running { right: 0; transition: right 6.25s linear; }
+
+        /* CTA BAND */
     .cta-band { padding: 6rem 3rem; text-align: center; background: #C8D47A; position: relative; z-index: 1; }
     .cta-card { max-width: 720px; margin: 0 auto; }
     .cta-band h2 { font-family: 'calvino', Georgia, serif; font-size: clamp(32px, 4.5vw, 58px); font-weight: 700; color: #1A1710; margin-bottom: 12px; line-height: 1.1; }
@@ -460,11 +511,16 @@
     }
     @media (max-width: 640px) {
       nav { padding: 14px 1.25rem; }
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .stat-strip-item { padding: 1.5rem 1.25rem; }
+      .stat-strip-item:nth-child(even) { border-right: none; }
+      .stat-strip-item:nth-child(3), .stat-strip-item:nth-child(4) { border-top: 1px solid var(--border-dk); }
       .sec { padding: 2.5rem 1.25rem; }
       .detail-sec { padding: 2.5rem 1.25rem 4rem !important; }
       .filter-bar { padding: 0 1.25rem 2rem; }
       .work-section { padding: 0 1.25rem 3rem; }
       .work-grid { grid-template-columns: 1fr; }
+      .testimonial-attr { gap: 0.4rem; }
       .cta-band { padding: 2.5rem 1.25rem; }
       .footer-links { flex-direction: column; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -472,9 +528,22 @@
       .detail-sidebar { flex-direction: column; }
       .detail-img { height: 200px; }
     }
+
+    /* PAGE FADE VEIL */
+    #page-veil {
+      position: fixed;
+      inset: 0;
+      background: #141210;
+      z-index: 500;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
   </style>
 </head>
 <body>
+  <div id="page-veil"></div>
+
 
   <div id="shader-root" style="position:fixed;inset:0;z-index:-2;pointer-events:none;"></div>
   <div style="position:fixed;inset:0;z-index:-1;pointer-events:none;background:rgba(0,0,0,0.35);"></div>
@@ -488,7 +557,7 @@
 
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="favicon.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
+      <span class="nav-logo-mark-wrap"><img class="nav-logo-mark" src="tms-logo.png" alt="The Main Sequence mark"><img class="nav-logo-mark-hover" src="tms-mark-rollover.png" alt=""></span>
       <span class="nav-logo-text">The Main Sequence</span>
     </a>
     <ul class="nav-links">
@@ -508,7 +577,7 @@
     <div class="hero">
       <div class="sec">
         <div class="eyebrow">Our Work</div>
-        <h1>What good looks like.</h1>
+        <h1>Outcomes, not deliverables.</h1>
         <p>We don&rsquo;t name every client. But we can tell you what we did &mdash; and what it meant.</p>
       </div>
     </div>
@@ -518,6 +587,7 @@
       <button class="filter-pill" data-filter="enterprise-events">Enterprise Events</button>
       <button class="filter-pill" data-filter="brand-strategy">Brand &amp; Strategy</button>
       <button class="filter-pill" data-filter="aec">AEC / Legal</button>
+      <button class="filter-pill" data-filter="performance-marketing">Performance Marketing</button>
     </div>
 
     <div class="work-section">
@@ -546,7 +616,7 @@
           </div>
           <div class="work-card-body">
             <div class="work-cat">Peak Construction Corporation</div>
-            <h3>Building a digital foundation that drives measurable growth</h3>
+            <h3>47% conversion growth and 2K+ monthly views for a regional construction leader</h3>
             <p class="work-card-desc">A full-stack digital strategy engagement for a regional construction firm — social, content, SEO, and video aligned around one principle: every piece of content should have a measurable outcome.</p>
             <div class="tags">
               <span class="tag">Social Strategy</span>
@@ -564,7 +634,7 @@
           </div>
           <div class="work-card-body">
             <div class="work-cat">TitanPricer</div>
-            <h3>Building a brand that performs as well as the product</h3>
+            <h3>73 organic leads and 1,529 new prospects for a leading trades software brand</h3>
             <p class="work-card-desc">A full-funnel brand build for a trades software company — from identity and website through lead-nurture email — designed as a single, connected system.</p>
             <div class="tags">
               <span class="tag">Brand Identity</span>
@@ -575,7 +645,8 @@
           </div>
         </div>
 
-        <!-- Card 4 — Chicago Sinfonietta -->
+        <!-- Card 4 — Chicago Sinfonietta (hidden) -->
+        <!--
         <div class="work-card" data-id="3" onclick="openDetail(3)">
           <div class="work-card-img-wrap"></div>
           <div class="work-card-body">
@@ -590,42 +661,112 @@
             <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
           </div>
         </div>
+        -->
+
+        <!-- Card 5 — Julio Mario Ottino -->
+        <div class="work-card" data-cat="brand-strategy" data-id="4" onclick="openDetail(4)">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="JMO.jpg" alt="Julio Mario Ottino">
+          </div>
+          <div class="work-card-body">
+            <div class="work-cat">Julio Mario Ottino</div>
+            <h3>121% growth in views and 373% in active users for a global thought leader</h3>
+            <p class="work-card-desc">A digital rebuild for an author, educator, and thought leader &mdash; visual identity, information architecture, SEO, and content infrastructure designed around &ldquo;The Nexus,&rdquo; his framework for connecting art, science, and innovation.</p>
+            <div class="tags">
+              <span class="tag">Brand Narrative</span>
+              <span class="tag">Web Design</span>
+              <span class="tag">Information Architecture</span>
+              <span class="tag">SEO</span>
+              <span class="tag">Content Strategy</span>
+            </div>
+            <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </div>
+
+        <!-- Card 6 — UScellular -->
+        <div class="work-card" data-cat="performance-marketing" data-id="5" onclick="openDetail(5)">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="USCellular.jpg" alt="UScellular">
+          </div>
+          <div class="work-card-body">
+            <div class="work-cat">UScellular</div>
+            <h3>+17% lead growth and 10% lower cost per lead for a national wireless carrier</h3>
+            <p class="work-card-desc">A full-funnel lead acquisition strategy for a national wireless carrier &mdash; search, social, display, and ABM aligned around one goal: more leads at lower cost.</p>
+            <div class="tags">
+              <span class="tag">Performance Marketing</span>
+              <span class="tag">Paid Search</span>
+              <span class="tag">Paid Social</span>
+              <span class="tag">Display</span>
+              <span class="tag">ABM</span>
+            </div>
+            <div class="work-card-cta">Explore case study <span class="work-card-cta-arrow">&rarr;</span></div>
+          </div>
+        </div>
+
+        <!-- Card 7 — Contact CTA -->
+        <a href="contact.html" class="work-cta-card">
+          <div class="work-cta-label">Start a conversation</div>
+          <div class="work-cta-title">Working on something we should know about?</div>
+          <p class="work-cta-body">We don&rsquo;t take on every project &mdash; but we&rsquo;re always interested in the right one. Tell us what you&rsquo;re working on and we&rsquo;ll give you an honest read on whether we can help.</p>
+          <span class="work-cta-link">Get in touch <span class="work-cta-arrow">&rarr;</span></span>
+        </a>
 
       </div>
     </div>
 
-    <!-- HOW AN ENGAGEMENT WORKS -->
+
+    <div class="stat-strip">
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">47%</div>
+        <div class="stat-strip-label">Conversion growth after brand repositioning</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">46%</div>
+        <div class="stat-strip-label">Year-over-year registration growth</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">78%</div>
+        <div class="stat-strip-label">Rated logistics &lsquo;very good&rsquo; or higher</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num">$200K+</div>
+        <div class="stat-strip-label">In attributable conference revenue</div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
     <div style="border-top: 1px solid var(--border-dk);">
-      <div class="sec">
-        <div style="margin-bottom: 2.5rem;">
-          <div class="eyebrow">Our Process</div>
-          <h2 style="font-family:'calvino',Georgia,serif;font-size:clamp(32px,4.5vw,54px);font-weight:700;line-height:1.15;color:var(--cream);margin-bottom:8px;">How an engagement works.</h2>
-          <p style="font-size:22px;line-height:1.7;color:var(--cream-dim);max-width:760px;">Every engagement is different. But the shape of how we work is consistent &mdash; because good process isn&rsquo;t bureaucracy, it&rsquo;s how you make sure nothing important gets skipped.</p>
-        </div>
-        <div class="process-grid-inline">
-          <div class="pgi-step" style="border-left:none;padding-left:0;">
-            <div class="pgi-num">01</div>
-            <h3 class="pgi-h">Discovery</h3>
-            <p class="pgi-p">We start by listening. Before we recommend anything, we need to understand your situation &mdash; your goals, your constraints, your team, and what you&rsquo;ve already tried.</p>
+      <div class="sec testimonial-sec">
+        <div class="eyebrow" style="margin-bottom: 2.5rem;">What clients say</div>
+        <div class="testimonial-stage">
+          <div class="testimonial-slides">
+            <div class="testimonial-slide active">
+              <blockquote class="testimonial-quote">&ldquo;After nearly eighteen years leading a large school of engineering, I found myself with the amazing opportunity &mdash; and the freedom &mdash; to finally deploy ideas accumulated over decades. The Main Sequence was instrumental in making that transition seamless, building the platform and presence that now captures my full range of activities as a writer, speaker, and public intellectual. I cannot think of better partners.&rdquo;</blockquote>
+              <div class="testimonial-attr"><span class="testimonial-name">Julio Mario Ottino</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Dean Emeritus, McCormick School of Engineering, Northwestern University</span></div>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">&ldquo;The Main Sequence has been essential to expanding our social media presence, capitalizing on analytics and positioning us for continued growth.&rdquo;</blockquote>
+              <div class="testimonial-attr"><span class="testimonial-name">Jessica Bruno</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Marketing Manager, Peak Construction</span></div>
+            </div>
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">&ldquo;They built me a complete marketing solution. The new site is sharp, professional, and finally tells our story. We&rsquo;ve already booked multiple subscriptions directly through the site, and my company has grown substantially. They&rsquo;re consistent, reliable, professional, and an absolute pleasure to work with.&rdquo;</blockquote>
+              <div class="testimonial-attr"><span class="testimonial-name">Andy Wyatt</span><span class="testimonial-sep">&middot;</span><span class="testimonial-role">Founder, TitanPricer</span></div>
+            </div>
           </div>
-          <div class="pgi-step">
-            <div class="pgi-num">02</div>
-            <h3 class="pgi-h">Definition</h3>
-            <p class="pgi-p">We align on scope, success criteria, and deliverables. You know exactly what we&rsquo;re building together and how we&rsquo;ll know it worked.</p>
+          <div class="testimonial-controls">
+            <button class="t-prev" onclick="testimonialStep(-1)" aria-label="Previous">&#8592;</button>
+            <div class="t-dots">
+              <button class="t-dot active" onclick="clearAutoplay();testimonialGo(0);startAutoplay()"></button>
+              <button class="t-dot" onclick="clearAutoplay();testimonialGo(1);startAutoplay()"></button>
+              <button class="t-dot" onclick="clearAutoplay();testimonialGo(2);startAutoplay()"></button>
+            </div>
+            <button class="t-next" onclick="testimonialStep(1)" aria-label="Next">&#8594;</button>
           </div>
-          <div class="pgi-step">
-            <div class="pgi-num">03</div>
-            <h3 class="pgi-h">Execution</h3>
-            <p class="pgi-p">We do the work &mdash; collaboratively, transparently, and with regular check-ins. No surprises at delivery. No deliverables that land without context.</p>
-          </div>
-          <div class="pgi-step">
-            <div class="pgi-num">04</div>
-            <h3 class="pgi-h">Handoff</h3>
-            <p class="pgi-p">We build for your ownership from day one. When the engagement ends, you have the work, the documentation, and the knowledge to run with it independently.</p>
-          </div>
+          <div class="t-progress"><div class="t-progress-bar" id="t-progress-bar"></div></div>
         </div>
       </div>
     </div>
+
 
     <div class="cta-band">
       <div class="cta-card">
@@ -690,13 +831,12 @@
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-brand-name">
-              <img class="footer-logo-mark" src="favicon.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
+              <img class="footer-logo-mark" src="tms-logo.png" alt="The Main Sequence mark" style="filter: brightness(0) invert(1); object-fit: contain;">
               The Main Sequence
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
             <div class="footer-social">
               <a href="#" title="LinkedIn">in</a>
-              <a href="#" title="Twitter / X">&#x58;</a>
             </div>
           </div>
           <div class="footer-links">
@@ -710,25 +850,26 @@
               </ul>
             </div>
             <div class="footer-col">
-              <h3>Company</h3>
+              <h3>Work</h3>
               <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="work.html">Enterprise Events</a></li>
+                <li><a href="work.html">Nonprofit / Education</a></li>
+                <li><a href="work.html">AEC / Legal</a></li>
               </ul>
             </div>
             <div class="footer-col">
-              <h3>Connect</h3>
+              <h3>Company</h3>
               <ul>
-                <li><a href="contact.html">Start a conversation</a></li>
-                <li><a href="#">LinkedIn</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://mainsequence.studio" target="_blank" rel="noopener">mainsequence.studio</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
           <span>&copy; 2026 The Main Sequence LLC &middot; Chicago, IL</span>
-          <span>mainsequence.consulting</span>
+          <span><a href="https://mainsequence.consulting" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.consulting</a> &middot; <a href="https://mainsequence.studio" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mainsequence.studio</a></span>
         </div>
       </div>
     </div>
@@ -752,7 +893,7 @@
       React.createElement(GrainGradient, {
         ...grainGradientPresets[0],
         colors: ['#1A1512', '#7A4428', '#C4B096', '#1C2B2F'],
-        scale: 2.4,
+        scale: 2.4 + (Math.random() * 0.5 - 0.25),
         style: { width: '100%', height: '100%' }
       })
     );
@@ -763,10 +904,10 @@
         id: 0, cat: 'Enterprise Events',
         title: '46% registration growth and $200K+ in revenue for United\u2019s premier technology conference',
         sector: 'Aviation / Enterprise', type: 'United Airlines',
-        outcomes: '46%+ registration growth<br>$200K ticket revenue<br>78% logistics rated excellent or good',
+        outcomes: '46% registration growth<br>$200K+ ticket revenue<br>78% rated logistics ‘very good’ or higher',
         tags: ['Event Communications', 'Registration Systems', 'Content Strategy', 'Vendor Coordination', 'Stakeholder Reporting'],
         body: `<p>United Airlines needed more than an event production partner for their annual Digital Technology Supplier Conference. They needed someone who could manage a complex, multi-stakeholder communications operation from strategy through execution &mdash; and deliver results against hard numbers. That&rsquo;s what we did.</p>
-               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">+46%</div><div class="cs-stat-label">Registration growth</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">$200K</div><div class="cs-stat-label">Ticket revenue</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">78%</div><div class="cs-stat-label">Logistics rated excellent or good</div></div></div>
+               <div class="cs-snapshot"><div class="cs-snapshot-item"><div class="cs-stat-num">46%</div><div class="cs-stat-label">Registration growth</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">$200K+</div><div class="cs-stat-label">Ticket revenue</div></div><div class="cs-snapshot-item"><div class="cs-stat-num">78%</div><div class="cs-stat-label">Rated logistics ‘very good’ or higher</div></div></div>
                <h2 class="detail-h2">Where things stood</h2>
                <p>The Digital Technology Supplier Conference is United&rsquo;s primary forum for engaging technology vendors and strategic partners &mdash; a high-stakes event with real business consequences if execution falters. The 2026 edition required a multi-tier registration system, strategic messaging across a six-month campaign window, coordination across United&rsquo;s internal teams, LSAV event production, and multiple third-party vendors, and customer service for complex international registration scenarios.</p>
                <p>The infrastructure for all of this needed to be built, not inherited. And it needed to run without becoming a management burden for the client.</p>
@@ -775,14 +916,14 @@
                <p>The line that moved registrations: &ldquo;While your competitors wait for public announcements and industry reports, you&rsquo;ll understand United&rsquo;s direction from the source.&rdquo; That reframe &mdash; from networking to competitive intelligence &mdash; changed the urgency calculus for prospective attendees.</p>
                <p>On the operational side, we built the infrastructure from scratch: a secure multi-layered registration system within Tripleseat (without SSO capabilities), a conference app deployed via EventMobi, group registration functionality supporting up to 10 tickets per transaction, and comprehensive workflow frameworks governing attendee data, status tracking, substitutions, and international outreach. Weekly milestone reporting kept United informed without pulling them into day-to-day execution.</p>
                <h2 class="detail-h2">Results</h2>
-               <ul class="cs-results-primary"><li><span class="cs-li-num">+46%</span><span class="cs-li-label">Registration growth</span></li><li><span class="cs-li-num">$200K</span><span class="cs-li-label">Ticket revenue</span></li><li><span class="cs-li-num">78%</span><span class="cs-li-label">Logistics rated excellent or good</span></li></ul>
+               <ul class="cs-results-primary"><li><span class="cs-li-num">46%</span><span class="cs-li-label">Registration growth</span></li><li><span class="cs-li-num">$200K+</span><span class="cs-li-label">Ticket revenue</span></li><li><span class="cs-li-num">78%</span><span class="cs-li-label">Rated logistics ‘very good’ or higher</span></li></ul>
                <ul class="cs-results-secondary"><li>Zero major technical issues during registration or day-of execution</li><li>Measurable registration upticks tracked within 48 hours of each email deployment, used to refine timing and messaging throughout the campaign</li><li>Complex international registration scenarios resolved without escalation</li><li>Group registration functionality implemented mid-stream without compromising timeline or quality</li></ul>
-               <div style="margin-top:2.5rem;padding:2rem 2.25rem;background:rgba(255,255,255,0.04);border-left:3px solid rgba(123,173,184,0.4);border-radius:0 8px 8px 0;"><p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.65);font-style:italic;">The most underrated skill in event communications is knowing when to stop describing what an event is and start describing what attending means. For a technology conference, that meant reframing attendance from a calendar commitment into a competitive advantage. When the value proposition is that clear, the logistics almost sell themselves.</p></div>`
+               <p style="margin-top:2.5rem;">The most underrated skill in event communications is knowing when to stop describing what an event is and start describing what attending means. For a technology conference, that meant reframing attendance from a calendar commitment into a competitive advantage. When the value proposition is that clear, the logistics almost sell themselves.</p>`
       },
       {
         id: 1,
         cat: 'Brand & Digital Strategy',
-        title: 'Building a digital foundation that drives measurable growth',
+        title: '47% conversion growth and 2K+ monthly views for a regional construction leader',
         sector: 'Construction / AEC',
         type: 'Peak Construction Corporation',
         outcomes: '10%+ increase in click-through<br>47% increase in conversion<br>50% video engagement on top posts<br>2K+ monthly views on Instagram Stories',
@@ -832,18 +973,18 @@
       {
         id: 2,
         cat: 'Brand & Digital Strategy',
-        title: 'Building a brand that performs as well as the product',
+        title: '73 organic leads and 1,529 new prospects for a leading trades software brand',
         sector: 'B2B Software / Trades',
         type: 'TitanPricer',
-        outcomes: 'Full-funnel brand build from identity through lead nurture<br>Trades-native identity resonating with field professionals<br>Organic search impressions climbing post-launch<br>Structured lead journey from first touch to long-term connection',
+        outcomes: 'Full-funnel brand build from identity through lead nurture<br>1,529 new potential customers driven to the website through enhanced SEO<br>73 organic leads converted from new SEO traffic<br>Trades-native identity resonating with field professionals',
         tags: ['Brand Identity', 'Web Design &amp; SEO', 'Email Nurture', 'Messaging Architecture', 'Brand Guidelines'],
         body: `
           <p>TitanPricer had built something genuinely useful — pricing software purpose-built for the trades. What they needed was a brand and digital presence that communicated that value clearly, consistently, and to the right people.</p>
 
           <div class="cs-snapshot">
+            <div class="cs-snapshot-item"><div class="cs-stat-num">1,529</div><div class="cs-stat-label">New potential customers driven to the website via enhanced SEO</div></div>
+            <div class="cs-snapshot-item"><div class="cs-stat-num">73 leads</div><div class="cs-stat-label">Organic leads converted from new SEO traffic</div></div>
             <div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(18px,2vw,26px);">Brand &rarr; Web &rarr; Email</div><div class="cs-stat-label">Full-funnel engagement from identity through lead nurture</div></div>
-            <div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(18px,2vw,26px);">Trades-first</div><div class="cs-stat-label">Identity and messaging built specifically for the field services market</div></div>
-            <div class="cs-snapshot-item"><div class="cs-stat-num" style="font-size:clamp(18px,2vw,26px);">One journey</div><div class="cs-stat-label">First impression to long-term connection, designed as a single system</div></div>
           </div>
 
           <h2 class="detail-h2">Where things stood</h2>
@@ -857,19 +998,17 @@
 
           <h2 class="detail-h2">Results</h2>
           <ul class="cs-results-primary">
+            <li><span class="cs-li-num">1,529</span><span class="cs-li-label">New potential customers driven to the website through enhanced SEO</span></li>
+            <li><span class="cs-li-num">73 leads</span><span class="cs-li-label">Organic leads converted from new SEO traffic</span></li>
             <li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:9rem;">Full system</span><span class="cs-li-label">Brand identity, website, and email nurture built as an integrated whole</span></li>
             <li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:9rem;">Trades-native</span><span class="cs-li-label">Identity and messaging resonating with field professionals, not just tech buyers</span></li>
-            <li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:9rem;">Search</span><span class="cs-li-label">Organic impressions up and climbing post-launch</span></li>
-            <li><span class="cs-li-num" style="font-size:clamp(16px,1.8vw,24px);min-width:9rem;">Nurture</span><span class="cs-li-label">Structured lead journey from first touch to long-term connection</span></li>
           </ul>
           <ul class="cs-results-secondary">
             <li>Brand guidelines scaling from digital and web to merch and event materials</li>
             <li>Website rebuilt for UX performance, faster load times, and improved navigation</li>
             <li>Social presence built to grow authority and awareness in the trades market</li>
           </ul>
-          <div style="margin-top:2.5rem;padding:2rem 2.25rem;background:rgba(255,255,255,0.04);border-left:3px solid rgba(123,173,184,0.4);border-radius:0 8px 8px 0;">
-            <p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.65);font-style:italic;">For B2B software companies selling into specialized industries, the brand work isn&rsquo;t decoration &mdash; it&rsquo;s table stakes. Buyers in the trades evaluate credibility quickly and on instinct. When the identity, the website, and the follow-up all feel like they were built for them specifically, the trust gap closes faster than any feature comparison can.</p>
-          </div>
+          <p style="margin-top:2.5rem;">For B2B software companies selling into specialized industries, the brand work isn&rsquo;t decoration &mdash; it&rsquo;s table stakes. Buyers in the trades evaluate credibility quickly and on instinct. When the identity, the website, and the follow-up all feel like they were built for them specifically, the trust gap closes faster than any feature comparison can.</p>
         `
       },
       {
@@ -913,6 +1052,85 @@
           <div style="margin-top:2.5rem;padding:2rem 2.25rem;background:rgba(255,255,255,0.04);border-left:3px solid rgba(139,58,110,0.5);border-radius:0 8px 8px 0;">
             <p style="font-size:17px;line-height:1.75;color:rgba(255,255,255,0.65);font-style:italic;">Arts organizations often undersell themselves &mdash; defaulting to safe, institutional language when their actual work is anything but. The brands that break through are the ones willing to let their communications match the conviction of what happens on stage. For Chicago Sinfonietta, that meant leaning all the way into &ldquo;Daringly Different&rdquo; &mdash; not as a descriptor, but as a design principle.</p>
           </div>
+        `
+      },
+      {
+        id: 4,
+        cat: 'Brand & Digital Strategy',
+        title: '121% growth in views and 373% in active users for a global thought leader',
+        sector: 'Thought Leadership',
+        type: 'Julio Mario Ottino',
+        outcomes: '121% YoY increase in site views (1,282 &rarr; 2,836)<br>373% YoY increase in active users (458 &rarr; 2,166)<br>84% YoY increase in average time on site (10s &rarr; 1m 02s)<br>7,231% YoY increase in LinkedIn engagement (32 &rarr; 2,346)',
+        tags: ['Brand Narrative', 'Web Design', 'Information Architecture', 'SEO', 'Content Strategy'],
+        body: `
+          <p>Every brand tells a story &mdash; some tell many at once. For Julio Mario Ottino &mdash; author, educator, and thought leader &mdash; the goal was a digital home where art, science, and innovation converge.</p>
+
+          <div class="cs-snapshot">
+            <div class="cs-snapshot-item"><div class="cs-stat-num">+121%</div><div class="cs-stat-label">YoY increase in site views</div></div>
+            <div class="cs-snapshot-item"><div class="cs-stat-num">+373%</div><div class="cs-stat-label">YoY increase in active users</div></div>
+            <div class="cs-snapshot-item"><div class="cs-stat-num">+7,231%</div><div class="cs-stat-label">YoY increase in LinkedIn engagement</div></div>
+          </div>
+
+          <h2 class="detail-h2">Where things stood</h2>
+          <p>Julio Mario Ottino had built a substantial body of work as an author, educator, and public intellectual &mdash; known for connecting art, science, and innovation in ways most thinkers don&rsquo;t attempt. <em>The Nexus</em>, his framework for whole-brain thinking, was reaching audiences through books, talks, and essays.</p>
+          <p>His digital presence had grown organically alongside the work. With his audience expanding across academia, media, and industry, there was an opportunity to bring the site forward with the same intentionality &mdash; making it easier for readers to find an entry point, scholars to find depth, and media to find what they need on demand.</p>
+
+          <h2 class="detail-h2">Our approach</h2>
+          <p>We treated this as a digital home for an evolving body of work &mdash; a structured surface designed to grow with him.</p>
+          <p>The visual design language drew directly from <em>The Nexus</em>: elegant structure paired with creative energy, built to feel like the thinking it represents. Information architecture was reorganized around three core audiences &mdash; readers looking for accessible entry points, scholars seeking citation-quality depth, and media teams in need of bios, talks, and visuals on demand.</p>
+          <p>SEO and content infrastructure were built to extend reach without compromising voice. Video and media integration were redesigned to highlight talks and conversations as primary surfaces, not afterthoughts.</p>
+
+          <h2 class="detail-h2">Results</h2>
+          <ul class="cs-results-primary">
+            <li><span class="cs-li-num">+121%</span><span class="cs-li-label">YoY increase in site views (1,282 &rarr; 2,836)</span></li>
+            <li><span class="cs-li-num">+373%</span><span class="cs-li-label">YoY increase in active users (458 &rarr; 2,166)</span></li>
+            <li><span class="cs-li-num">+84%</span><span class="cs-li-label">YoY increase in average time on site (10s &rarr; 1m 02s)</span></li>
+            <li><span class="cs-li-num">+7,231%</span><span class="cs-li-label">YoY increase in LinkedIn engagement (32 &rarr; 2,346)</span></li>
+          </ul>
+          <ul class="cs-results-secondary">
+            <li>Information architecture organized around reader, scholar, and media audiences</li>
+            <li>Visual identity inspired by <em>The Nexus</em> and built to scale with future content</li>
+            <li>Video and media layouts that elevate talks and essays as primary surfaces</li>
+            <li>SEO infrastructure that compounds reach over time without diluting voice</li>
+          </ul>
+          <p style="margin-top:2.5rem;">For thought leaders, the digital presence isn&rsquo;t a brochure &mdash; it&rsquo;s the surface where ideas meet new audiences for the first time. When the structure rewards exploration and the design respects the work, the audience does the rest.</p>
+        `
+      },
+      {
+        id: 5,
+        cat: 'Performance Marketing',
+        title: '+17% lead growth and 10% lower cost per lead for a national wireless carrier',
+        sector: 'Telecommunications',
+        type: 'UScellular',
+        outcomes: '17% YoY increase in lead volume<br>12% YoY increase in marketing qualified leads<br>10% reduction in cost per lead<br>Full-funnel strategy unifying search, social, display, and ABM',
+        tags: ['Performance Marketing', 'Paid Search', 'Paid Social', 'Display', 'ABM'],
+        body: `
+          <p>UScellular needed to improve lead generation performance while increasing efficiency across channels. Growth was a priority, but not at the expense of rising acquisition costs. The goal was to build a more balanced, full-funnel strategy that could drive higher-quality leads at a lower cost. That&rsquo;s what we did.</p>
+
+          <div class="cs-snapshot">
+            <div class="cs-snapshot-item"><div class="cs-stat-num">+17%</div><div class="cs-stat-label">YoY lead growth</div></div>
+            <div class="cs-snapshot-item"><div class="cs-stat-num">+12%</div><div class="cs-stat-label">Marketing qualified lead growth</div></div>
+            <div class="cs-snapshot-item"><div class="cs-stat-num">&minus;10%</div><div class="cs-stat-label">Cost per lead</div></div>
+          </div>
+
+          <h2 class="detail-h2">Where things stood</h2>
+          <p>Lead generation efforts were active and contributing across channels &mdash; with an opportunity to better align targeting, messaging, and budget allocation to improve both volume and efficiency. Without a unified approach, performance gains in one area often came at the expense of another. The opportunity was to drive more leads while improving overall cost efficiency.</p>
+
+          <h2 class="detail-h2">Our approach</h2>
+          <p>We developed a full-funnel strategy that connected search, social, display, and account-based marketing into a coordinated system.</p>
+          <p>Each channel was aligned around its role in the funnel &mdash; from awareness through conversion. Messaging and targeting were refined to better match user intent at each stage, improving both engagement and lead quality.</p>
+          <p>We continuously monitored performance and reallocated budget based on what was driving the strongest results &mdash; scaling high-performing segments while reducing spend on lower-performing areas. The focus wasn&rsquo;t just on increasing lead volume, but on improving the efficiency and quality of those leads over time.</p>
+
+          <h2 class="detail-h2">Results</h2>
+          <ul class="cs-results-primary">
+            <li><span class="cs-li-num">+17%</span><span class="cs-li-label">Increase in overall lead volume</span></li>
+            <li><span class="cs-li-num">+12%</span><span class="cs-li-label">Increase in marketing qualified leads</span></li>
+            <li><span class="cs-li-num">&minus;10%</span><span class="cs-li-label">Reduction in cost per lead</span></li>
+          </ul>
+          <ul class="cs-results-secondary">
+            <li>More balanced performance across channels, improving both volume and efficiency</li>
+            <li>Stronger alignment across the funnel, leading to higher-quality lead generation</li>
+          </ul>
         `
       }
     ];
@@ -986,6 +1204,33 @@
       });
     });
 
+    // Testimonials
+    let tCurrent = 0;
+    let tTimer = null;
+    const tSlides = document.querySelectorAll('.testimonial-slide');
+    const tDots   = document.querySelectorAll('.t-dot');
+    const tBar    = document.getElementById('t-progress-bar');
+
+    function testimonialGo(n) {
+      tSlides[tCurrent].classList.remove('active');
+      tDots[tCurrent].classList.remove('active');
+      tCurrent = (n + tSlides.length) % tSlides.length;
+      tSlides[tCurrent].classList.add('active');
+      tDots[tCurrent].classList.add('active');
+      resetProgress();
+    }
+    function testimonialStep(dir) { clearAutoplay(); testimonialGo(tCurrent + dir); startAutoplay(); }
+    function resetProgress() {
+      tBar.classList.remove('running');
+      void tBar.offsetWidth;
+      tBar.classList.add('running');
+    }
+    function startAutoplay() { tTimer = setInterval(() => testimonialGo(tCurrent + 1), 6250); }
+    function clearAutoplay() { clearInterval(tTimer); }
+    resetProgress();
+    startAutoplay();
+
+
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -999,6 +1244,22 @@
       document.getElementById('mobile-menu').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
     }
+  
+    // Page fade — reveal on load
+    const veil = document.getElementById('page-veil');
+    requestAnimationFrame(() => requestAnimationFrame(() => { veil.style.opacity = '0'; }));
+
+    // Fade out then navigate on internal link clicks
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#') || href.startsWith('//')) return;
+      e.preventDefault();
+      veil.style.opacity = '1';
+      veil.style.pointerEvents = 'all';
+      setTimeout(() => { window.location.href = href; }, 480);
+    });
   </script>
 </body>
 </html>
