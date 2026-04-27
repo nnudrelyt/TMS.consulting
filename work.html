@@ -173,7 +173,7 @@
     .work-cta-card:hover { transform: translateY(-3px); border-color: rgba(200,212,122,0.55); background: rgba(200,212,122,0.09); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
     .work-cta-label { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C8D47A; margin-bottom: 10px; }
     .work-cta-title { font-family: 'calvino', Georgia, serif; font-size: clamp(22px, 2.2vw, 28px); font-weight: 300; color: var(--cream); line-height: 1.25; margin-bottom: 14px; }
-    .work-cta-body { font-size: 17px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 1.6rem; flex: 1; }
+    .work-cta-body { font-size: 17px; line-height: 1.65; color: var(--cream-dim); margin-bottom: 1.6rem; }
     .work-cta-link { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 400; color: #C8D47A; transition: color 0.2s; }
     .work-cta-arrow { display: inline-block; line-height: 1; vertical-align: middle; position: relative; top: 2px; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); }
     .work-cta-card:hover .work-cta-arrow { transform: translateX(3px); }
@@ -578,22 +578,22 @@
       <div class="sec">
         <div class="eyebrow">Our Work</div>
         <h1>Outcomes, not deliverables.</h1>
-        <p>We don&rsquo;t name every client. But we can tell you what we did &mdash; and what it meant.</p>
+        <p>Different problems, one standard &ndash; a clearly defined goal, focused work, and results driven outcomes.</p>
       </div>
     </div>
 
     <div class="filter-bar">
       <button class="filter-pill active" data-filter="all">All</button>
-      <button class="filter-pill" data-filter="enterprise-events">Enterprise Events</button>
-      <button class="filter-pill" data-filter="brand-strategy">Brand &amp; Strategy</button>
-      <button class="filter-pill" data-filter="aec">AEC / Legal</button>
-      <button class="filter-pill" data-filter="performance-marketing">Performance Marketing</button>
+      <button class="filter-pill" data-filter="brand-strategy">Brand &amp; Digital Strategy</button>
+      <button class="filter-pill" data-filter="paid-media-analytics">Paid Media &amp; Analytics</button>
+      <button class="filter-pill" data-filter="project-execution">Project Execution</button>
+      <button class="filter-pill" data-filter="workflow-automation">Workflow Automation</button>
     </div>
 
     <div class="work-section">
       <div class="work-grid" id="work-grid">
 
-        <div class="work-card" data-cat="enterprise-events" data-id="0" onclick="openDetail(0)">
+        <div class="work-card" data-cat="project-execution" data-id="0" onclick="openDetail(0)">
           <div class="work-card-img-wrap">
             <img class="work-card-img" src="https://www.dropbox.com/scl/fi/wcgdmos5um9wxn0lbjywo/7c789ef17c5f34f44f0f4eccce4e99e9-cover-large.jpg?rlkey=e0tdu112wx3xfo5qkododybk8&raw=1" alt="United Airlines Digital Technology Supplier Conference">
           </div>
@@ -610,7 +610,7 @@
           </div>
         </div>
 
-        <div class="work-card" data-cat="brand-strategy aec" data-id="1" onclick="openDetail(1)">
+        <div class="work-card" data-cat="brand-strategy" data-id="1" onclick="openDetail(1)">
           <div class="work-card-img-wrap">
             <img class="work-card-img" src="PeakC.jpg" alt="Peak Construction Corporation">
           </div>
@@ -628,7 +628,7 @@
           </div>
         </div>
 
-        <div class="work-card" data-cat="brand-strategy aec" data-id="2" onclick="openDetail(2)">
+        <div class="work-card" data-cat="brand-strategy" data-id="2" onclick="openDetail(2)">
           <div class="work-card-img-wrap">
             <img class="work-card-img" src="Titanium.jpg" alt="TitanPricer">
           </div>
@@ -647,7 +647,7 @@
 
         <!-- Card 4 — Chicago Sinfonietta (hidden) -->
         <!--
-        <div class="work-card" data-id="3" onclick="openDetail(3)">
+        <div class="work-card" data-cat="brand-strategy" data-id="3" onclick="openDetail(3)">
           <div class="work-card-img-wrap"></div>
           <div class="work-card-body">
             <div class="work-cat">Chicago Sinfonietta</div>
@@ -683,13 +683,13 @@
           </div>
         </div>
 
-        <!-- Card 6 — UScellular -->
-        <div class="work-card" data-cat="performance-marketing" data-id="5" onclick="openDetail(5)">
+        <!-- Card 6 — US Cellular -->
+        <div class="work-card" data-cat="paid-media-analytics" data-id="5" onclick="openDetail(5)">
           <div class="work-card-img-wrap">
-            <img class="work-card-img" src="USCellular.jpg" alt="UScellular">
+            <img class="work-card-img" src="USCellular.jpg" alt="US Cellular">
           </div>
           <div class="work-card-body">
-            <div class="work-cat">UScellular</div>
+            <div class="work-cat">US Cellular</div>
             <h3>+17% lead growth and 10% lower cost per lead for a national wireless carrier</h3>
             <p class="work-card-desc">A full-funnel lead acquisition strategy for a national wireless carrier &mdash; search, social, display, and ABM aligned around one goal: more leads at lower cost.</p>
             <div class="tags">
@@ -706,8 +706,8 @@
         <!-- Card 7 — Contact CTA -->
         <a href="contact.html" class="work-cta-card">
           <div class="work-cta-label">Start a conversation</div>
-          <div class="work-cta-title">Working on something we should know about?</div>
-          <p class="work-cta-body">We don&rsquo;t take on every project &mdash; but we&rsquo;re always interested in the right one. Tell us what you&rsquo;re working on and we&rsquo;ll give you an honest read on whether we can help.</p>
+          <div class="work-cta-title">What are you trying to solve?</div>
+          <p class="work-cta-body">Tell us about your project &ndash; no pushy sales process, just a real conversation about your challenge.</p>
           <span class="work-cta-link">Get in touch <span class="work-cta-arrow">&rarr;</span></span>
         </a>
 
@@ -836,7 +836,7 @@
             </div>
             <p class="footer-brand-desc">Brand, digital, and technology consulting for organizations that want to close the gap between strategy and result.</p>
             <div class="footer-social">
-              <a href="#" title="LinkedIn">in</a>
+              <a href="https://www.linkedin.com/company/the-main-sequence/" target="_blank" rel="noopener" title="LinkedIn">in</a>
             </div>
           </div>
           <div class="footer-links">
@@ -852,9 +852,10 @@
             <div class="footer-col">
               <h3>Work</h3>
               <ul>
-                <li><a href="work.html">Enterprise Events</a></li>
-                <li><a href="work.html">Nonprofit / Education</a></li>
-                <li><a href="work.html">AEC / Legal</a></li>
+                <li><a href="work.html">United Airlines</a></li>
+                <li><a href="work.html">US Cellular</a></li>
+                <li><a href="work.html">Peak Construction</a></li>
+                <li><a href="work.html">TitanPricer</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -1101,11 +1102,11 @@
         cat: 'Performance Marketing',
         title: '+17% lead growth and 10% lower cost per lead for a national wireless carrier',
         sector: 'Telecommunications',
-        type: 'UScellular',
+        type: 'US Cellular',
         outcomes: '17% YoY increase in lead volume<br>12% YoY increase in marketing qualified leads<br>10% reduction in cost per lead<br>Full-funnel strategy unifying search, social, display, and ABM',
         tags: ['Performance Marketing', 'Paid Search', 'Paid Social', 'Display', 'ABM'],
         body: `
-          <p>UScellular needed to improve lead generation performance while increasing efficiency across channels. Growth was a priority, but not at the expense of rising acquisition costs. The goal was to build a more balanced, full-funnel strategy that could drive higher-quality leads at a lower cost. That&rsquo;s what we did.</p>
+          <p>US Cellular needed to improve lead generation performance while increasing efficiency across channels. Growth was a priority, but not at the expense of rising acquisition costs. The goal was to build a more balanced, full-funnel strategy that could drive higher-quality leads at a lower cost. That&rsquo;s what we did.</p>
 
           <div class="cs-snapshot">
             <div class="cs-snapshot-item"><div class="cs-stat-num">+17%</div><div class="cs-stat-label">YoY lead growth</div></div>
