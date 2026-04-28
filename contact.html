@@ -241,6 +241,33 @@
     }
     .direct-contact a:hover { color: var(--cream); }
 
+    /* HONEYPOT — hidden from real users, visible to bots */
+    .hp-field { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+    /* ERROR STATES */
+    .form-error-banner {
+      display: none;
+      background: rgba(224,112,96,0.10);
+      border: 1px solid rgba(224,112,96,0.4);
+      color: #E89080;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      margin-bottom: 1.4rem;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .field-error {
+      color: #E89080;
+      font-size: 13px;
+      margin-top: 6px;
+      letter-spacing: 0.01em;
+    }
+    input[aria-invalid="true"], textarea[aria-invalid="true"], select[aria-invalid="true"] {
+      border-color: rgba(224,112,96,0.55);
+      background: rgba(224,112,96,0.05);
+    }
+    .form-submit:disabled { opacity: 0.55; cursor: wait; }
+
     /* SUCCESS STATE */
     .form-success {
       display: none;
@@ -410,24 +437,25 @@
 
     <!-- FORM -->
     <div class="contact-form" id="contact-form-wrap">
-      <form id="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-error-banner" id="form-error" role="alert" aria-live="polite"></div>
+      <form id="contact-form" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row-split">
           <div>
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first_name" placeholder="Jane" required>
+            <input type="text" id="first-name" name="first_name" placeholder="Jane" required maxlength="100" autocomplete="given-name">
           </div>
           <div>
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last_name" placeholder="Smith" required>
+            <input type="text" id="last-name" name="last_name" placeholder="Smith" required maxlength="100" autocomplete="family-name">
           </div>
         </div>
         <div class="form-row">
           <label for="email">Work Email</label>
-          <input type="email" id="email" name="email" placeholder="jane@yourcompany.com" required>
+          <input type="email" id="email" name="email" placeholder="jane@yourcompany.com" required maxlength="200" autocomplete="email">
         </div>
         <div class="form-row">
           <label for="org">Organization</label>
-          <input type="text" id="org" name="organization" placeholder="Your company or organization">
+          <input type="text" id="org" name="organization" placeholder="Your company or organization" maxlength="200" autocomplete="organization">
         </div>
         <div class="form-row">
           <label for="service">What are you working on?</label>
@@ -442,7 +470,12 @@
         </div>
         <div class="form-row">
           <label for="message">Tell us more</label>
-          <textarea id="message" name="message" placeholder="What&rsquo;s the challenge you&rsquo;re trying to solve? Where are you stuck? The more context you share, the better our first conversation will be." required></textarea>
+          <textarea id="message" name="message" placeholder="What&rsquo;s the challenge you&rsquo;re trying to solve? Where are you stuck? The more context you share, the better our first conversation will be." required maxlength="5000"></textarea>
+        </div>
+        <!-- Honeypot: real users won't see or fill this. Bots usually will. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Website (leave empty)</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
         </div>
         <button type="submit" class="form-submit">Send Message &rarr;</button>
       </form>
@@ -548,10 +581,105 @@
       document.body.style.overflow = '';
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
+      const form = document.getElementById('contact-form');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const banner = document.getElementById('form-error');
+
+      // Reset previous error UI
+      banner.style.display = 'none';
+      banner.textContent = '';
+      form.querySelectorAll('.field-error').forEach(el => el.remove());
+      form.querySelectorAll('[aria-invalid="true"]').forEach(el => {
+        el.removeAttribute('aria-invalid');
+        el.removeAttribute('aria-describedby');
+      });
+
+      const showFieldError = (name, msg) => {
+        const input = form.querySelector(`[name="${name}"]`);
+        if (!input) return;
+        input.setAttribute('aria-invalid', 'true');
+        const err = document.createElement('div');
+        err.className = 'field-error';
+        err.id = `${name}-error`;
+        err.textContent = msg;
+        input.setAttribute('aria-describedby', err.id);
+        input.parentNode.appendChild(err);
+      };
+
+      const showBanner = (msg) => {
+        banner.textContent = msg;
+        banner.style.display = 'block';
+      };
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      // Lightweight client-side validation (server re-validates regardless)
+      const clientErrors = {};
+      if (!data.first_name?.trim()) clientErrors.first_name = 'First name is required.';
+      if (!data.last_name?.trim()) clientErrors.last_name = 'Last name is required.';
+      if (!data.email?.trim()) clientErrors.email = 'Email is required.';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) clientErrors.email = 'Please enter a valid email address.';
+      if (!data.message?.trim()) clientErrors.message = 'Please tell us a bit about what you’re working on.';
+
+      if (Object.keys(clientErrors).length) {
+        Object.entries(clientErrors).forEach(([k, v]) => showFieldError(k, v));
+        showBanner('Please fix the highlighted fields and try again.');
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Loading state
+      const originalLabel = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      // Network request with timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+
+        let result = {};
+        try { result = await response.json(); } catch (_) { /* non-JSON response */ }
+
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+          if (window.gtag) gtag('event', 'contact_form_submit', { event_category: 'engagement' });
+          return;
+        }
+
+        if (response.status === 400 && result.fields && typeof result.fields === 'object') {
+          Object.entries(result.fields).forEach(([k, v]) => showFieldError(k, String(v)));
+          showBanner('Please fix the highlighted fields and try again.');
+          const firstInvalid = form.querySelector('[aria-invalid="true"]');
+          if (firstInvalid) firstInvalid.focus();
+        } else if (response.status === 429) {
+          showBanner('You’ve sent a lot of requests. Please wait a moment and try again.');
+        } else {
+          showBanner(result.error || 'Something went wrong on our end. Please try again, or email hello@mainsequence.consulting directly.');
+        }
+      } catch (err) {
+        clearTimeout(timeoutId);
+        if (err.name === 'AbortError') {
+          showBanner('The request took too long. Please check your connection and try again.');
+        } else {
+          showBanner('Couldn’t reach the server. Check your internet connection, or email hello@mainsequence.consulting directly.');
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
+      }
     }
   
     // Page fade — reveal on load
